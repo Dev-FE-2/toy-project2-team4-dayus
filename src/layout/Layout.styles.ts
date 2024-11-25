@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const LayoutWrapper = styled.div`
-  padding: 0 var(--padding-inline);
-`;
-
 export const Container = styled.div`
-  width: 100%;
+  max-width: var(--max-width);
+  min-height: 100vh;
   margin: 0 auto;
+  background: var(--color-white);
+  color: var(--color-black);
+  padding: 0 var(--padding-inline);
 `;
