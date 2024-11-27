@@ -23,6 +23,8 @@
   --color-danger: #dc3545;
   --color-warning: #ffc107;
   --color-info: #17a2b8;
+  --color-error: #ed455d;
+  --color-main: #705a4d;
 
   /* Colors - Brand Hover */
   --color-primary-hover: #0056b3;
@@ -31,6 +33,8 @@
   --color-danger-hover: #c82333;
   --color-warning-hover: #d39e00;
   --color-info-hover: #138496;
+  --color-error-hover: #c12c3d;
+  --color-main-hover: #5b4c3f;
 
   /* Typography */
   --font-xs: 0.75rem; /* 12px */
