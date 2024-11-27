@@ -24,15 +24,18 @@ export const ModalOverlay = styled.div<{ $closing: boolean }>`
   z-index: 1000;
 `;
 
-export const ModalContainer = styled.div<{
+export const ModalContainer = styled.div.attrs<{
   $translateY: number;
   $closing: boolean;
-}>`
+}>(props => ({
+  style: {
+    transform: `translateY(${props.$translateY}px)`,
+  },
+}))`
   width: 100%;
   height: 75vh;
   display: flex;
   flex-direction: column;
-  transform: translateY(${props => props.$translateY}px);
   transition: transform 0.2s ease-out;
   ${props =>
     !props.$closing &&
