@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './NotFound.styles';
-import { Button } from '@components/ui/Button';
+import Button from '@/components/ui/Button/Button';
 import NotFoundSvg from '@/assets/not-found.svg';
 
 const NotFoundPage = () => {

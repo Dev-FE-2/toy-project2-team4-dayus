@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 type ButtonVariant =
   | 'main'
@@ -9,13 +9,31 @@ type ButtonVariant =
   | 'warning'
   | 'info';
 type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonRadius = 'sm' | 'base' | 'md' | 'lg' | 'full';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   $variant?: ButtonVariant;
   $size?: ButtonSize;
+  $radius?: ButtonRadius;
   $fullWidth?: boolean;
   $width?: string;
+  $customStyle?: {
+    background?: string;
+    border?: string;
+    padding?: string;
+  };
 }
+
+const getRadiusStyles = (radius: ButtonRadius = 'base') => {
+  const radiusMap = {
+    sm: 'var(--radius-sm)',
+    base: 'var(--radius-base)',
+    md: 'var(--radius-md)',
+    lg: 'var(--radius-lg)',
+    full: 'var(--radius-full)',
+  };
+  return radiusMap[radius];
+};
 
 const getVariantStyles = (variant: ButtonVariant = 'main') => {
   const colors = {
@@ -81,22 +99,37 @@ const getSizeStyles = (size: ButtonSize = 'md') => {
 };
 
 const Button = styled.button<ButtonProps>`
-  border: none;
-  border-radius: var(--radius-base);
+  border-radius: ${props => getRadiusStyles(props.$radius)};
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s;
   width: ${props => {
     if (props.$fullWidth) return '100%';
     if (props.$width) return props.$width;
     return 'auto';
   }};
-  ${props => getVariantStyles(props.$variant)}
-  ${props => getSizeStyles(props.$size)}
 
- &:disabled {
+  ${props =>
+    props.$customStyle
+      ? css`
+          background: ${props.$customStyle.background};
+          border: ${props.$customStyle.border};
+          padding: ${props.$customStyle.padding || '2rem'};
+          aspect-ratio: 1;
+
+          &:hover {
+            filter: brightness(1.1);
+          }
+        `
+      : css`
+          border: none;
+          ${getVariantStyles(props.$variant)}
+          ${getSizeStyles(props.$size)}
+        `}
+
+  &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
   }
 `;
 
-export { Button };
+export default Button;
