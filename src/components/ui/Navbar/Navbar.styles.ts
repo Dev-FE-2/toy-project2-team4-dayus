@@ -6,18 +6,20 @@ export const NavWrapper = styled.nav`
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  width: var(--max-width);
+  width: 100%;
+  max-width: var(--max-width);
   background-color: var(--color-white);
 `;
 
 export const NavList = styled.ul`
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: stretch;
+  height: 8rem;
 `;
 
 export const NavItem = styled.li`
-  flex: 1;
+  flex: 1 1 auto;
   text-align: center;
 `;
 
@@ -34,9 +36,10 @@ export const NavLinkIcon = styled.div`
 export const NavLink = styled(RouterNavLink)`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 6px;
-  padding: 28px calc(100% / 3);
+  height: 100%;
 
   &.active ${NavLinkIcon} {
     background-color: #fbdccc;
