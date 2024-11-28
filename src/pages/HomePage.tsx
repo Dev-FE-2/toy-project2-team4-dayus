@@ -1,10 +1,7 @@
-import Input from '@/components/ui/Input';
-
 const HomePage = () => {
   return (
     <>
-      <br />
-      <Input variant={'main'} />
+      <p>홈페이지입니다.</p>
     </>
   );
 };
