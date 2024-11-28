@@ -1,8 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './Tab.styles';
 
-// type alias 선언
 type TabProps = { active: 'salary' | 'shift' };
+
+const tabs = [
+  { path: '/salary', title: '급여 내역', label: 'salary' },
+  { path: '/shift', title: '근무 정정', label: 'shift' },
+];
 
 const Tab = ({ active }: TabProps) => {
   const navigate = useNavigate();
@@ -10,22 +14,16 @@ const Tab = ({ active }: TabProps) => {
   return (
     <S.TabWrapper>
       <S.TabList>
-        <S.TabItem>
-          <S.TabButton
-            onClick={() => navigate('/salary')}
-            $active={active === 'salary'}
-          >
-            급여 내역
-          </S.TabButton>
-        </S.TabItem>
-        <S.TabItem>
-          <S.TabButton
-            onClick={() => navigate('/shift')}
-            $active={active === 'shift'}
-          >
-            근무 정정
-          </S.TabButton>
-        </S.TabItem>
+        {tabs.map(({ path, title, label }) => (
+          <S.TabItem key={label}>
+            <S.TabButton
+              onClick={() => navigate(path)}
+              $active={active === label}
+            >
+              {title}
+            </S.TabButton>
+          </S.TabItem>
+        ))}
       </S.TabList>
     </S.TabWrapper>
   );
