@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background-color: var(--color-bg);
-    font-family: 'Pretendard', sans-serif;
+    font-family: var(--ff_eng), var(--ff_kor), "Malgun Gothic", "맑은 고딕", sans-serif;
   }
 
   button {
@@ -29,5 +29,41 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+    appearance: none;
+  }
+
+  input,
+  select {
+    box-sizing: border-box;
+    outline: 0 none;
+    appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  input[type="number"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="text"],
+  textarea {
+    font-family: var(--ff_eng), var(--ff_kor), "Malgun Gothic", "맑은 고딕", sans-serif;
+  }
+
+  /* hidden */
+  .visibility-hidden {
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+    border: 0;
   }
 `;
