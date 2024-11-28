@@ -16,6 +16,7 @@
   --color-gray-700: #495057;
   --color-gray-800: #343a40;
   --color-gray-900: #212529;
+  --color-gray-border: #bbb;
 
   /* Colors - Brand */
   --color-primary: #007bff;
@@ -38,6 +39,9 @@
   --color-main-hover: #5b4c3f;
 
   /* Typography */
+  --ff_kor: "Pretendard"; /* 한글 폰트*/
+  --ff_eng: "Pretendard"; /* 영문, 숫자 폰트 */
+
   --font-xs: 1.2rem; /* 12px */
   --font-sm: 1.4rem; /* 14px */
   --font-base: 1.6rem; /* 16px */
@@ -58,11 +62,11 @@
   --spacing-10: 6.4rem; /* 64px */
 
   /* Border Radius */
-  --radius-sm: 0.2rem; /* 2px */
-  --radius-base: 0.4rem; /* 4px */
-  --radius-md: 0.6rem; /* 6px */
-  --radius-lg: 0.8rem; /* 8px */
-  --radius-xl: 1.6rem; /* 16px */
+  --radius-sm: 2px; /* 2px */
+  --radius-base: 4px; /* 4px */
+  --radius-md: 6px; /* 6px */
+  --radius-lg: 8px; /* 8px */
+  --radius-xl: 16px; /* 16px */
   --radius-full: 9999px;
 
   /* Shadows */
