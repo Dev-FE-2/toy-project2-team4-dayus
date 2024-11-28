@@ -16,13 +16,30 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   });
   const modalRoot = document.getElementById('modal-overlay');
 
+  // 모달이 열릴 때 스크롤 방지
+  const preventScroll = () => {
+    const currentScrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${currentScrollY}px`;
+    document.body.style.overflow = 'scroll';
+    return currentScrollY;
+  };
+
+  // 모달이 닫힐 때 스크롤 허용
+  const allowScroll = (scrollY: number) => {
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.top = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, scrollY);
+  };
+
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      const scrollY = preventScroll();
+      return () => allowScroll(scrollY);
     }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
   }, [isOpen]);
 
   useEffect(() => {
