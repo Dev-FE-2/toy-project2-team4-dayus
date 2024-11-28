@@ -15,7 +15,7 @@ export const NavList = styled.ul`
   display: flex;
   justify-content: space-around;
   align-items: stretch;
-  height: 8rem;
+  height: var(--navbar-height);
 `;
 
 export const NavItem = styled.li`
