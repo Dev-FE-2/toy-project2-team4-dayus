@@ -1,45 +1,52 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
-type StyleType = {
+interface IStyleType {
   width?: string;
   height?: string;
-};
+}
 
 type InputValueType = string | number | string[] | undefined;
 
 interface IInputProps
   extends React.HTMLAttributes<HTMLInputElement>,
-    StyleType {
+    IStyleType {
+  id?: string;
   type?: string;
   value?: InputValueType;
+  isCustom?: boolean;
   onChange?: () => void;
-  variant?: 'main';
 }
 
+/**
+ * 커스텀 attr 참고
+ * @param {string} [width]
+ * @param {string} [height]
+ */
 const Input = forwardRef<HTMLInputElement, IInputProps>(
   (
-    { type = 'text', width, height, variant, value, onChange, ...props },
+    { id, width, height, type = 'text', value, isCustom, onChange, ...props },
     ref,
   ) => {
     return (
-      <StyledInput
-        width={width}
-        height={height}
-        type={type}
-        ref={ref}
-        value={value}
-        variant={variant}
-        onChange={onChange}
-        {...props}
-      />
+      <>
+        <StyledInput
+          id={id}
+          width={width}
+          height={height}
+          type={type}
+          ref={ref}
+          value={value}
+          isCustom={isCustom}
+          onChange={onChange}
+          {...props}
+        />
+      </>
     );
   },
 );
 
-const mainStyle = (props: StyleType) => css`
-  width: ${props.width || 'auto'};
-  height: ${props.height || 'auto'};
+const mainStyle = css`
   padding: var(--spacing-3) var(--spacing-4);
   font-size: var(--font-base);
   font-weight: 500;
@@ -53,9 +60,11 @@ const mainStyle = (props: StyleType) => css`
 `;
 
 const StyledInput = styled.input<
-  Pick<IInputProps, 'width' | 'height' | 'variant'>
+  Pick<IInputProps, 'width' | 'height' | 'isCustom'>
 >`
-  ${props => props.variant === 'main' && mainStyle};
+  width: ${props => props.width || 'auto'};
+  height: ${props => props.height || 'auto'};
+  ${props => !props.isCustom && mainStyle};
 `;
 
 export default Input;
