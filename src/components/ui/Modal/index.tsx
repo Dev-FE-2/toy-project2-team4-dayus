@@ -51,7 +51,11 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   if (!isOpen) return null;
 
   return ReactDOM.createPortal(
-    <S.ModalOverlay $closing={isClosing} onClick={closeAnimation}>
+    <S.ModalOverlay
+      $closing={isClosing}
+      $translateY={translateY}
+      onClick={closeAnimation}
+    >
       <S.ModalContainer
         id="modal-container"
         onClick={e => e.stopPropagation()}

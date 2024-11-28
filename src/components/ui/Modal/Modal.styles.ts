@@ -9,7 +9,14 @@ const slideUp = keyframes`
   }
 `;
 
-export const ModalOverlay = styled.div<{ $closing: boolean }>`
+export const ModalOverlay = styled.div.attrs<{
+  $closing: boolean;
+  $translateY: number;
+}>(props => ({
+  style: {
+    backgroundColor: `rgba(0, 0, 0, ${Math.max(0.5 - props.$translateY / window.innerHeight, 0)})`,
+  },
+}))`
   position: fixed;
   top: 0;
   bottom: 0;
@@ -22,6 +29,7 @@ export const ModalOverlay = styled.div<{ $closing: boolean }>`
   justify-content: center;
   align-items: flex-end;
   z-index: 1000;
+  transition: background-color 0.2s ease-out;
 `;
 
 export const ModalContainer = styled.div.attrs<{
