@@ -1,17 +1,9 @@
 import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
-interface IStyleType {
-  width?: string;
-  height?: string;
-}
-
 type InputValueType = string | number | string[] | undefined;
 
-interface IInputProps
-  extends React.HTMLAttributes<HTMLInputElement>,
-    IStyleType {
-  id?: string;
+export interface IInputProps extends React.ComponentPropsWithRef<'input'> {
   type?: string;
   value?: InputValueType;
   isCustom?: boolean;
@@ -25,13 +17,12 @@ interface IInputProps
  */
 const Input = forwardRef<HTMLInputElement, IInputProps>(
   (
-    { id, width, height, type = 'text', value, isCustom, onChange, ...props },
+    { width, height, type = 'text', value, isCustom, onChange, ...props },
     ref,
   ) => {
     return (
       <>
         <StyledInput
-          id={id}
           width={width}
           height={height}
           type={type}
