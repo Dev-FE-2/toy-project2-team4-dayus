@@ -1,12 +1,6 @@
-import React from 'react';
-import Input, { IInputProps } from '.';
+import Input from '.';
 import styled from 'styled-components';
-
-interface ILabelProps extends React.ComponentProps<'label'> {
-  id: string;
-  className?: string;
-  inputProps?: IInputProps;
-}
+import { ILabelProps } from '@/types/input';
 
 const LabeledInput = ({
   id,

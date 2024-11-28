@@ -1,14 +1,6 @@
-import React, { forwardRef } from 'react';
+import { IInputProps } from '@/types/input';
+import { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
-
-type InputValueType = string | number | string[] | undefined;
-
-export interface IInputProps extends React.ComponentPropsWithRef<'input'> {
-  type?: string;
-  value?: InputValueType;
-  isCustom?: boolean;
-  onChange?: () => void;
-}
 
 /**
  * 커스텀 attr 참고
