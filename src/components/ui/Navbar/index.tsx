@@ -23,7 +23,7 @@ const NavBar = () => {
           </S.NavLink>
         </S.NavItem>
         <S.NavItem>
-          <S.NavLink to={ROUTER_PATH.LOGIN}>
+          <S.NavLink to={ROUTER_PATH.PROFILE}>
             <S.NavLinkIcon>
               <FaUser />
             </S.NavLinkIcon>

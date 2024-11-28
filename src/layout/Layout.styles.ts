@@ -6,5 +6,5 @@ export const Container = styled.div`
   margin: 0 auto;
   background: var(--color-white);
   color: var(--color-black);
-  padding: 0 var(--padding-inline);
+  padding: 0 var(--padding-inline) var(--navbar-height);
 `;
