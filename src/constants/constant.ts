@@ -4,3 +4,5 @@ export const ROUTER_PATH = {
   SALARY: '/salary',
   PROFILE: '/profile',
 };
+
+export const DRAG_CLOSE_THRESHOLD = 250;
