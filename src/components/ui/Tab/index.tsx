@@ -1,32 +1,32 @@
-import { useNavigate } from 'react-router-dom';
 import * as S from './Tab.styles';
+import { Dispatch, SetStateAction } from 'react';
 
-type TabProps = { active: 'salary' | 'shift' };
+type TabItems = {
+  title: string;
+  label: string;
+}[];
 
-const tabs = [
-  { path: '/salary', title: '급여 내역', label: 'salary' },
-  { path: '/shift', title: '근무 정정', label: 'shift' },
-];
+interface ITab {
+  selected: string;
+  setSelected: Dispatch<SetStateAction<string>>;
+  items: TabItems;
+}
 
-const Tab = ({ active }: TabProps) => {
-  const navigate = useNavigate();
-
-  return (
-    <S.TabWrapper>
-      <S.TabList>
-        {tabs.map(({ path, title, label }) => (
-          <S.TabItem key={label}>
-            <S.TabButton
-              onClick={() => navigate(path)}
-              $active={active === label}
-            >
-              {title}
-            </S.TabButton>
-          </S.TabItem>
-        ))}
-      </S.TabList>
-    </S.TabWrapper>
-  );
-};
+const Tab = ({ selected, setSelected, items: tabs }: ITab) => (
+  <S.TabWrapper>
+    <S.TabList>
+      {tabs.map(({ title, label }) => (
+        <S.TabItem key={label}>
+          <S.TabButton
+            onClick={() => setSelected(label)}
+            $active={selected === label}
+          >
+            {title}
+          </S.TabButton>
+        </S.TabItem>
+      ))}
+    </S.TabList>
+  </S.TabWrapper>
+);
 
 export default Tab;
