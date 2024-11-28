@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
 type StyleType = {
@@ -6,24 +6,29 @@ type StyleType = {
   height?: string;
 };
 
+type InputValueType = string | number | string[] | undefined;
+
 interface IInputProps
   extends React.HTMLAttributes<HTMLInputElement>,
     StyleType {
   type?: string;
-  value?: string;
-  maxLength?: number;
+  value?: InputValueType;
   onChange?: () => void;
   variant?: 'main';
 }
 
-const Input: FC<IInputProps> = forwardRef<HTMLInputElement, IInputProps>(
-  ({ type = 'text', width, height, variant, onChange, ...props }, ref) => {
+const Input = forwardRef<HTMLInputElement, IInputProps>(
+  (
+    { type = 'text', width, height, variant, value, onChange, ...props },
+    ref,
+  ) => {
     return (
       <StyledInput
         width={width}
         height={height}
         type={type}
         ref={ref}
+        value={value}
         variant={variant}
         onChange={onChange}
         {...props}
