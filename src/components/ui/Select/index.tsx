@@ -10,12 +10,15 @@ const Select = forwardRef<HTMLDivElement, ISelectProps>(
       options.find(option => option.value === value) || options[0],
     );
     const dropdownRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLDivElement>(null);
 
     // 드롭다운 외부 클릭 시 닫기
     const handleClickOutside = (event: MouseEvent) => {
       if (
         dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
+        buttonRef.current &&
+        !dropdownRef.current.contains(event.target as Node) &&
+        !buttonRef.current.contains(event.target as Node)
       ) {
         setIsOpen(false);
       }
@@ -45,6 +48,7 @@ const Select = forwardRef<HTMLDivElement, ISelectProps>(
     return (
       <S.SelectWrapper width={width} height={height} ref={ref} {...props}>
         <S.SelectButton
+          ref={buttonRef}
           $isOpen={isOpen}
           isCustom={isCustom}
           onClick={() => setIsOpen(!isOpen)}
