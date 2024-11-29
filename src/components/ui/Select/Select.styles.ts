@@ -19,6 +19,7 @@ export const SelectButton = styled.div<{
       border-radius: var(--radius-base);
       border: 1px solid var(--color-gray-border);
       cursor: pointer;
+      background-color: var(--color-white);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -46,6 +47,7 @@ export const OptionsWrapper = styled.div<{ $isOpen: boolean }>`
   top: calc(100% + var(--spacing-1));
   left: 0;
   right: 0;
+  background-color: var(--color-white);
   border-radius: var(--radius-base);
   border: 1px solid var(--color-gray-border);
   max-height: ${props => (props.$isOpen ? '300px' : '0')};
