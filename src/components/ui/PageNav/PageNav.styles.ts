@@ -17,5 +17,5 @@ export const PageNavButton = styled.button`
 
 export const PageNavTitle = styled.span`
   font-size: var(--font-xl);
-  flex: 1;
+  flex: 1 0 auto;
 `;
