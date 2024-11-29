@@ -1,7 +1,6 @@
 import { forwardRef, useState, useRef, useEffect } from 'react';
-
-import { ISelectProps } from '@/types/select';
 import * as S from './Select.styles';
+import { ISelectProps } from '@/types/form';
 
 const Select = forwardRef<HTMLDivElement, ISelectProps>(
   ({ width, height, isCustom, options, value, onChange, ...props }, ref) => {

@@ -1,4 +1,4 @@
-import { IInputProps } from '@/types/input';
+import { IInputProps } from '@/types/form';
 import { forwardRef } from 'react';
 import styled, { css } from 'styled-components';
 
@@ -45,7 +45,7 @@ const mainStyle = css`
 const StyledInput = styled.input<
   Pick<IInputProps, 'width' | 'height' | 'isCustom'>
 >`
-  width: ${props => props.width || 'auto'};
+  width: ${props => props.width || '100%'};
   height: ${props => props.height || 'auto'};
   ${props => !props.isCustom && mainStyle};
 `;
