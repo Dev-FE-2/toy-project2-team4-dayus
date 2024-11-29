@@ -1,8 +1,10 @@
+/* eslint-disable */
 import { ComponentProps, ComponentPropsWithRef } from 'react';
 
 type SelectValueType = string | number | string[] | undefined;
 
-export interface ISelectProps extends ComponentPropsWithRef<'select'> {
+export interface ISelectProps
+  extends Omit<ComponentPropsWithRef<'div'>, 'onChange'> {
   width?: string;
   height?: string;
   value?: SelectValueType;
@@ -11,7 +13,7 @@ export interface ISelectProps extends ComponentPropsWithRef<'select'> {
     value: string | number;
     label: string;
   }>;
-  onChange?: () => void;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export interface ILabelProps extends ComponentProps<'label'> {

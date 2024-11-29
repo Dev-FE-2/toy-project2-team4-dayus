@@ -1,50 +1,71 @@
-import { forwardRef } from 'react';
+import { forwardRef, useState, useRef, useEffect } from 'react';
 
-import styled, { css } from 'styled-components';
 import { ISelectProps } from '@/types/select';
+import * as S from './Select.styles';
 
-const Select = forwardRef<HTMLSelectElement, ISelectProps>(
+const Select = forwardRef<HTMLDivElement, ISelectProps>(
   ({ width, height, isCustom, options, value, onChange, ...props }, ref) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(
+      options.find(option => option.value === value) || options[0],
+    );
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // 드롭다운 외부 클릭 시 닫기
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    useEffect(() => {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
+
+    const handleSelect = (option: {
+      value: string | number;
+      label: string;
+    }) => {
+      setSelectedOption(option);
+      setIsOpen(false);
+      if (onChange) {
+        const event = {
+          target: { value: option.value },
+        } as React.ChangeEvent<HTMLSelectElement>;
+        onChange(event);
+      }
+    };
+
     return (
-      <StyledSelect
-        width={width}
-        height={height}
-        ref={ref}
-        value={value}
-        isCustom={isCustom}
-        onChange={onChange}
-        {...props}
-      >
-        {options.map(option => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </StyledSelect>
+      <S.SelectWrapper width={width} height={height} ref={ref} {...props}>
+        <S.SelectButton
+          $isOpen={isOpen}
+          isCustom={isCustom}
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span>{selectedOption?.label}</span>
+          <S.StyledArrow $isOpen={isOpen} size={24} />
+        </S.SelectButton>
+        <S.OptionsWrapper $isOpen={isOpen} ref={dropdownRef}>
+          {options.map(option => (
+            <S.Option
+              key={option.value}
+              $isSelected={selectedOption.value === option.value}
+              onClick={() => handleSelect(option)}
+            >
+              {option.label}
+            </S.Option>
+          ))}
+        </S.OptionsWrapper>
+      </S.SelectWrapper>
     );
   },
 );
-
-const mainStyle = css`
-  padding: var(--spacing-3) var(--spacing-4);
-  font-size: var(--font-base);
-  font-weight: 500;
-  border-radius: var(--radius-base);
-  border: 1px solid var(--color-gray-border);
-  cursor: pointer;
-
-  &:focus,
-  &:focus-visible {
-    border: 1px solid var(--color-main);
-  }
-`;
-
-const StyledSelect = styled.select<
-  Pick<ISelectProps, 'width' | 'height' | 'isCustom'>
->`
-  width: ${props => props.width || 'auto'};
-  height: ${props => props.height || 'auto'};
-  ${props => !props.isCustom && mainStyle};
-`;
 
 export default Select;
