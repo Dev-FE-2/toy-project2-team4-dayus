@@ -1,7 +1,16 @@
+import { ComponentProps } from 'react';
+
 import styled from 'styled-components';
 
 import Select from '.';
-import { ILabelProps } from '@/types/select';
+import { ISelectProps } from '@/types/select';
+
+interface ILabelProps extends ComponentProps<'label'> {
+  id: string;
+  className?: string;
+  children: React.ReactNode;
+  selectProps?: Omit<ISelectProps, 'id'>;
+}
 
 const LabeledSelect = ({
   id,

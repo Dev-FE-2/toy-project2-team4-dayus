@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { ComponentProps, ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef } from 'react';
 
 type SelectValueType = string | number | string[] | undefined;
 
@@ -14,11 +14,4 @@ export interface ISelectProps
     label: string;
   }>;
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-}
-
-export interface ILabelProps extends ComponentProps<'label'> {
-  id: string;
-  className?: string;
-  children: React.ReactNode;
-  selectProps?: Omit<ISelectProps, 'id'>;
 }
