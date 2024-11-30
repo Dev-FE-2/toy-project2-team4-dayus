@@ -4,6 +4,10 @@ type SizeProps = {
   size: number;
 };
 
+type TextSizeProps = {
+  $textSize: 'xs' | 'sm' | 'base';
+};
+
 const spin = keyframes`
   from {
     transform: rotate(0deg);
@@ -41,8 +45,8 @@ export const SpinnerRing = styled.div<SizeProps>`
   animation: ${spin} 1s linear infinite;
 `;
 
-export const Text = styled.p`
-  font-size: var(--font-base);
+export const Text = styled.p<TextSizeProps>`
+  font-size: var(--font-${props => props.$textSize});
   font-weight: bold;
   color: var(--color-main);
   text-align: center;
