@@ -22,10 +22,10 @@ export const LoginForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 2.8rem;
 
   & > :last-child {
-    margin-top: 20px;
+    margin-top: 2rem;
   }
 `;
 
@@ -33,7 +33,7 @@ export const LoginFormItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 10px;
+  gap: 1rem;
 `;
 
 export const LoginLabel = styled.label`

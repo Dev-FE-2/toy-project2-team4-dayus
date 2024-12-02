@@ -13,20 +13,12 @@ const LoginPage = () => {
       <S.LoginForm>
         <S.LoginFormItem>
           <LabeledBox id="email" text="이메일">
-            <Input
-              placeholder="이메일을 입력해 주세요"
-              id="email"
-              type="text"
-            />
+            <Input placeholder="이메일을 입력해 주세요" />
           </LabeledBox>
         </S.LoginFormItem>
         <S.LoginFormItem>
-          <LabeledBox id="password" text="패스워드">
-            <Input
-              placeholder="패스워드를 입력해 주세요"
-              id="password"
-              type="password"
-            />
+          <LabeledBox id="password" text="비밀번호">
+            <Input placeholder="비밀번호를 입력해 주세요" type="password" />
           </LabeledBox>
         </S.LoginFormItem>
         <Button $size="lg">로그인</Button>
