@@ -4,11 +4,13 @@ export const CalendarWrapper = styled.div<{ $mode?: 'single' | 'range' }>`
   font-size: var(--font-sm);
   padding: var(--spacing-4);
   background: white;
+  border-radius: var(--radius-lg);
+
   ${props =>
     props.$mode !== 'range' &&
     css`
       border: 1px solid var(--color-gray-300);
-      border-radius: var(--radius-base);
+      box-shadow: var(--shadow-md);
     `}
 
   * {
