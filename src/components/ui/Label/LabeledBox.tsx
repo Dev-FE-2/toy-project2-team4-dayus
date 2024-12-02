@@ -1,6 +1,7 @@
 import { ILabelProps } from '@/types/form';
 import { cloneElement, ReactElement } from 'react';
 import styled from 'styled-components';
+import Label from '.';
 
 interface ILabeledBoxProps extends ILabelProps {
   children: ReactElement;
@@ -9,9 +10,7 @@ interface ILabeledBoxProps extends ILabelProps {
 const LabeledBox = ({ id, text, children, ...props }: ILabeledBoxProps) => {
   return (
     <Div>
-      <label htmlFor={id} {...props}>
-        {text}
-      </label>
+      <Label id={id} text={text} {...props} />
       {cloneElement(children, { id })}
     </Div>
   );
