@@ -12,11 +12,15 @@ const LoginPage = () => {
       <LoginForm>
         <LoginFormItem>
           <LoginLabel htmlFor="email">이메일</LoginLabel>
-          <Input placeholder="example@day.us" id="email" type="text" />
+          <Input placeholder="이메일을 입력해 주세요" id="email" type="text" />
         </LoginFormItem>
         <LoginFormItem>
           <LoginLabel htmlFor="password">패스워드</LoginLabel>
-          <Input placeholder="Value" id="password" type="password" />
+          <Input
+            placeholder="비밀번호를 입력해 주세요"
+            id="password"
+            type="password"
+          />
         </LoginFormItem>
         <Button $size="lg">로그인</Button>
       </LoginForm>
@@ -25,7 +29,8 @@ const LoginPage = () => {
 };
 
 const LoginWrapper = styled.div`
-  min-height: calc(100vh - var(--navbar-height));
+  position: absolute;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
