@@ -6,10 +6,10 @@ type SpinnerProps = {
   textSize?: 'xs' | 'sm' | 'base';
 };
 
-const Spinner = ({ size = 70, text, textSize = 'sm' }: SpinnerProps) => {
+const Spinner = ({ size = 50, text, textSize = 'sm' }: SpinnerProps) => {
   return (
     <S.Wrapper>
-      <S.Container size={size}>
+      <S.Container>
         <S.SpinnerRing size={size} />
       </S.Container>
       {text && <S.Text $textSize={textSize}>{text}</S.Text>}

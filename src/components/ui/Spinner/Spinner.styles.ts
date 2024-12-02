@@ -24,21 +24,17 @@ export const Wrapper = styled.div`
   justify-content: center;
 `;
 
-export const Container = styled.div<SizeProps>`
-  position: relative;
-  width: ${props => props.size}px;
-  height: ${props => props.size}px;
+export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const SpinnerRing = styled.div<SizeProps>`
-  width: ${props => props.size * 0.7}px;
-  height: ${props => props.size * 0.7}px;
+  width: ${props => props.size}px;
+  height: ${props => props.size}px;
   border: ${props => Math.max(props.size * 0.05, 3)}px solid transparent;
   border-radius: var(--radius-full);
-  position: absolute;
   background:
     linear-gradient(#ffffff, #ffffff) padding-box,
     linear-gradient(45deg, transparent 25%, var(--color-main)) border-box;
