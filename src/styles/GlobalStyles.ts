@@ -38,7 +38,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   input,
-  select {
+  select,
+  textarea {
     box-sizing: border-box;
     outline: 0 none;
     appearance: none;
