@@ -20,7 +20,7 @@ const DatePicker = ({ mode, selected, onSelect }: DatePickerProps) => {
 
   const modifiersStyles = {
     sunday: { color: 'var(--color-danger)' },
-    saturday: { color: 'var(--color-primary）' },
+    saturday: { color: 'var(--color-primary)' },
   };
 
   const modifiers = {

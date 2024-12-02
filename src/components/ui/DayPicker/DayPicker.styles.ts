@@ -7,7 +7,7 @@ export const CalendarWrapper = styled.div<{ $mode?: 'single' | 'range' }>`
   ${props =>
     props.$mode !== 'range' &&
     css`
-      border: 1px solid var(--color-gray-200);
+      border: 1px solid var(--color-gray-300);
       border-radius: var(--radius-base);
     `}
 
