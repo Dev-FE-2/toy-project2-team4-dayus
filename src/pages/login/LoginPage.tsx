@@ -7,13 +7,20 @@ import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button/Button';
 import LabeledBox from '@/components/ui/Label/LabeledBox';
 import * as S from './LoginPage.styles';
+import { ROUTER_PATH } from '@/constants/constant';
 
-const LoginPage = () => {
+interface Iprops {
+  email: string;
+  password: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  setPassword: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const LoginForm = (props: Iprops) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const { email, password, setEmail, setPassword } = props;
 
   const onSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,7 +30,7 @@ const LoginPage = () => {
       setIsLoading(true);
       await signIn(email, password);
 
-      navigate('/');
+      navigate(ROUTER_PATH.HOME);
     } catch (error) {
       if (error instanceof FirebaseError) {
         setError('이메일과 비밀번호를 확인해주세요.');
@@ -50,37 +57,51 @@ const LoginPage = () => {
   };
 
   return (
+    <S.LoginForm onSubmit={onSubmitLogin}>
+      <S.LoginFormItem>
+        <LabeledBox id="email" text="이메일">
+          <Input
+            onChange={onChange}
+            name="email"
+            placeholder="이메일을 입력해 주세요"
+            value={email}
+          />
+        </LabeledBox>
+      </S.LoginFormItem>
+      <S.LoginFormItem>
+        <LabeledBox id="password" text="비밀번호">
+          <Input
+            onChange={onChange}
+            name="password"
+            placeholder="비밀번호를 입력해 주세요"
+            type="password"
+            value={password}
+          />
+        </LabeledBox>
+      </S.LoginFormItem>
+      {error && <S.LoginFormAlert>{error}</S.LoginFormAlert>}
+      <Button disabled={isLoading} $size="lg">
+        {isLoading ? '로그인 중..' : '로그인'}
+      </Button>
+    </S.LoginForm>
+  );
+};
+
+const LoginPage = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  return (
     <S.LoginWrapper>
       <S.LoginLogoWrapper>
         <S.LoginLogo src={logo}></S.LoginLogo>
       </S.LoginLogoWrapper>
-      <S.LoginForm onSubmit={onSubmitLogin}>
-        <S.LoginFormItem>
-          <LabeledBox id="email" text="이메일">
-            <Input
-              onChange={onChange}
-              name="email"
-              placeholder="이메일을 입력해 주세요"
-              value={email}
-            />
-          </LabeledBox>
-        </S.LoginFormItem>
-        <S.LoginFormItem>
-          <LabeledBox id="password" text="비밀번호">
-            <Input
-              onChange={onChange}
-              name="password"
-              placeholder="비밀번호를 입력해 주세요"
-              type="password"
-              value={password}
-            />
-          </LabeledBox>
-        </S.LoginFormItem>
-        {error && <S.LoginFormAlert>{error}</S.LoginFormAlert>}
-        <Button disabled={isLoading} $size="lg">
-          {isLoading ? '로그인 중..' : '로그인'}
-        </Button>
-      </S.LoginForm>
+      <LoginForm
+        email={email}
+        password={password}
+        setEmail={setEmail}
+        setPassword={setPassword}
+      />
     </S.LoginWrapper>
   );
 };
