@@ -1,4 +1,10 @@
-import { ComponentProps, ComponentPropsWithRef, ReactNode } from 'react';
+/*eslint-disable*/
+import {
+  ChangeEvent,
+  ComponentProps,
+  ComponentPropsWithRef,
+  ReactNode,
+} from 'react';
 
 // -------- input -------- //
 type InputValueType = string | number | string[] | undefined;
@@ -7,7 +13,7 @@ export interface IInputProps extends ComponentPropsWithRef<'input'> {
   type?: string;
   value?: InputValueType;
   isCustom?: boolean;
-  onChange?: () => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 // -------- /input -------- //
 

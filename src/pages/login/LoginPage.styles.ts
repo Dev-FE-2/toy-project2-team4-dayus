@@ -22,7 +22,6 @@ export const LoginForm = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2.8rem;
 
   & > :last-child {
     margin-top: 2rem;
@@ -34,8 +33,18 @@ export const LoginFormItem = styled.div`
   flex-direction: column;
   align-items: stretch;
   gap: 1rem;
+  margin-bottom: 2.8rem;
+
+  &:last-of-type {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const LoginLabel = styled.label`
   font-size: var(--font-lg);
+`;
+
+export const LoginFormAlert = styled.span`
+  font-size: var(--font-base);
+  color: tomato;
 `;
