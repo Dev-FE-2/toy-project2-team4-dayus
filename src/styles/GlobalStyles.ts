@@ -20,10 +20,24 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var(--ff_eng), var(--ff_kor), "Malgun Gothic", "맑은 고딕", sans-serif;
   }
 
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit;
+    margin: 0;
+  }
+
   button {
     cursor: pointer;
     border: none;
-    background: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    outline: none;
   }
 
   a {
