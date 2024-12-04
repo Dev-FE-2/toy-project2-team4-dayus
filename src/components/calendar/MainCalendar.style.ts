@@ -30,6 +30,10 @@ export const Container = styled.div`
 
   .rbc-row-bg {
     right: 0;
+
+    .rbc-off-range-bg {
+      background: var(--color-gray-100);
+    }
   }
 `;
 
