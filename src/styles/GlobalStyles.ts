@@ -79,8 +79,4 @@ export const GlobalStyle = createGlobalStyle`
   .scroll-locked.has-scrollbar {
     overflow-y: scroll;
   }
-
-  .scroll-locked.no-scrollbar {
-    overflow-y: hidden;
-  }
 `;

@@ -26,20 +26,15 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
       '--scroll-position',
       `-${currentScrollY}px`,
     );
-    document.body.classList.add(
-      'scroll-locked',
-      hasScrollBar ? 'has-scrollbar' : 'no-scrollbar',
-    );
+    document.body.classList.add('scroll-locked');
+    if (hasScrollBar) document.body.classList.add('has-scrollbar');
+
     return currentScrollY;
   };
 
   // 모달이 닫힐 때 스크롤 허용
   const allowScroll = (scrollY: number) => {
-    document.body.classList.remove(
-      'scroll-locked',
-      'has-scrollbar',
-      'no-scrollbar',
-    );
+    document.body.classList.remove('scroll-locked', 'has-scrollbar');
     document.documentElement.style.removeProperty('--scroll-position');
     window.scrollTo(0, scrollY);
   };
