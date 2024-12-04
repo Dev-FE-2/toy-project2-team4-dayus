@@ -1,6 +1,5 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, Fragment } from 'react';
 import type { ReactNode } from 'react';
-import styled from 'styled-components';
 import Spinner from '../ui/Spinner';
 
 interface IInfiniteScrollProps {
@@ -30,17 +29,11 @@ const InfiniteScroll = ({
   }, [handleScroll]);
 
   return (
-    <ScrollBox>
+    <Fragment>
       {children}
       {isLoading && <Spinner size={25} />}
-    </ScrollBox>
+    </Fragment>
   );
 };
-
-const ScrollBox = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  padding: var(--spacing-2);
-`;
 
 export default InfiniteScroll;
