@@ -81,4 +81,16 @@ export const GlobalStyle = createGlobalStyle`
     white-space: nowrap;
     border: 0;
   }
+
+  /* 모달 스크롤 방지 */
+  .scroll-locked {
+    position: fixed;
+    width: 100%;
+    overflow-x: hidden;
+    top: var(--scroll-position);
+  }
+
+  .scroll-locked.has-scrollbar {
+    overflow-y: scroll;
+  }
 `;
