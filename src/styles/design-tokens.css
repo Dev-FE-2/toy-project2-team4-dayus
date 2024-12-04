@@ -51,6 +51,9 @@
   --font-3xl: 3rem; /* 30px */
   --font-4xl: 3.6rem; /* 36px */
 
+  /* layout padding */
+  --layout-padding: 1.6rem;
+
   /* Spacing */
   --spacing-1: 0.4rem; /* 4px */
   --spacing-2: 0.8rem; /* 8px */
