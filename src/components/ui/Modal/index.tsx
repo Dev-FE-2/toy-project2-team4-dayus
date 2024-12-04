@@ -19,10 +19,14 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   // 모달이 열릴 때 스크롤 방지
   const preventScroll = () => {
     const currentScrollY = window.scrollY;
+    const hasScrollBar =
+      window.innerWidth > document.documentElement.clientWidth;
+
     document.body.style.position = 'fixed';
     document.body.style.width = '100%';
     document.body.style.top = `-${currentScrollY}px`;
-    document.body.style.overflow = 'scroll';
+    document.body.style.overflow = hasScrollBar ? 'scroll' : 'hidden';
+    document.body.style.overflowX = 'hidden';
     return currentScrollY;
   };
 
