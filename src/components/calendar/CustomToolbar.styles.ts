@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import {
+  IoIosArrowDropleftCircle,
+  IoIosArrowDroprightCircle,
+} from 'react-icons/io';
 
 export const CalendarHeader = styled.div`
   display: flex;
@@ -28,4 +32,16 @@ export const TodayButton = styled.button`
   background: var(--color-main);
   color: var(--color-white);
   border-radius: var(--radius-base);
+`;
+
+const commonArrowStyles = css`
+  color: var(--color-main);
+`;
+
+export const LeftArrowButton = styled(IoIosArrowDropleftCircle)`
+  ${commonArrowStyles}
+`;
+
+export const RightArrowButton = styled(IoIosArrowDroprightCircle)`
+  ${commonArrowStyles}
 `;
