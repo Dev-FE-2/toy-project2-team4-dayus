@@ -1,8 +1,9 @@
-import { useMemo, useRef, useState } from 'react';
+import { useMemo } from 'react';
 import { SALARY_DETAIL_KEY } from '@/constants/constant';
-import * as S from './Accordion.styles';
+import Accordion from '../ui/Accordion';
+import * as S from './SalaryAccordion.styles';
 
-interface AccordionProps {
+interface ISalaryAccordion {
   tour: {
     startDate: Date;
     endDate: Date;
@@ -30,10 +31,7 @@ const SalaryAccordion = ({
   amount,
   deductible,
   totalAmount,
-}: AccordionProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const detailsRef = useRef<HTMLDetailsElement>(null);
-
+}: ISalaryAccordion) => {
   const gridItems = useMemo<GridItem[]>(
     () => [
       {
@@ -70,29 +68,19 @@ const SalaryAccordion = ({
     [tour, paymentDate, bank, amount, deductible, totalAmount],
   );
 
-  const handleToggle = () => {
-    return detailsRef.current && setIsOpen(detailsRef.current.open);
-  };
-
   return (
-    <S.AccordionBox>
-      <S.DetailsWrapper ref={detailsRef} onToggle={handleToggle} open={isOpen}>
-        <S.DetailSummary>
-          지난달 급여 정보
-          <S.ChevronIcon $isOpen={isOpen} />
-        </S.DetailSummary>
-        <S.GridWrapper>
-          {gridItems.map(item => (
-            <S.GridItem key={item.id}>
-              <S.GridLabel>{item.label}</S.GridLabel>
-              <S.GridValue aria-label={`${item.label} ${item.value}`}>
-                {item.value}
-              </S.GridValue>
-            </S.GridItem>
-          ))}
-        </S.GridWrapper>
-      </S.DetailsWrapper>
-    </S.AccordionBox>
+    <Accordion title="지난달 급여 내역">
+      <S.GridWrapper>
+        {gridItems.map(item => (
+          <S.GridItem key={item.id}>
+            <S.GridLabel>{item.label}</S.GridLabel>
+            <S.GridValue aria-label={`${item.label} ${item.value}`}>
+              {item.value}
+            </S.GridValue>
+          </S.GridItem>
+        ))}
+      </S.GridWrapper>
+    </Accordion>
   );
 };
 
