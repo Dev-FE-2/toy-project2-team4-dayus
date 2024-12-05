@@ -7,10 +7,11 @@ import * as S from './Modal.styles';
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  height?: string;
   children: React.ReactNode;
 };
 
-const Modal = ({ isOpen, onClose, children }: ModalProps) => {
+const Modal = ({ isOpen, onClose, height, children }: ModalProps) => {
   const { translateY, isClosing, handlers, closeAnimation } = useDrag({
     onClose,
   });
@@ -65,6 +66,7 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
         onClick={e => e.stopPropagation()}
         $translateY={translateY}
         $closing={isClosing}
+        height={height ? height : '75vh'}
         {...handlers}
       >
         <S.ModalHeader>

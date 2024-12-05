@@ -35,13 +35,14 @@ export const ModalOverlay = styled.div.attrs<{
 export const ModalContainer = styled.div.attrs<{
   $translateY: number;
   $closing: boolean;
+  height: string;
 }>(props => ({
   style: {
     transform: `translateY(${props.$translateY}px)`,
   },
 }))`
   width: 100%;
-  height: 75vh;
+  height: ${props => props.height};
   display: flex;
   flex-direction: column;
   transition: transform 0.2s ease-out;
