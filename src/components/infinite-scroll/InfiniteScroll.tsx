@@ -1,12 +1,6 @@
 import { useEffect, useCallback, Fragment } from 'react';
-import type { ReactNode } from 'react';
 import Spinner from '../ui/Spinner';
-
-interface IInfiniteScrollProps {
-  isLoading: boolean;
-  onLoadMore: () => void;
-  children: ReactNode;
-}
+import { IInfiniteScrollProps } from '@/types/infinite-scroll';
 
 // 1. 리팩토링 : IntersectionObserver 적용
 // 2. 스타일링 : Styled-component 완전 분리
