@@ -1,5 +1,5 @@
 import * as S from './ScheduleList.styles';
-import ScheduleItem from './ScheduleItem';
+import ScheduleItem from '../schedule-item/ScheduleItem';
 import { ScheduleListProps } from '@/types/schedule';
 
 const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
