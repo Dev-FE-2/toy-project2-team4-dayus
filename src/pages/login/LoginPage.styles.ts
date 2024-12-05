@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const LoginWrapper = styled.div`
+  top: 0;
+  left: 0;
   position: absolute;
   min-height: 100vh;
   display: flex;

@@ -19,19 +19,23 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   // 모달이 열릴 때 스크롤 방지
   const preventScroll = () => {
     const currentScrollY = window.scrollY;
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    document.body.style.top = `-${currentScrollY}px`;
-    document.body.style.overflow = 'scroll';
+    const hasScrollBar =
+      window.innerWidth > document.documentElement.clientWidth;
+
+    document.documentElement.style.setProperty(
+      '--scroll-position',
+      `-${currentScrollY}px`,
+    );
+    document.body.classList.add('scroll-locked');
+    if (hasScrollBar) document.body.classList.add('has-scrollbar');
+
     return currentScrollY;
   };
 
   // 모달이 닫힐 때 스크롤 허용
   const allowScroll = (scrollY: number) => {
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.top = '';
-    document.body.style.overflow = '';
+    document.body.classList.remove('scroll-locked', 'has-scrollbar');
+    document.documentElement.style.removeProperty('--scroll-position');
     window.scrollTo(0, scrollY);
   };
 

@@ -20,10 +20,24 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var(--ff_eng), var(--ff_kor), "Malgun Gothic", "맑은 고딕", sans-serif;
   }
 
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit;
+    margin: 0;
+  }
+
   button {
     cursor: pointer;
     border: none;
-    background: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    outline: none;
   }
 
   a {
@@ -66,5 +80,17 @@ export const GlobalStyle = createGlobalStyle`
     height: 1px;
     white-space: nowrap;
     border: 0;
+  }
+
+  /* 모달 스크롤 방지 */
+  .scroll-locked {
+    position: fixed;
+    width: 100%;
+    overflow-x: hidden;
+    top: var(--scroll-position);
+  }
+
+  .scroll-locked.has-scrollbar {
+    overflow-y: scroll;
   }
 `;
