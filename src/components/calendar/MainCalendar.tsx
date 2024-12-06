@@ -45,9 +45,14 @@ const MainCalendar = () => {
     setIsModalOpen(true);
   };
 
+  const handleSelectEvent = (event: IEventList) => {
+    handleDateSelect({ start: event.start!, end: event.end! });
+    setIsModalOpen(true);
+  };
+
   const convertEventsToSchedules = (events: IEventList[]): Schedule[] => {
     return events.map(event => ({
-      id: String(event.color.id),
+      id: event.eventId,
       scheduleTitle: String(event.title),
       scheduleDate:
         event.start && event.end ? formatDateRange(event.start, event.end) : '',
@@ -68,7 +73,7 @@ const MainCalendar = () => {
         eventPropGetter={eventStyleGetter}
         selectable={true}
         onSelectSlot={handleSelectCell}
-        onSelectEvent={handleSelectCell}
+        onSelectEvent={handleSelectEvent}
       />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
