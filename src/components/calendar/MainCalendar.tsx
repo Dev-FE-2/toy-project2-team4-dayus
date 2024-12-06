@@ -10,7 +10,6 @@ import Modal from '../ui/Modal';
 import ScheduleList from '../schedule/schedule-list/ScheduleList';
 import CustomToolbar from './CustomToolbar';
 import { IEventList } from '@/types/calendar';
-import { Schedule } from '@/types/schedule';
 import { useCalendarEvents } from '@/hooks/useCalendarEvents';
 
 dayjs.locale('ko');
@@ -18,13 +17,8 @@ const localizer = dayjsLocalizer(dayjs);
 
 const MainCalendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {
-    handleDateSelect,
-    handleDelete,
-    formatDateRange,
-    processedEvents,
-    selectedEvents,
-  } = useCalendarEvents();
+  const { handleDateSelect, handleDelete, processedEvents, selectedEvents } =
+    useCalendarEvents();
 
   const components = useMemo(
     () => ({
@@ -45,14 +39,9 @@ const MainCalendar = () => {
     setIsModalOpen(true);
   };
 
-  const convertEventsToSchedules = (events: IEventList[]): Schedule[] => {
-    return events.map(event => ({
-      id: String(event.color.id),
-      scheduleTitle: String(event.title),
-      scheduleDate:
-        event.start && event.end ? formatDateRange(event.start, event.end) : '',
-      color: event.color.bgColor,
-    }));
+  const handleSelectEvent = (event: IEventList) => {
+    handleDateSelect({ start: event.start!, end: event.end! });
+    setIsModalOpen(true);
   };
 
   return (
@@ -68,14 +57,11 @@ const MainCalendar = () => {
         eventPropGetter={eventStyleGetter}
         selectable={true}
         onSelectSlot={handleSelectCell}
-        onSelectEvent={handleSelectCell}
+        onSelectEvent={handleSelectEvent}
       />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ScheduleList
-          schedules={convertEventsToSchedules(selectedEvents)}
-          onDelete={handleDelete}
-        />
+        <ScheduleList schedules={selectedEvents} onDelete={handleDelete} />
       </Modal>
     </S.Container>
   );
