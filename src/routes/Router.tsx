@@ -7,9 +7,9 @@ import SalaryPage from '@/pages/SalaryPage';
 import NotFoundPage from '@/pages/not-found/NotFoundPage';
 import Layout from '@/layout/Layout';
 import { ROUTER_PATH } from '@/constants/constant';
-import ProtectedRouter from '@/components/ProtectedRoute/ProtectedRouter';
 import { Provider } from 'react-redux';
 import userStore from '@/store/store';
+import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute';
 
 const Router = () => {
   const { HOME, LOGIN, PROFILE, SALARY } = ROUTER_PATH;
@@ -21,9 +21,9 @@ const Router = () => {
         {
           path: HOME,
           element: (
-            <ProtectedRouter>
+            <ProtectedRoute>
               <HomePage />
-            </ProtectedRouter>
+            </ProtectedRoute>
           ),
         },
         {
@@ -37,17 +37,17 @@ const Router = () => {
         {
           path: PROFILE,
           element: (
-            <ProtectedRouter>
+            <ProtectedRoute>
               <ProfilePage />
-            </ProtectedRouter>
+            </ProtectedRoute>
           ),
         },
         {
           path: SALARY,
           element: (
-            <ProtectedRouter>
+            <ProtectedRoute>
               <SalaryPage />
-            </ProtectedRouter>
+            </ProtectedRoute>
           ),
         },
         { path: '*', element: <NotFoundPage /> },
