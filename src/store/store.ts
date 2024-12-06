@@ -1,4 +1,4 @@
-import { auth } from '@/apis/firebase/auth';
+import { auth } from '@/server/firebase/auth';
 import { configureStore, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { onAuthStateChanged } from 'firebase/auth';
 

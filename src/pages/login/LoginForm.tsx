@@ -1,4 +1,4 @@
-import { signIn } from '@/apis/firebase/auth';
+import { signIn } from '@/server/firebase/auth';
 import { ROUTER_PATH } from '@/constants/constant';
 import { FirebaseError } from 'firebase/app';
 import { useState } from 'react';

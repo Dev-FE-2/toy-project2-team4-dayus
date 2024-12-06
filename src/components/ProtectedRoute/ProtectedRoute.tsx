@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '../../apis/firebase/auth';
+import { auth } from '@/server/firebase/auth';
 import Spinner from '../ui/Spinner';
 
 interface ProtectedRouteProps {
@@ -21,8 +21,6 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
     // 컴포넌트 언마운트 시 구독 해제
     return () => unsubscribe();
   }, []);
-
-  console.log(user);
 
   // 로딩 상태 처리
   if (loading) {
