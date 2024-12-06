@@ -2,27 +2,7 @@ import { useMemo } from 'react';
 import { SALARY_DETAIL_KEY } from '@/constants/constant';
 import Accordion from '../ui/Accordion';
 import * as S from './SalaryAccordion.styles';
-
-interface ISalaryAccordion {
-  tour: {
-    startDate: Date;
-    endDate: Date;
-  };
-  paymentDate: Date;
-  bank: {
-    name: string;
-    account: string;
-  };
-  deductible: number;
-  amount: number;
-  totalAmount: number;
-}
-
-interface GridItem {
-  id: string;
-  label: string;
-  value: string;
-}
+import { ISalary, itemType } from '@/types/salary';
 
 const SalaryAccordion = ({
   tour,
@@ -31,8 +11,8 @@ const SalaryAccordion = ({
   amount,
   deductible,
   totalAmount,
-}: ISalaryAccordion) => {
-  const gridItems = useMemo<GridItem[]>(
+}: ISalary) => {
+  const salaryItem = useMemo<itemType[]>(
     () => [
       {
         id: SALARY_DETAIL_KEY.TOUR,
@@ -71,7 +51,7 @@ const SalaryAccordion = ({
   return (
     <Accordion title="지난달 급여 내역">
       <S.GridWrapper>
-        {gridItems.map(item => (
+        {salaryItem.map(item => (
           <S.GridItem key={item.id}>
             <S.GridLabel>{item.label}</S.GridLabel>
             <S.GridValue aria-label={`${item.label} ${item.value}`}>

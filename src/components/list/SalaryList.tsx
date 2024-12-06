@@ -26,8 +26,8 @@ const SalaryList = ({ isLoading, onLoadMore }: ILoadMoreProps) => {
           <SalaryItem
             key={salarySn}
             title={title}
-            date={paymentDate}
-            amount={totalAmount}
+            paymentDate={paymentDate}
+            totalAmount={totalAmount}
           />
         ))}
       </InfiniteScroll>
