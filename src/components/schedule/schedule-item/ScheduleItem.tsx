@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
+import dayjs from 'dayjs';
 import { GoTrash } from 'react-icons/go';
 
 import * as S from './ScheduleItem.styles';
 import Button from '@/components/ui/Button/Button';
 import { ScheduleItemProps } from '@/types/schedule';
-import { formatDateRange } from '@/utils/formatDate';
+import { formatDate } from '@/utils/formatDate';
+import { compareDateRange } from '@/utils/compareDateRange';
 
 const ScheduleItem = ({ schedule, onDelete }: ScheduleItemProps) => {
   const [showDeleteButton, setShowDeleteButton] = useState(false);
@@ -25,6 +27,16 @@ const ScheduleItem = ({ schedule, onDelete }: ScheduleItemProps) => {
     setShowDeleteButton(prev => !prev);
   };
 
+  const dates = compareDateRange(
+    dayjs(schedule.start).toDate(),
+    dayjs(schedule.end).toDate(),
+  );
+
+  const formattedDate =
+    dates.start === dates.end
+      ? formatDate(dates.start)
+      : `${formatDate(dates.start)} - ${formatDate(dates.end)}`;
+
   return (
     <S.ScheduleItemWrapper>
       <S.ScheduleItem>
@@ -32,11 +44,7 @@ const ScheduleItem = ({ schedule, onDelete }: ScheduleItemProps) => {
           <S.ColorDot $bgColor={schedule.color.bgColor} />
           <S.ScheduleText>
             <S.Title>{schedule.title}</S.Title>
-            <S.Date>
-              {schedule.start &&
-                schedule.end &&
-                formatDateRange(schedule.start, schedule.end)}
-            </S.Date>
+            <S.Date>{formattedDate}</S.Date>
           </S.ScheduleText>
         </S.ScheduleInfo>
 
