@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import logo from '../../assets/logo.svg';
 import * as S from './LoginPage.styles';
 import LoginForm from './LoginForm';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const user = useSelector((state: RootState) => state);
+
+  useEffect(() => {
+    if (user.uid) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   return (
     <S.LoginWrapper>
