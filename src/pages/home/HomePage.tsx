@@ -16,7 +16,12 @@ const HomePage = () => {
     <S.Container>
       <Button onClick={toggleModal}>Open Modal</Button>
       <MainCalendar />
-      <ModalFull id="test" isOpen={isOpen} navText="일정 추가">
+      <ModalFull
+        id="test"
+        isOpen={isOpen}
+        navText="일정 추가"
+        setIsOpen={setIsOpen}
+      >
         <AddScheduleModal />
       </ModalFull>
     </S.Container>

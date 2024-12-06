@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import * as S from './ModalFull.style';
 import PageNav from '../PageNav';
@@ -10,38 +10,40 @@ type ModalProps = {
   isOpen: boolean;
   children: React.ReactNode;
   navText: string;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ModalFull = ({
   id,
   className,
-  isOpen: initialIsOpen,
+  isOpen,
   children,
   navText,
+  setIsOpen,
 }: ModalProps) => {
   const modalRoot = document.getElementById('modal-overlay');
-
-  const [isOpen, setIsOpen] = useState(initialIsOpen);
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    setIsOpen(initialIsOpen);
-  }, [initialIsOpen]);
-
   const handleModalClose = useCallback(() => {
     navigate(-1);
     setIsOpen(false);
-  }, [navigate]);
+  }, [navigate, setIsOpen]);
 
   useEffect(() => {
     if (isOpen) {
       navigate(`${pathname}?modal=${id}`);
-    }
-  }, [isOpen, navigate, pathname, id]);
 
-  console.log('isOpen: ', isOpen, 'initialIsOpen: ', initialIsOpen);
+      window.addEventListener('popstate', () => setIsOpen(false));
+
+      return () => {
+        window.removeEventListener('popstate', () => setIsOpen(false));
+      };
+    }
+  }, [isOpen, navigate, pathname, id, setIsOpen]);
+
+  console.log('isOpen: ', isOpen);
 
   if (!isOpen) return null;
 
