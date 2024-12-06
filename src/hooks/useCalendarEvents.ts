@@ -8,14 +8,15 @@ import { formatDate } from '@/utils/formatDate';
 
 const useCalendarEvents = () => {
   const [selectedEvents, setSelectedEvents] = useState<IEventList[]>([]);
+  const [events, setEvents] = useState<IEventList[]>(eventList);
 
   // 가공된 이벤트 리스트
   const processedEvents = useMemo(() => {
-    return eventList.map(event => ({
+    return events.map(event => ({
       ...event,
       end: dayjs(event.end).add(1, 'day').toDate(), // 이벤트 끝나는 날짜에 하루 더하기
     }));
-  }, []);
+  }, [events]);
 
   // 이벤트 날짜 포맷팅
   const formatDateRange = (start: Date, end: Date) => {
@@ -49,9 +50,8 @@ const useCalendarEvents = () => {
 
   // 삭제
   const handleDelete = (id: string) => {
-    setSelectedEvents(prev =>
-      prev.filter(event => String(event.color.id) !== id),
-    );
+    setEvents(prev => prev.filter(event => event.eventId !== id));
+    setSelectedEvents(prev => prev.filter(event => event.eventId !== id));
   };
 
   return {
