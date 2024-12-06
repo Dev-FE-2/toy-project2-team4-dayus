@@ -4,6 +4,11 @@
   --padding-inline: 1rem;
   --navbar-height: 8rem;
 
+  /* z-index */
+  --header-index: 100;
+  --navbar-index: 100;
+  --modal-index: 200;
+
   /* Colors */
   --color-white: #ffffff;
   --color-black: #333333;
@@ -39,8 +44,8 @@
   --color-main-hover: #5b4c3f;
 
   /* Typography */
-  --ff_kor: "Pretendard"; /* 한글 폰트*/
-  --ff_eng: "Pretendard"; /* 영문, 숫자 폰트 */
+  --ff_kor: 'Pretendard'; /* 한글 폰트*/
+  --ff_eng: 'Pretendard'; /* 영문, 숫자 폰트 */
 
   --font-xs: 1.2rem; /* 12px */
   --font-sm: 1.4rem; /* 14px */

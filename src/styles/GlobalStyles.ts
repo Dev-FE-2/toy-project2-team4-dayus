@@ -70,6 +70,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var(--ff_eng), var(--ff_kor), "Malgun Gothic", "맑은 고딕", sans-serif;
   }
 
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-gray-500);
+  }
+
   /* hidden */
   .visibility-hidden {
     margin: -1px;

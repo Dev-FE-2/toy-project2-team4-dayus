@@ -28,7 +28,7 @@ export const ModalOverlay = styled.div.attrs<{
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  z-index: 1000;
+  z-index: var(--modal-index);
   transition: background-color 0.2s ease-out;
 `;
 
