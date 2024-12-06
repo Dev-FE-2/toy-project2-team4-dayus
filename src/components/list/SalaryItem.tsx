@@ -1,8 +1,8 @@
 import { SalaryItemProps } from '@/types/salary';
 import * as S from './ListItem.styles';
+import { formatDate } from '@/utils/formatDate';
 
 const SalaryItem = ({ title, totalAmount, paymentDate }: SalaryItemProps) => {
-  console.log(paymentDate);
   return (
     <S.ListBox>
       <S.ListItemWrapper>
@@ -11,7 +11,7 @@ const SalaryItem = ({ title, totalAmount, paymentDate }: SalaryItemProps) => {
             <S.ItemTitle>{title}</S.ItemTitle>
             <S.ItemValue>{totalAmount.toLocaleString()}원</S.ItemValue>
           </S.ItemBox>
-          <S.ItemDate>{'2024.01.04'}</S.ItemDate>
+          <S.ItemDate>{formatDate(paymentDate, 'hyphen')}</S.ItemDate>
         </S.ListItem>
       </S.ListItemWrapper>
     </S.ListBox>

@@ -3,6 +3,7 @@ import { SALARY_DETAIL_KEY } from '@/constants/constant';
 import Accordion from '../ui/Accordion';
 import * as S from './SalaryAccordion.styles';
 import { ISalary, itemType } from '@/types/salary';
+import { formatDate } from '@/utils/formatDate';
 
 const SalaryAccordion = ({
   tour,
@@ -17,12 +18,12 @@ const SalaryAccordion = ({
       {
         id: SALARY_DETAIL_KEY.TOUR,
         label: '근무 기간',
-        value: `${tour.startDate.toLocaleDateString('ko', { year: 'numeric', month: '2-digit', day: '2-digit' })} - ${tour.endDate.toLocaleDateString('ko', { year: 'numeric', month: '2-digit', day: '2-digit' })}`,
+        value: `${formatDate(tour.startDate, 'dot')} - ${formatDate(tour.endDate, 'dot')}`,
       },
       {
         id: SALARY_DETAIL_KEY.PAYMENT_DATE,
         label: '급여일',
-        value: `${paymentDate.toLocaleDateString('ko', { year: 'numeric', month: '2-digit', day: '2-digit' })}`,
+        value: `${formatDate(paymentDate, 'dot')}`,
       },
       {
         id: SALARY_DETAIL_KEY.ACCOUNT,
