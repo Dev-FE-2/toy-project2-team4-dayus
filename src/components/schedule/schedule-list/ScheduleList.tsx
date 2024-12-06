@@ -21,7 +21,7 @@ const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
         ) : (
           schedules.map(schedule => (
             <ScheduleItem
-              key={schedule.id}
+              key={schedule.eventId}
               schedule={schedule}
               onDelete={onDelete}
             />

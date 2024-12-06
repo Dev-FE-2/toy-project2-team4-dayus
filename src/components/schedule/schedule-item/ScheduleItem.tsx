@@ -2,6 +2,7 @@ import { GoTrash } from 'react-icons/go';
 
 import * as S from './ScheduleItem.styles';
 import { ScheduleItemProps } from '@/types/schedule';
+import { formatDateRange } from '@/utils/formatDate';
 
 const ScheduleItem = ({ schedule, onDelete }: ScheduleItemProps) => {
   if (!schedule) return null;
@@ -9,14 +10,18 @@ const ScheduleItem = ({ schedule, onDelete }: ScheduleItemProps) => {
   return (
     <S.ScheduleItem>
       <S.ScheduleInfo>
-        <S.ColorDot $bgColor={schedule.color} />
+        <S.ColorDot $bgColor={schedule.color.bgColor} />
         <S.ScheduleText>
-          <S.Title>{schedule.scheduleTitle}</S.Title>
-          <S.Date>{schedule.scheduleDate}</S.Date>
+          <S.Title>{schedule.title}</S.Title>
+          <S.Date>
+            {schedule.start &&
+              schedule.end &&
+              formatDateRange(schedule.start, schedule.end)}
+          </S.Date>
         </S.ScheduleText>
       </S.ScheduleInfo>
 
-      <S.DeleteButton onClick={() => onDelete(schedule.id)}>
+      <S.DeleteButton onClick={() => onDelete(schedule.eventId)}>
         <GoTrash size={24} />
       </S.DeleteButton>
     </S.ScheduleItem>
