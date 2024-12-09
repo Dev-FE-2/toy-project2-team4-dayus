@@ -17,3 +17,10 @@ export const SALARY_DETAIL_KEY = {
   DEDUCTIBLE: 'deductible',
   TOTAL: 'total',
 } as const;
+
+export const WORK_TYPE = [
+  { label: '정규 근무', value: '0' },
+  { label: '대리 근무', value: '1' },
+  { label: '연장 근무', value: '2' },
+  { label: '추가 근무', value: '3' },
+];
