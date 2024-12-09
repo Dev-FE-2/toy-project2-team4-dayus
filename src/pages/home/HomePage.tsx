@@ -17,7 +17,7 @@ const HomePage = () => {
       <Button onClick={toggleModal}>Open Modal</Button>
       <MainCalendar />
       <ModalFull
-        id="test"
+        id="add-calendar-modal"
         isOpen={isOpen}
         navText="일정 추가"
         setIsOpen={setIsOpen}

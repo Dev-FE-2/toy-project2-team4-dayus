@@ -14,9 +14,10 @@ export const ModalOverlay = styled.div`
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: var(--max-width);
   height: 100%;
+  max-width: var(--max-width);
   background: var(--color-white);
+  overflow-y: auto;
 `;
 
 export const ModalContainer = styled.div`
@@ -31,6 +32,5 @@ export const ModalContainer = styled.div`
 export const ModalContent = styled.div`
   flex: 1 1 auto;
   background-color: var(--color-white);
-  padding: var(--spacing-4);
-  overflow-y: auto;
+  padding: var(--layout-padding);
 `;
