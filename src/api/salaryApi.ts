@@ -1,32 +1,28 @@
-import { createUrl } from '@/utils/apiUtils';
+import { axiosInstance } from '@/api/axios';
 
 export const getSalaryItem = async (salarySn?: string) => {
-  const url = createUrl('/salary');
-  if (salarySn) url.searchParams.append('salarySn', salarySn);
-
+  const params = salarySn && { salarySn };
+  console.log(params);
   try {
-    const response = await fetch(url, { method: 'GET' });
-    const data = response.json();
-    console.log(data);
-
-    return data;
+    const response = await axiosInstance.get('/salary', {
+      params: params,
+    });
+    console.log(response.data);
+    return response.data;
   } catch (error) {
-    new Error(`ERROR MESSAGE: ${error}`);
+    throw new Error(`ERROR MESSAGE: ${error}`);
   }
 };
 
 export const getSalaryList = async (page: number, limit: number) => {
-  const url = createUrl('/salaryList');
-  url.searchParams.append('page', String(page));
-  url.searchParams.append('limit', String(limit));
-
+  const params = { page, limit };
   try {
-    const response = await fetch(url, { method: 'GET' });
-    const data = response.json();
-    console.log(data);
-
-    return data;
+    const response = await axiosInstance.get('/salaryList', {
+      params: params,
+    });
+    console.log(response.data);
+    return response.data;
   } catch (error) {
-    new Error(`ERROR MESSAGE: ${error}`);
+    throw new Error(`ERROR MESSAGE: ${error}`);
   }
 };
