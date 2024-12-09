@@ -19,6 +19,7 @@ export type SalaryItemProps = Pick<
   'salarySn' | 'totalAmount' | 'paymentDate'
 > & {
   title: string;
+  onClick: () => void;
 };
 
 export type itemType = {

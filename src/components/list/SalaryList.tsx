@@ -7,11 +7,21 @@ import * as S from './SalaryList.styles';
 
 interface SalaryListProps extends ILoadMoreProps {
   listItem: SalaryItemProps[];
+  onModal: () => void;
 }
 
 // 1. 인피니티 스크롤 컴포넌트와 Array형태 데이터를 map 함수로 렌더링
 // 2. 핸들러 관리
-const SalaryList = ({ isLoading, onLoadMore, listItem }: SalaryListProps) => {
+const SalaryList = ({
+  isLoading,
+  listItem,
+  onLoadMore,
+  onModal,
+}: SalaryListProps) => {
+  const handleClick = () => {
+    onModal();
+  };
+
   return (
     <S.ListContainer>
       <S.TitleBox>
@@ -25,6 +35,7 @@ const SalaryList = ({ isLoading, onLoadMore, listItem }: SalaryListProps) => {
             title={title}
             paymentDate={paymentDate}
             totalAmount={totalAmount}
+            onClick={handleClick}
           />
         ))}
       </InfiniteScroll>
