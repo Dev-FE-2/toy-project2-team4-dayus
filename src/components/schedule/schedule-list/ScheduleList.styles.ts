@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CiCirclePlus } from 'react-icons/ci';
+import { BiSolidPencil } from 'react-icons/bi';
 
 import emptyLogo from '@/assets/empty-list.svg';
 
@@ -48,11 +48,22 @@ export const AddButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   padding: var(--spacing-4);
+  width: 100%;
 `;
 
-export const AddButton = styled(CiCirclePlus)`
-  color: var(--color-main);
+export const AddButtonWrapper = styled.div`
+  display: flex;
   cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--color-main);
+  border-radius: 50%;
+`;
+
+export const AddButton = styled(BiSolidPencil)`
+  color: var(--color-main);
   transition: color 0.2s;
 
   &:hover {

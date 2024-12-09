@@ -1,4 +1,6 @@
-export const salaryList = [
+import { ISalary, SalaryItemProps } from '@/types/salary';
+
+export const salaryList: SalaryItemProps[] = [
   {
     salarySn: 'salary_0',
     title: '8월 급여',
@@ -73,7 +75,7 @@ export const salaryList = [
   },
 ];
 
-export const salaryData = {
+export const salaryData: ISalary = {
   salarySn: 'salary_12',
   tour: {
     startDate: new Date('2024-07-15'),
