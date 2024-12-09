@@ -45,6 +45,8 @@ export const arrEventColor = [
   },
 ];
 
+export const MOCK_API_DOMAIN = 'https://api.example.com';
+
 export const SALARY_DETAIL_KEY = {
   TOUR: 'tour',
   PAYMENT_DATE: 'date',

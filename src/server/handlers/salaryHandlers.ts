@@ -9,8 +9,7 @@ export const salaryHandlers = [
     const _salarySn = url.searchParams.get('salarySn');
     await delay(makeRandomRange(200, 3000));
 
-    const data =
-      salaryList.filter(({ salarySn }) => salarySn === _salarySn) || salaryData;
+    const data = _salarySn ? salaryData : salaryData;
 
     return HttpResponse.json(data);
   }),
