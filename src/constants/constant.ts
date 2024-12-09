@@ -7,6 +7,8 @@ export const ROUTER_PATH = {
 
 export const DRAG_CLOSE_THRESHOLD = 250;
 
+export const MOCK_API_DOMAIN = 'https://api.example.com';
+
 export const SALARY_DETAIL_KEY = {
   TOUR: 'tour',
   PAYMENT_DATE: 'date',
