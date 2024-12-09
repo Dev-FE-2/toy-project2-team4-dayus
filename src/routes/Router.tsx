@@ -7,18 +7,49 @@ import SalaryPage from '@/pages/SalaryPage';
 import NotFoundPage from '@/pages/not-found/NotFoundPage';
 import Layout from '@/layout/Layout';
 import { ROUTER_PATH } from '@/constants/constant';
+import { Provider } from 'react-redux';
+import store from '@/store';
+import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute';
 
 const Router = () => {
   const { HOME, LOGIN, PROFILE, SALARY } = ROUTER_PATH;
 
   const router = createBrowserRouter([
     {
-      element: <Layout />,
+      element: (
+        <Provider store={store}>
+          <Layout />
+        </Provider>
+      ),
       children: [
-        { path: HOME, element: <HomePage /> },
-        { path: LOGIN, element: <LoginPage /> },
-        { path: PROFILE, element: <ProfilePage /> },
-        { path: SALARY, element: <SalaryPage /> },
+        {
+          path: HOME,
+          element: (
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: LOGIN,
+          element: <LoginPage />,
+        },
+        {
+          path: PROFILE,
+          element: (
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: SALARY,
+          element: (
+            <ProtectedRoute>
+              <SalaryPage />
+            </ProtectedRoute>
+          ),
+        },
         { path: '*', element: <NotFoundPage /> },
       ],
     },
