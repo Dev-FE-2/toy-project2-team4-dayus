@@ -1,5 +1,5 @@
 import * as S from './ScheduleList.styles';
-import ScheduleItem from './ScheduleItem';
+import ScheduleItem from '../schedule-item/ScheduleItem';
 import { ScheduleListProps } from '@/types/schedule';
 
 const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
@@ -21,7 +21,7 @@ const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
         ) : (
           schedules.map(schedule => (
             <ScheduleItem
-              key={schedule.id}
+              key={schedule.eventId}
               schedule={schedule}
               onDelete={onDelete}
             />
@@ -30,7 +30,9 @@ const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
       </S.ListContainer>
 
       <S.AddButtonContainer>
-        <S.AddButton size={50} />
+        <S.AddButtonWrapper>
+          <S.AddButton size={26} />
+        </S.AddButtonWrapper>
       </S.AddButtonContainer>
     </S.Container>
   );

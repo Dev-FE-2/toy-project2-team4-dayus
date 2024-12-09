@@ -44,3 +44,12 @@ export const arrEventColor = [
     fontColor: '#fff',
   },
 ];
+
+export const SALARY_DETAIL_KEY = {
+  TOUR: 'tour',
+  PAYMENT_DATE: 'date',
+  ACCOUNT: 'account',
+  AMOUNT: 'amount',
+  DEDUCTIBLE: 'deductible',
+  TOTAL: 'total',
+} as const;

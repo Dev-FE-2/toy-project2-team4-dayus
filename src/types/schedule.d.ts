@@ -1,17 +1,12 @@
 /* eslint-disable */
-type Schedule = {
-  id: string;
-  scheduleTitle: string;
-  scheduleDate: string;
-  color: string;
-};
+import { IEventList } from './calendar';
 
 export interface ScheduleItemProps {
-  schedule: Schedule;
+  schedule: IEventList;
   onDelete: (id: string) => void;
 }
 
 export interface ScheduleListProps {
-  schedules: Schedule[];
+  schedules: IEventList[];
   onDelete: (id: string) => void;
 }

@@ -1,15 +1,19 @@
 import styled from 'styled-components';
 
-export const ScheduleItem = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-3) 0;
+export const ScheduleItemWrapper = styled.div`
+  position: relative;
   border-bottom: 1px solid var(--color-gray-200);
 
   &:last-child {
     border-bottom: none;
   }
+`;
+
+export const ScheduleItem = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-3) 0;
 `;
 
 export const ScheduleInfo = styled.div`
@@ -53,4 +57,17 @@ export const DeleteButton = styled.button`
   &:hover {
     color: var(--color-danger);
   }
+`;
+
+export const DeleteConfirmation = styled.div<{ $show: boolean }>`
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  transition: all 0.3s ease;
+  max-height: ${({ $show }) => ($show ? '60px' : '0')};
+  opacity: ${({ $show }) => ($show ? '1' : '0')};
+  overflow: hidden;
+  margin-top: calc(var(--spacing-2) * -1);
+  padding: 0 var(--spacing-2) var(--spacing-2);
+  pointer-events: ${({ $show }) => ($show ? 'auto' : 'none')};
 `;
