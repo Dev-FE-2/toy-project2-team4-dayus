@@ -30,7 +30,9 @@ const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
       </S.ListContainer>
 
       <S.AddButtonContainer>
-        <S.AddButton size={50} />
+        <S.AddButtonWrapper>
+          <S.AddButton size={26} />
+        </S.AddButtonWrapper>
       </S.AddButtonContainer>
     </S.Container>
   );
