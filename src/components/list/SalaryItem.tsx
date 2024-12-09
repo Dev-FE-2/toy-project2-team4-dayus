@@ -2,9 +2,14 @@ import { SalaryItemProps } from '@/types/salary';
 import * as S from './ListItem.styles';
 import { formatDate } from '@/utils/formatDate';
 
-const SalaryItem = ({ title, totalAmount, paymentDate }: SalaryItemProps) => {
+const SalaryItem = ({
+  title,
+  totalAmount,
+  paymentDate,
+  onClick,
+}: SalaryItemProps) => {
   return (
-    <S.ListBox>
+    <S.ListBox onClick={onClick}>
       <S.ListItemWrapper>
         <S.ListItem>
           <S.ItemBox>
