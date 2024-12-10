@@ -11,11 +11,12 @@ const InfiniteScroll = ({
   children,
 }: IInfiniteScrollProps) => {
   const handleScroll = useCallback(() => {
+    if (isLoading) return;
     return (
       window.innerHeight + document.documentElement.scrollTop >=
         document.documentElement.offsetHeight - 100 && onLoadMore()
     );
-  }, [onLoadMore]);
+  }, [isLoading, onLoadMore]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);

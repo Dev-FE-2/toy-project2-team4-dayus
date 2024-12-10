@@ -1,10 +1,10 @@
 export interface ISalary {
-  salarySn?: string;
+  salarySn: string;
   tour: {
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
   };
-  paymentDate: Date;
+  paymentDate: string;
   bank: {
     name: string;
     account: string;
@@ -13,17 +13,15 @@ export interface ISalary {
   amount: number;
   totalAmount: number;
 }
-
-export type SalaryItemProps = Pick<
-  ISalary,
-  'salarySn' | 'totalAmount' | 'paymentDate'
-> & {
+export interface SalaryListItem
+  extends Pick<ISalary, 'totalAmount' | 'paymentDate' | 'salarySn'> {
   title: string;
-  onClick: () => void;
-};
+}
 
-export type itemType = {
-  id: string;
-  label: string;
-  value: string;
-};
+export type SalaryItemProps = SalaryListItem;
+
+export interface SalaryList {
+  data: SalaryListItem[];
+  currentPage: number;
+  totalPage: number;
+}

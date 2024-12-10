@@ -1,6 +1,6 @@
 import { memo, useMemo } from 'react';
 import Modal from '../ui/Modal';
-import { ISalary, itemType } from '@/types/salary';
+import { ISalary } from '@/types/salary';
 import { formatDate } from '@/utils/formatDate';
 import { SALARY_DETAIL_KEY } from '@/constants/constant';
 import * as S from './SalaryModal.styles';
@@ -11,16 +11,16 @@ interface ISalaryModalProps {
   salary: ISalary;
 }
 
-const createSalaryItems = (salary: ISalary): itemType[] => [
+const createSalaryItems = (salary: ISalary) => [
   {
     id: SALARY_DETAIL_KEY.TOUR,
     label: '근무 기간',
-    value: `${formatDate(salary.tour.startDate, 'dot')} - ${formatDate(salary.tour.endDate, 'dot')}`,
+    value: `${formatDate(new Date(salary.tour.startDate), 'dot')} - ${formatDate(new Date(salary.tour.endDate), 'dot')}`,
   },
   {
     id: SALARY_DETAIL_KEY.PAYMENT_DATE,
     label: '급여일',
-    value: formatDate(salary.paymentDate, 'dot'),
+    value: formatDate(new Date(salary.paymentDate), 'dot'),
   },
   {
     id: SALARY_DETAIL_KEY.ACCOUNT,
