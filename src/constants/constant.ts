@@ -2,6 +2,7 @@ export const ROUTER_PATH = {
   HOME: '/',
   LOGIN: '/login',
   SALARY: '/salary',
+  SHIFT: '/shift',
   PROFILE: '/profile',
 };
 
@@ -59,3 +60,11 @@ export const SALARY_DETAIL_KEY = {
 // ----------- 모달 id (redux 관리를 위함) ----------- //
 // 일정 추가 모달
 export const ADD_SCHEDULE_MODAL_ID = 'add-schedule-modal';
+
+export const SELECT_WORK_TYPE = [
+  { label: '전체', value: 0 },
+  { label: '정규 근무', value: 1 },
+  { label: '대리 근무', value: 2 },
+  { label: '연장 근무', value: 3 },
+  { label: '추가 근무', value: 4 },
+];
