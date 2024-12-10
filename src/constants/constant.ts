@@ -55,3 +55,7 @@ export const SALARY_DETAIL_KEY = {
   DEDUCTIBLE: 'deductible',
   TOTAL: 'total',
 } as const;
+
+// ----------- 모달 id (redux 관리를 위함) ----------- //
+// 일정 추가 모달
+export const addScheduleModalId = 'add-schedule-modal';

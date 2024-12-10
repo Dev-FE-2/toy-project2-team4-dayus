@@ -2,13 +2,11 @@ import MainCalendar from '@/components/calendar/MainCalendar';
 import * as S from './HomePage.style';
 import ModalFull from '@/components/ui/ModalFull';
 import AddScheduleModal from '@/components/add-schedule-modal/AddScheduleModal';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
+import { useToggleModal } from '@/hooks/useToggleModal';
+import { addScheduleModalId } from '@/constants/constant';
 
 const HomePage = () => {
-  const isOpen = useSelector(
-    (state: RootState) => state.modal['add-schedule-modal'],
-  );
+  const { isOpen } = useToggleModal({ modalId: addScheduleModalId });
 
   return (
     <S.Container>

@@ -4,8 +4,8 @@ import * as S from './ModalFull.style';
 import PageNav from '../PageNav';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useScrollLock } from '@/hooks/useScrollLock';
-import { useDispatch } from 'react-redux';
-import { closeModal } from '@/store/slices/modalToggleSlice';
+import { useToggleModal } from '@/hooks/useToggleModal';
+import { addScheduleModalId } from '@/constants/constant';
 
 type ModalProps = {
   id: string;
@@ -26,30 +26,27 @@ const ModalFull = ({
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const dispatch = useDispatch();
+
+  const { closeIdModal } = useToggleModal({ modalId: addScheduleModalId });
 
   useScrollLock({ isOpen });
 
   const handleModalClose = useCallback(() => {
     navigate(-1);
-    dispatch(closeModal('add-schedule-modal'));
-  }, [navigate, dispatch]);
+    closeIdModal();
+  }, [navigate, closeIdModal]);
 
   useEffect(() => {
     if (isOpen) {
       navigate(`${pathname}?modal=${id}`);
 
-      window.addEventListener('popstate', () =>
-        dispatch(closeModal('add-schedule-modal')),
-      );
+      window.addEventListener('popstate', () => closeIdModal());
 
       return () => {
-        window.removeEventListener('popstate', () =>
-          dispatch(closeModal('add-schedule-modal')),
-        );
+        window.removeEventListener('popstate', () => closeIdModal());
       };
     }
-  }, [isOpen, navigate, pathname, id, dispatch]);
+  }, [isOpen, navigate, pathname, id, closeIdModal]);
 
   if (!isOpen) return null;
 
