@@ -4,7 +4,6 @@ import {
   ComponentProps,
   ComponentPropsWithRef,
   ReactNode,
-  ChangeEventHandler,
 } from 'react';
 
 // -------- input -------- //
@@ -22,7 +21,6 @@ export interface IInputProps extends ComponentPropsWithRef<'input'> {
 type TextareaStyleType = {
   width?: string;
   height?: string;
-  onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
 };
 
 export interface ITextareaProps
@@ -30,7 +28,6 @@ export interface ITextareaProps
     TextareaStyleType {
   value?: string | undefined;
   isCustom?: boolean;
-  onChange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 // -------- /textarea -------- //
 
