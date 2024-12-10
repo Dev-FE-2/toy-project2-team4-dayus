@@ -8,7 +8,11 @@ import Button from '@/components/ui/Button/Button';
 import * as S from './RangeDayPicker.styles';
 import { formatDate } from '@/utils/formatDate';
 
-const RangeDayPicker = () => {
+type RangeDayPickerProps = {
+  className?: string;
+};
+
+const RangeDayPicker = ({ className }: RangeDayPickerProps) => {
   const [dateRange, setDateRange] = useState<DateRange>();
   const [tempRange, setTempRange] = useState<DateRange>();
   const [isOpen, setIsOpen] = useState(false);
@@ -47,7 +51,7 @@ const RangeDayPicker = () => {
   };
 
   return (
-    <S.Container ref={wrapperRef}>
+    <S.Container className={className} ref={wrapperRef}>
       <S.DateDisplay tabIndex={0} onClick={() => setIsOpen(!isOpen)}>
         <S.DateBox>
           <S.DateLabel>시작 날짜</S.DateLabel>

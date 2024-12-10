@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const PageNavBox = styled.div`
+  position: sticky;
+  top: 0;
   width: 100%;
-  height: 5.8rem;
-  padding: 1rem 1rem 0;
+  background: var(--color-white);
 `;
 
 export const PageNavButton = styled.button`
-  padding: 1rem;
+  padding: 2rem var(--layout-padding);
   border: none;
   outline: none;
   display: flex;

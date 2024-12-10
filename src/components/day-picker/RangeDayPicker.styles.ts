@@ -10,8 +10,8 @@ export const DateDisplay = styled.div`
   cursor: pointer;
   align-items: stretch;
   background: white;
-  border: 1px solid var(--color-gray-300);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gray-border);
+  border-radius: var(--radius-base);
   padding: var(--spacing-2);
   caret-color: transparent;
 
@@ -73,8 +73,10 @@ export const CalendarContainer = styled.div<{ $isOpen: boolean }>`
   border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-lg);
   background: white;
-  width: max-content;
+  max-width: max-content;
   box-shadow: var(--shadow-md);
+  max-height: ${props => (props.$isOpen ? '400px' : 0)};
+  overflow: hidden;
 `;
 
 export const ButtonContainer = styled.div`
