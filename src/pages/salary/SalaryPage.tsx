@@ -1,7 +1,7 @@
 import { getSalaryItem, getSalaryList, getSalaryMain } from '@/api';
 import SalaryAccordion from '@/components/accordion/SalaryAccordion';
 import SalaryList from '@/components/list/SalaryList';
-import SalaryModal from '@/components/Modal/SalaryModal';
+import SalaryModal from '@/components/modal/SalaryModal';
 import Tab from '@/components/ui/Tab';
 import { PAGE_TABS } from '@/constants/constant';
 import {
