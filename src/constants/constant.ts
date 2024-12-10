@@ -63,7 +63,6 @@ export const ADD_SCHEDULE_MODAL_ID = 'add-schedule-modal';
 
 export const SELECT_WORK_TYPE = [
   { label: '근무 정정 유형', value: '' },
-  { label: '정규 근무', value: '정규 근무' },
   { label: '대리 근무', value: '대리 근무' },
   { label: '연장 근무', value: '연장 근무' },
   { label: '추가 근무', value: '추가 근무' },
