@@ -4,6 +4,8 @@ import * as S from './ModalFull.style';
 import PageNav from '../PageNav';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useScrollLock } from '@/hooks/useScrollLock';
+import { useToggleModal } from '@/hooks/useToggleModal';
+import { ADD_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
 type ModalProps = {
   id: string;
@@ -11,7 +13,6 @@ type ModalProps = {
   isOpen: boolean;
   children: React.ReactNode;
   navText: string;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const ModalFull = ({
@@ -20,31 +21,32 @@ const ModalFull = ({
   isOpen,
   children,
   navText,
-  setIsOpen,
 }: ModalProps) => {
   const modalRoot = document.getElementById('modal-overlay');
 
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+  const { closeIdModal } = useToggleModal({ modalId: ADD_SCHEDULE_MODAL_ID });
+
   useScrollLock({ isOpen });
 
   const handleModalClose = useCallback(() => {
     navigate(-1);
-    setIsOpen(false);
-  }, [navigate, setIsOpen]);
+    closeIdModal();
+  }, [navigate, closeIdModal]);
 
   useEffect(() => {
     if (isOpen) {
       navigate(`${pathname}?modal=${id}`);
 
-      window.addEventListener('popstate', () => setIsOpen(false));
+      window.addEventListener('popstate', () => closeIdModal());
 
       return () => {
-        window.removeEventListener('popstate', () => setIsOpen(false));
+        window.removeEventListener('popstate', () => closeIdModal());
       };
     }
-  }, [isOpen, navigate, pathname, id, setIsOpen]);
+  }, [isOpen, navigate, pathname, id, closeIdModal]);
 
   if (!isOpen) return null;
 
