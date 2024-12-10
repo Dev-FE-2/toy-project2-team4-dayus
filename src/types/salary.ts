@@ -1,3 +1,5 @@
+import { ILoadMoreProps } from './infinite-scroll';
+
 export interface ISalary {
   salarySn: string;
   tour: {
@@ -13,12 +15,21 @@ export interface ISalary {
   amount: number;
   totalAmount: number;
 }
+
 export interface SalaryListItem
   extends Pick<ISalary, 'totalAmount' | 'paymentDate' | 'salarySn'> {
   title: string;
 }
 
-export type SalaryItemProps = SalaryListItem;
+export type SalaryListProps = ILoadMoreProps & {
+  listItem: SalaryListItem[];
+  onModal?: (salarySn: string) => void;
+};
+
+export type SalaryItemProps = {
+  item: SalaryListItem;
+  onModal?: (salarySn: string) => void;
+};
 
 export interface SalaryList {
   data: SalaryListItem[];

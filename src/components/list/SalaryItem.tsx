@@ -4,7 +4,7 @@ import { formatDate } from '@/utils/formatDate';
 
 const SalaryItem = ({ item, onModal }: SalaryItemProps) => {
   const handleClick = () => {
-    onModal(item.salarySn);
+    if (onModal) onModal(item.salarySn);
   };
   return (
     <S.ListItemWrapper id={item.salarySn} onClick={handleClick}>
