@@ -10,6 +10,7 @@ import LabeledBox from '../ui/Label/LabeledBox';
 import ColorPicker from '../color-picker/ColorPicker';
 import { IEventList } from '@/types/calendar';
 import { EditScheduleModalProps } from '@/types/schedule';
+import { useDebounce } from '@/hooks/useDebounce';
 import * as S from './EditScheduleModal.styles';
 
 const EditScheduleModal = ({ schedule, onEdit }: EditScheduleModalProps) => {
@@ -21,12 +22,15 @@ const EditScheduleModal = ({ schedule, onEdit }: EditScheduleModalProps) => {
     to: dayjs(schedule.end).toDate(),
   });
 
+  const debouncedTitle = useDebounce(title, 300);
+  const debouncedMemo = useDebounce(memo, 300);
+
   const handleSubmit = () => {
     if (!dateRange.from || !dateRange.to) return;
 
     const updatedSchedule: Partial<IEventList> = {
-      title,
-      memo,
+      title: debouncedTitle,
+      memo: debouncedMemo,
       start: dateRange.from,
       end: dateRange.to,
       color,
