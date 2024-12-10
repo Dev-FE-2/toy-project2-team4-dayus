@@ -2,24 +2,22 @@ import { SalaryItemProps } from '@/types/salary';
 import * as S from './ListItem.styles';
 import { formatDate } from '@/utils/formatDate';
 
-const SalaryItem = ({
-  title,
-  totalAmount,
-  paymentDate,
-  onClick,
-}: SalaryItemProps) => {
+const SalaryItem = ({ item, onModal }: SalaryItemProps) => {
+  const handleClick = () => {
+    onModal(item.salarySn);
+  };
   return (
-    <S.ListBox onClick={onClick}>
-      <S.ListItemWrapper>
-        <S.ListItem>
-          <S.ItemBox>
-            <S.ItemTitle>{title}</S.ItemTitle>
-            <S.ItemValue>{totalAmount.toLocaleString()}원</S.ItemValue>
-          </S.ItemBox>
-          <S.ItemDate>{formatDate(paymentDate, 'hyphen')}</S.ItemDate>
-        </S.ListItem>
-      </S.ListItemWrapper>
-    </S.ListBox>
+    <S.ListItemWrapper id={item.salarySn} onClick={handleClick}>
+      <S.ListItem>
+        <S.ItemBox>
+          <S.ItemTitle>{item.title}</S.ItemTitle>
+          <S.ItemValue>{item.totalAmount.toLocaleString()}원</S.ItemValue>
+        </S.ItemBox>
+        <S.ItemDate>
+          {formatDate(new Date(item.paymentDate), 'hyphen')}
+        </S.ItemDate>
+      </S.ListItem>
+    </S.ListItemWrapper>
   );
 };
 
