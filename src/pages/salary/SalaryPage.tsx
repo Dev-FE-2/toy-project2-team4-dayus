@@ -1,4 +1,4 @@
-import { getSalaryItem, getSalaryList } from '@/api';
+import { getSalaryItem, getSalaryList, getSalaryMain } from '@/api';
 import SalaryAccordion from '@/components/accordion/SalaryAccordion';
 import SalaryList from '@/components/list/SalaryList';
 import SalaryModal from '@/components/Modal/SalaryModal';
@@ -31,7 +31,7 @@ const SalaryPage = () => {
 
   const fetchSalaryItem = useCallback(async () => {
     try {
-      const response: ISalary = await getSalaryItem();
+      const response: ISalary = await getSalaryMain();
       setSelectSalary(response);
     } catch (error) {
       throw new Error(`Error: ${error}`);
@@ -69,8 +69,7 @@ const SalaryPage = () => {
     }
   }, [fetchSalaryList]);
 
-  const handleOpenModal = useCallback(async (salarySn: string) => {
-    if (!salarySn) return;
+  const handleOpenModal = async (salarySn: string) => {
     try {
       const response = await getSalaryItem(salarySn);
       setModalSalary(response);
@@ -78,7 +77,7 @@ const SalaryPage = () => {
     } catch (error) {
       throw new Error(`Error: ${error}`);
     }
-  }, []);
+  };
 
   const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
@@ -89,12 +88,14 @@ const SalaryPage = () => {
     <S.Container>
       <Tab items={PAGE_TABS} selected={selected} setSelected={setSelected} />
       {selectSalary && <SalaryAccordion {...selectSalary} />}
-      <SalaryList
-        isLoading={isLoading}
-        listItem={salaryList}
-        onLoadMore={fetchSalaryList}
-        onModal={handleOpenModal}
-      />
+      {salaryList && (
+        <SalaryList
+          isLoading={isLoading}
+          listItem={salaryList}
+          onLoadMore={fetchSalaryList}
+          onModal={handleOpenModal}
+        />
+      )}
       {modalSalary && (
         <SalaryModal
           isOpen={isModalOpen}

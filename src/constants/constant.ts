@@ -55,3 +55,14 @@ export const SALARY_DETAIL_KEY = {
   DEDUCTIBLE: 'deductible',
   TOTAL: 'total',
 } as const;
+
+export const PAGE_TABS = [
+  {
+    label: '/salary',
+    title: '급여 목록',
+  },
+  {
+    label: '/shift',
+    title: '근무 정정',
+  },
+];
