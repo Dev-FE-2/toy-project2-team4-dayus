@@ -17,8 +17,13 @@ const localizer = dayjsLocalizer(dayjs);
 
 const MainCalendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { handleDateSelect, handleDelete, processedEvents, selectedEvents } =
-    useCalendarEvents();
+  const {
+    handleDateSelect,
+    handleDelete,
+    handleEdit,
+    processedEvents,
+    selectedEvents,
+  } = useCalendarEvents();
 
   const components = useMemo(
     () => ({
@@ -61,7 +66,11 @@ const MainCalendar = () => {
       />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ScheduleList schedules={selectedEvents} onDelete={handleDelete} />
+        <ScheduleList
+          schedules={selectedEvents}
+          onDelete={handleDelete}
+          onEdit={handleEdit}
+        />
       </Modal>
     </S.Container>
   );

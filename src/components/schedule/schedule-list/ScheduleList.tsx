@@ -2,7 +2,11 @@ import * as S from './ScheduleList.styles';
 import ScheduleItem from '../schedule-item/ScheduleItem';
 import { ScheduleListProps } from '@/types/schedule';
 
-const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
+const ScheduleList = ({
+  schedules = [],
+  onDelete,
+  onEdit,
+}: ScheduleListProps) => {
   const isEmptySchedule = schedules.length === 0;
   const headerTitle = isEmptySchedule
     ? '아직 일정이 없어요.'
@@ -24,6 +28,7 @@ const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
               key={schedule.eventId}
               schedule={schedule}
               onDelete={onDelete}
+              onEdit={onEdit}
             />
           ))
         )}
