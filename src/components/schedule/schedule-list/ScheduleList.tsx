@@ -1,8 +1,24 @@
 import * as S from './ScheduleList.styles';
 import ScheduleItem from '../schedule-item/ScheduleItem';
 import { ScheduleListProps } from '@/types/schedule';
+import { useDispatch, useSelector } from 'react-redux';
+import { closeModal, openModal } from '@/store/slices/modalToggleSlice';
+import { RootState } from '@/store';
 
 const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
+  const isOpen = useSelector(
+    (state: RootState) => state.modal['add-schedule-modal'],
+  );
+  const dispatch = useDispatch();
+
+  const toggleModal = () => {
+    if (isOpen) {
+      dispatch(closeModal('add-schedule-modal'));
+    } else {
+      dispatch(openModal('add-schedule-modal'));
+    }
+  };
+
   const isEmptySchedule = schedules.length === 0;
   const headerTitle = isEmptySchedule
     ? '아직 일정이 없어요.'
@@ -30,7 +46,7 @@ const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
       </S.ListContainer>
 
       <S.AddButtonContainer>
-        <S.AddButtonWrapper>
+        <S.AddButtonWrapper onClick={toggleModal}>
           <S.AddButton size={26} />
         </S.AddButtonWrapper>
       </S.AddButtonContainer>
