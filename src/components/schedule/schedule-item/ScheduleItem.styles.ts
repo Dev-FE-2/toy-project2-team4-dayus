@@ -14,6 +14,7 @@ export const ScheduleItem = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: var(--spacing-3) 0;
+  cursor: pointer;
 `;
 
 export const ScheduleInfo = styled.div`

@@ -7,13 +7,16 @@ import DatePicker from '@/components/ui/DayPicker';
 import Button from '@/components/ui/Button/Button';
 import * as S from './RangeDayPicker.styles';
 import { formatDate } from '@/utils/formatDate';
+import { RangeDayPickerProps } from '@/types/day-picker';
 
-type RangeDayPickerProps = {
-  className?: string;
-};
-
-const RangeDayPicker = ({ className }: RangeDayPickerProps) => {
-  const [dateRange, setDateRange] = useState<DateRange>();
+const RangeDayPicker = ({
+  className,
+  initialRange,
+  onRangeChange,
+}: RangeDayPickerProps) => {
+  const [dateRange, setDateRange] = useState<DateRange>(
+    initialRange || { from: undefined, to: undefined },
+  );
   const [tempRange, setTempRange] = useState<DateRange>();
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -35,6 +38,7 @@ const RangeDayPicker = ({ className }: RangeDayPickerProps) => {
   const handleConfirm = () => {
     if (tempRange) {
       setDateRange(tempRange);
+      onRangeChange?.(tempRange);
       setIsOpen(false);
       setTempRange(undefined);
     }
@@ -46,8 +50,9 @@ const RangeDayPicker = ({ className }: RangeDayPickerProps) => {
   };
 
   const handleInitiate = () => {
-    setDateRange(undefined);
+    setDateRange({ from: undefined, to: undefined });
     setTempRange(undefined);
+    onRangeChange?.({ from: undefined, to: undefined });
   };
 
   return (

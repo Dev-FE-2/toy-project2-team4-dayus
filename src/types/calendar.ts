@@ -4,6 +4,7 @@ export type CustomToolbarProps = Pick<ToolbarProps, 'label' | 'onNavigate'>;
 
 export interface IEventList extends Event {
   eventId: string;
+  memo?: string;
   color: IEventColorProps;
 }
 
