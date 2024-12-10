@@ -1,12 +1,16 @@
 import * as S from './ScheduleList.styles';
 import ScheduleItem from '../schedule-item/ScheduleItem';
 import { ScheduleListProps } from '@/types/schedule';
+import { useToggleModal } from '@/hooks/useToggleModal';
+import { ADD_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
 const ScheduleList = ({
   schedules = [],
   onDelete,
   onEdit,
 }: ScheduleListProps) => {
+  const { toggleModal } = useToggleModal({ modalId: ADD_SCHEDULE_MODAL_ID });
+
   const isEmptySchedule = schedules.length === 0;
   const headerTitle = isEmptySchedule
     ? '아직 일정이 없어요.'
@@ -35,7 +39,7 @@ const ScheduleList = ({
       </S.ListContainer>
 
       <S.AddButtonContainer>
-        <S.AddButtonWrapper>
+        <S.AddButtonWrapper onClick={toggleModal}>
           <S.AddButton size={26} />
         </S.AddButtonWrapper>
       </S.AddButtonContainer>
