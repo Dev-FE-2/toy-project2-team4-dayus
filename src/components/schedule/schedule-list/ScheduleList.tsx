@@ -2,10 +2,10 @@ import * as S from './ScheduleList.styles';
 import ScheduleItem from '../schedule-item/ScheduleItem';
 import { ScheduleListProps } from '@/types/schedule';
 import { useToggleModal } from '@/hooks/useToggleModal';
-import { addScheduleModalId } from '@/constants/constant';
+import { ADD_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
 const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
-  const { toggleModal } = useToggleModal({ modalId: addScheduleModalId });
+  const { toggleModal } = useToggleModal({ modalId: ADD_SCHEDULE_MODAL_ID });
 
   const isEmptySchedule = schedules.length === 0;
   const headerTitle = isEmptySchedule

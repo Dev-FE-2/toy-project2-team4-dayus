@@ -5,7 +5,7 @@ import PageNav from '../PageNav';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useScrollLock } from '@/hooks/useScrollLock';
 import { useToggleModal } from '@/hooks/useToggleModal';
-import { addScheduleModalId } from '@/constants/constant';
+import { ADD_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
 type ModalProps = {
   id: string;
@@ -27,7 +27,7 @@ const ModalFull = ({
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const { closeIdModal } = useToggleModal({ modalId: addScheduleModalId });
+  const { closeIdModal } = useToggleModal({ modalId: ADD_SCHEDULE_MODAL_ID });
 
   useScrollLock({ isOpen });
 

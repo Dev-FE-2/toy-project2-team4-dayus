@@ -3,10 +3,10 @@ import * as S from './HomePage.style';
 import ModalFull from '@/components/ui/ModalFull';
 import AddScheduleModal from '@/components/add-schedule-modal/AddScheduleModal';
 import { useToggleModal } from '@/hooks/useToggleModal';
-import { addScheduleModalId } from '@/constants/constant';
+import { ADD_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
 const HomePage = () => {
-  const { isOpen } = useToggleModal({ modalId: addScheduleModalId });
+  const { isOpen } = useToggleModal({ modalId: ADD_SCHEDULE_MODAL_ID });
 
   return (
     <S.Container>
