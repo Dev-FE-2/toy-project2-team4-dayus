@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { SALARY_DETAIL_KEY } from '@/constants/constant';
 import Accordion from '../ui/Accordion';
 import * as S from './SalaryAccordion.styles';
-import { ISalary, itemType } from '@/types/salary';
+import { ISalary } from '@/types/salary';
 import { formatDate } from '@/utils/formatDate';
 
 const SalaryAccordion = ({
@@ -13,17 +13,17 @@ const SalaryAccordion = ({
   deductible,
   totalAmount,
 }: ISalary) => {
-  const salaryItem = useMemo<itemType[]>(
+  const salaryItem = useMemo(
     () => [
       {
         id: SALARY_DETAIL_KEY.TOUR,
         label: '근무 기간',
-        value: `${formatDate(tour.startDate, 'dot')} - ${formatDate(tour.endDate, 'dot')}`,
+        value: `${formatDate(new Date(tour.startDate), 'dot')} - ${formatDate(new Date(tour.endDate), 'dot')}`,
       },
       {
         id: SALARY_DETAIL_KEY.PAYMENT_DATE,
         label: '급여일',
-        value: `${formatDate(paymentDate, 'dot')}`,
+        value: `${formatDate(new Date(paymentDate), 'dot')}`,
       },
       {
         id: SALARY_DETAIL_KEY.ACCOUNT,

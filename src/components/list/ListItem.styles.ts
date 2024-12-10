@@ -1,12 +1,5 @@
 import styled from 'styled-components';
 
-export const ListBox = styled.ul`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
 export const ListItemWrapper = styled.li`
   width: 100%;
   &:hover,

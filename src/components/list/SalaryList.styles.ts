@@ -30,3 +30,10 @@ export const H2 = styled.h2`
   font-size: var(--font-base);
   font-weight: 600;
 `;
+
+export const ListBox = styled.ul`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
