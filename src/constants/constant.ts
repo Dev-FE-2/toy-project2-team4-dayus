@@ -56,6 +56,10 @@ export const SALARY_DETAIL_KEY = {
   TOTAL: 'total',
 } as const;
 
+// ----------- 모달 id (redux 관리를 위함) ----------- //
+// 일정 추가 모달
+export const ADD_SCHEDULE_MODAL_ID = 'add-schedule-modal';
+
 export const PAGE_TABS = [
   {
     label: '/salary',
