@@ -10,7 +10,6 @@ export const Container = styled.div`
 `;
 
 export const ListContainer = styled.div`
-  padding: var(--spacing-4);
   flex: 1 1 auto;
 `;
 

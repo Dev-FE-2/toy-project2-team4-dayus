@@ -2,11 +2,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import HomePage from '@/pages/home/HomePage';
 import LoginPage from '@/pages/login/LoginPage';
-import ProfilePage from '@/pages/ProfilePage';
+import ProfilePage from '@/pages/profile-page/ProfilePage';
 import SalaryPage from '@/pages/salary/SalaryPage';
 import NotFoundPage from '@/pages/not-found/NotFoundPage';
 import Layout from '@/layout/Layout';
 import { ROUTER_PATH } from '@/constants/constant';
+import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute';
 
 const Router = () => {
   const { HOME, LOGIN, PROFILE, SALARY } = ROUTER_PATH;
@@ -15,10 +16,34 @@ const Router = () => {
     {
       element: <Layout />,
       children: [
-        { path: HOME, element: <HomePage /> },
-        { path: LOGIN, element: <LoginPage /> },
-        { path: PROFILE, element: <ProfilePage /> },
-        { path: SALARY, element: <SalaryPage /> },
+        {
+          path: HOME,
+          element: (
+            <ProtectedRoute>
+              <HomePage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: LOGIN,
+          element: <LoginPage />,
+        },
+        {
+          path: PROFILE,
+          element: (
+            <ProtectedRoute>
+              <ProfilePage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: SALARY,
+          element: (
+            <ProtectedRoute>
+              <SalaryPage />
+            </ProtectedRoute>
+          ),
+        },
         { path: '*', element: <NotFoundPage /> },
       ],
     },

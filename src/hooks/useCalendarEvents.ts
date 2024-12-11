@@ -19,17 +19,16 @@ const useCalendarEvents = () => {
 
   // 날짜에 해당하는 이벤트 필터링
   const handleDateSelect = (cellInfo: { start: Date; end: Date }) => {
-    const selectedDay = dayjs(cellInfo.start);
+    const selectedDay = dayjs(cellInfo.start).startOf('day');
 
-    const eventForDate = processedEvents.filter(event => {
+    const eventForDate = events.filter(event => {
       const eventStart = dayjs(event.start).startOf('day');
       const eventEnd = dayjs(event.end).startOf('day');
-      const selectedDayStart = selectedDay.startOf('day');
 
       return (
-        (selectedDayStart.isSame(eventStart, 'day') ||
-          selectedDayStart.isAfter(eventStart, 'day')) &&
-        selectedDayStart.isBefore(eventEnd, 'day')
+        selectedDay.isSame(eventStart) ||
+        selectedDay.isSame(eventEnd) ||
+        (selectedDay.isAfter(eventStart) && selectedDay.isBefore(eventEnd))
       );
     });
 
@@ -42,11 +41,26 @@ const useCalendarEvents = () => {
     setSelectedEvents(prev => prev.filter(event => event.eventId !== id));
   };
 
+  // 수정
+  const handleEdit = (id: string, updatedEvent: Partial<IEventList>) => {
+    setEvents(prev =>
+      prev.map(event =>
+        event.eventId === id ? { ...event, ...updatedEvent } : event,
+      ),
+    );
+    setSelectedEvents(prev =>
+      prev.map(event =>
+        event.eventId === id ? { ...event, ...updatedEvent } : event,
+      ),
+    );
+  };
+
   return {
     processedEvents,
     selectedEvents,
     handleDateSelect,
     handleDelete,
+    handleEdit,
   };
 };
 
