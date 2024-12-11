@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import * as S from './HomePage.style';
 import ModalFull from '@/components/ui/ModalFull';
 import MainCalendar from '@/components/calendar/MainCalendar';
@@ -17,6 +19,7 @@ const HomePage = () => {
   const [selectedSchedule, setSelectedSchedule] = useState<IEventList | null>(
     null,
   );
+  const navigate = useNavigate();
 
   const { isOpen: isAddModalOpen } = useToggleModal({
     modalId: ADD_SCHEDULE_MODAL_ID,
@@ -43,6 +46,7 @@ const HomePage = () => {
   ) => {
     handleEdit(eventId, updatedSchedule);
     closeEditModal();
+    navigate(-1);
     setSelectedSchedule(null);
   };
 
