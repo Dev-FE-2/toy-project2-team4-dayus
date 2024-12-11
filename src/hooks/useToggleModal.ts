@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { RootState } from '@/store';
 import { closeModal, openModal } from '@/store/slices/modalToggleSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,16 +13,21 @@ const useToggleModal = ({ modalId }: useToggleModalProps) => {
   const isOpen = useSelector((state: RootState) => state.modal[modalId]);
   const dispatch = useDispatch();
 
-  const openIdModal = () => dispatch(openModal(modalId));
-  const closeIdModal = () => dispatch(closeModal(modalId));
+  const openIdModal = useCallback(() => {
+    dispatch(openModal(modalId));
+  }, [dispatch, modalId]);
 
-  const toggleModal = () => {
+  const closeIdModal = useCallback(() => {
+    dispatch(closeModal(modalId));
+  }, [dispatch, modalId]);
+
+  const toggleModal = useCallback(() => {
     if (isOpen) {
-      openIdModal();
-    } else {
       closeIdModal();
+    } else {
+      openIdModal();
     }
-  };
+  }, [isOpen, openIdModal, closeIdModal]);
 
   return { isOpen, openIdModal, closeIdModal, toggleModal };
 };

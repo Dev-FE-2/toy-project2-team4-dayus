@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
 import { Calendar, dayjsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import dayjs from 'dayjs';
@@ -20,6 +21,7 @@ dayjs.locale('ko');
 const localizer = dayjsLocalizer(dayjs);
 
 const MainCalendar = () => {
+  const navigation = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentSchedule, setCurrentSchedule] = useState<IEventList | null>(
     null,
@@ -71,6 +73,7 @@ const MainCalendar = () => {
   ) => {
     handleEdit(eventId, updatedSchedule);
     closeIdModal();
+    navigation(-1);
     setCurrentSchedule(null);
   };
 
