@@ -8,9 +8,10 @@ import { ROUTER_PATH } from '@/constants/constant';
 const Layout = () => {
   const location = useLocation();
   const isLoginPage = location.pathname === ROUTER_PATH.LOGIN;
+  const isProfilePage = location.pathname === ROUTER_PATH.PROFILE;
   return (
     <S.Container>
-      {!isLoginPage && <Header />}
+      {!isLoginPage && !isProfilePage && <Header />}
       <Outlet />
       {!isLoginPage && <NavBar />}
     </S.Container>
