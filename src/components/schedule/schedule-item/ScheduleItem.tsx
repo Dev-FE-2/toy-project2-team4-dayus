@@ -5,20 +5,16 @@ import { GoTrash } from 'react-icons/go';
 
 import * as S from './ScheduleItem.styles';
 import Button from '@/components/ui/Button/Button';
-import ModalFull from '@/components/ui/ModalFull';
-import EditScheduleModal from '@/components/edit-schedule-modal/EditScheduleModal';
 import { ScheduleItemProps } from '@/types/schedule';
-import { IEventList } from '@/types/calendar';
 import { formatDate } from '@/utils/formatDate';
 import { compareDateRange } from '@/utils/compareDateRange';
-import { useToggleModal } from '@/hooks/useToggleModal';
-import { EDIT_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
-const ScheduleItem = ({ schedule, onDelete, onEdit }: ScheduleItemProps) => {
+const ScheduleItem = ({
+  schedule,
+  onDelete,
+  onOpenEditModal,
+}: ScheduleItemProps) => {
   const [showDeleteButton, setShowDeleteButton] = useState(false);
-  const { isOpen, openIdModal, closeIdModal } = useToggleModal({
-    modalId: EDIT_SCHEDULE_MODAL_ID,
-  });
 
   if (!schedule) return null;
 
@@ -36,14 +32,6 @@ const ScheduleItem = ({ schedule, onDelete, onEdit }: ScheduleItemProps) => {
     event.stopPropagation();
   };
 
-  const handleEdit = (
-    eventId: string,
-    updatedSchedule: Partial<IEventList>,
-  ) => {
-    onEdit(eventId, updatedSchedule);
-    closeIdModal();
-  };
-
   const dates = compareDateRange(
     dayjs(schedule.start).toDate(),
     dayjs(schedule.end).toDate(),
@@ -57,7 +45,7 @@ const ScheduleItem = ({ schedule, onDelete, onEdit }: ScheduleItemProps) => {
   return (
     <>
       <S.ScheduleItemWrapper>
-        <S.ScheduleItem onClick={openIdModal}>
+        <S.ScheduleItem onClick={() => onOpenEditModal(schedule)}>
           <S.ScheduleInfo>
             <S.ColorDot $bgColor={schedule.color.bgColor} />
             <S.ScheduleText>
@@ -80,14 +68,6 @@ const ScheduleItem = ({ schedule, onDelete, onEdit }: ScheduleItemProps) => {
           </Button>
         </S.DeleteConfirmation>
       </S.ScheduleItemWrapper>
-
-      <ModalFull
-        id={EDIT_SCHEDULE_MODAL_ID}
-        isOpen={isOpen}
-        navText="일정 수정"
-      >
-        <EditScheduleModal schedule={schedule} onEdit={handleEdit} />
-      </ModalFull>
     </>
   );
 };
