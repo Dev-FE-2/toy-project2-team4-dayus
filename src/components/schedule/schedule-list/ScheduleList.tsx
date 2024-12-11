@@ -7,7 +7,7 @@ import { ADD_SCHEDULE_MODAL_ID } from '@/constants/constant';
 const ScheduleList = ({
   schedules = [],
   onDelete,
-  onOpenEditModal,
+  onEditSchedule,
 }: ScheduleListProps) => {
   const { toggleModal } = useToggleModal({ modalId: ADD_SCHEDULE_MODAL_ID });
 
@@ -32,7 +32,7 @@ const ScheduleList = ({
               key={schedule.eventId}
               schedule={schedule}
               onDelete={onDelete}
-              onOpenEditModal={onOpenEditModal}
+              onEditSchedule={onEditSchedule}
             />
           ))
         )}

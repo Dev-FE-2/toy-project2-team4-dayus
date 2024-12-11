@@ -8,13 +8,16 @@ import Button from '@/components/ui/Button/Button';
 import { ScheduleItemProps } from '@/types/schedule';
 import { formatDate } from '@/utils/formatDate';
 import { compareDateRange } from '@/utils/compareDateRange';
+import { useToggleModal } from '@/hooks/useToggleModal';
+import { EDIT_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
 const ScheduleItem = ({
   schedule,
   onDelete,
-  onOpenEditModal,
+  onEditSchedule,
 }: ScheduleItemProps) => {
   const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const { openIdModal } = useToggleModal({ modalId: EDIT_SCHEDULE_MODAL_ID });
 
   if (!schedule) return null;
 
@@ -25,6 +28,12 @@ const ScheduleItem = ({
 
   const handleCancel = () => {
     setShowDeleteButton(false);
+  };
+
+  const handleEdit = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onEditSchedule(schedule);
+    openIdModal();
   };
 
   const toggleTrashButton = (event: React.MouseEvent) => {
@@ -45,7 +54,7 @@ const ScheduleItem = ({
   return (
     <>
       <S.ScheduleItemWrapper>
-        <S.ScheduleItem onClick={() => onOpenEditModal(schedule)}>
+        <S.ScheduleItem onClick={handleEdit}>
           <S.ScheduleInfo>
             <S.ColorDot $bgColor={schedule.color.bgColor} />
             <S.ScheduleText>
