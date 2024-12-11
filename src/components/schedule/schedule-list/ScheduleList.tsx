@@ -4,7 +4,11 @@ import { ScheduleListProps } from '@/types/schedule';
 import { useToggleModal } from '@/hooks/useToggleModal';
 import { ADD_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
-const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
+const ScheduleList = ({
+  schedules = [],
+  onDelete,
+  onOpenEditModal,
+}: ScheduleListProps) => {
   const { toggleModal } = useToggleModal({ modalId: ADD_SCHEDULE_MODAL_ID });
 
   const isEmptySchedule = schedules.length === 0;
@@ -28,6 +32,7 @@ const ScheduleList = ({ schedules = [], onDelete }: ScheduleListProps) => {
               key={schedule.eventId}
               schedule={schedule}
               onDelete={onDelete}
+              onOpenEditModal={onOpenEditModal}
             />
           ))
         )}
