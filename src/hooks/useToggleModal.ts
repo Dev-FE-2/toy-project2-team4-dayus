@@ -1,5 +1,7 @@
 import { useCallback } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { RootState } from '@/store';
 import { closeModal, openModal } from '@/store/slices/modalToggleSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +12,7 @@ type useToggleModalProps = {
 
 // 모달 여닫기(redux로 state 관리)
 const useToggleModal = ({ modalId }: useToggleModalProps) => {
+  const navigate = useNavigate();
   const isOpen = useSelector((state: RootState) => state.modal[modalId]);
   const dispatch = useDispatch();
 
@@ -19,7 +22,8 @@ const useToggleModal = ({ modalId }: useToggleModalProps) => {
 
   const closeIdModal = useCallback(() => {
     dispatch(closeModal(modalId));
-  }, [dispatch, modalId]);
+    navigate(-1);
+  }, [dispatch, modalId, navigate]);
 
   const toggleModal = useCallback(() => {
     if (isOpen) {
