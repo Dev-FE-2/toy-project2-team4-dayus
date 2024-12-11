@@ -7,8 +7,6 @@ import SalaryPage from '@/pages/SalaryPage';
 import NotFoundPage from '@/pages/not-found/NotFoundPage';
 import Layout from '@/layout/Layout';
 import { ROUTER_PATH } from '@/constants/constant';
-import { Provider } from 'react-redux';
-import store from '@/store';
 import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute';
 
 const Router = () => {
@@ -16,11 +14,7 @@ const Router = () => {
 
   const router = createBrowserRouter([
     {
-      element: (
-        <Provider store={store}>
-          <Layout />
-        </Provider>
-      ),
+      element: <Layout />,
       children: [
         {
           path: HOME,
