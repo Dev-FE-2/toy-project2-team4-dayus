@@ -1,11 +1,12 @@
 import { useCallback, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import * as S from './ModalFull.style';
 import PageNav from '../PageNav';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { useScrollLock } from '@/hooks/useScrollLock';
 import { useToggleModal } from '@/hooks/useToggleModal';
-import { ADD_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
 type ModalProps = {
   id: string;
@@ -27,7 +28,7 @@ const ModalFull = ({
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  const { closeIdModal } = useToggleModal({ modalId: ADD_SCHEDULE_MODAL_ID });
+  const { closeIdModal } = useToggleModal({ modalId: id });
 
   useScrollLock({ isOpen });
 
@@ -36,17 +37,21 @@ const ModalFull = ({
     closeIdModal();
   }, [navigate, closeIdModal]);
 
+  const handlePopState = useCallback(() => {
+    closeIdModal();
+  }, [closeIdModal]);
+
   useEffect(() => {
     if (isOpen) {
       navigate(`${pathname}?modal=${id}`);
 
-      window.addEventListener('popstate', () => closeIdModal());
+      window.addEventListener('popstate', handlePopState);
 
       return () => {
-        window.removeEventListener('popstate', () => closeIdModal());
+        window.removeEventListener('popstate', handlePopState);
       };
     }
-  }, [isOpen, navigate, pathname, id, closeIdModal]);
+  }, [isOpen, navigate, pathname, id, handlePopState]);
 
   if (!isOpen) return null;
 
