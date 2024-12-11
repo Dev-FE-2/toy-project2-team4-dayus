@@ -71,5 +71,5 @@ export const SELECT_WORK_TYPE = [
 export const SELECT_APPROVAL_TYPE = [
   { label: '승인 상태', value: '' },
   { label: '승인', value: '승인' },
-  { label: '비승인', value: '비승인' },
+  { label: '보류', value: '보류' },
 ];
