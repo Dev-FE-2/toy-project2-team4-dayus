@@ -16,19 +16,18 @@ export interface ISalary {
   totalAmount: number;
 }
 
-export interface SalaryListItem
-  extends Pick<ISalary, 'totalAmount' | 'paymentDate' | 'salarySn'> {
+export interface SalaryListItem extends ISalary {
   title: string;
 }
 
 export type SalaryListProps = ILoadMoreProps & {
   listItem: SalaryListItem[];
-  onModal?: (salarySn: string) => void;
+  onModal: (salary: SalaryListItem) => void;
 };
 
 export type SalaryItemProps = {
   item: SalaryListItem;
-  onModal?: (salarySn: string) => void;
+  handleClick: () => void;
 };
 
 export interface SalaryList {
@@ -36,3 +35,9 @@ export interface SalaryList {
   currentPage: number;
   totalPage: number;
 }
+
+export type spreadListItem = {
+  id: string;
+  label: string;
+  value: string;
+};
