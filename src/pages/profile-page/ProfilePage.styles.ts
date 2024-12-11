@@ -36,11 +36,13 @@ export const ProfileInfo = styled.div`
 export const ProfileInfoUl = styled.ul`
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 `;
 
 export const ProfileInfoItem = styled.li`
+  display: flex;
+  align-items: center;
   font-size: var(--font-base);
+  height: 4rem;
 `;
 
 export const ProfileInfoTitle = styled.span`

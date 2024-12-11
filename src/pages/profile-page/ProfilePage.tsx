@@ -2,7 +2,7 @@ import user from '@/assets/user.svg';
 import Button from '@/components/ui/Button/Button';
 import * as S from './ProfilePage.styles';
 
-const myPage = () => {
+const MyPage = () => {
   return (
     <>
       <S.ProfileWrapper>
@@ -41,7 +41,7 @@ const myPage = () => {
         </S.ProfileInfo>
         <S.ProfileButtons>
           <Button $fullWidth>내 정보 수정</Button>
-          <Button $fullWidth $variant="danger">
+          <Button $fullWidth $variant="outline">
             로그아웃
           </Button>
         </S.ProfileButtons>
@@ -50,4 +50,4 @@ const myPage = () => {
   );
 };
 
-export default myPage;
+export default MyPage;

@@ -7,7 +7,8 @@ type ButtonVariant =
   | 'success'
   | 'danger'
   | 'warning'
-  | 'info';
+  | 'info'
+  | 'outline';
 type ButtonSize = 'sm' | 'md' | 'lg';
 type ButtonRadius = 'sm' | 'base' | 'md' | 'lg' | 'full';
 
@@ -41,46 +42,60 @@ const getVariantStyles = (variant: ButtonVariant = 'main') => {
       'var(--color-main)',
       'var(--color-main-hover)',
       'var(--color-white)',
+      'none',
     ],
     primary: [
       'var(--color-primary)',
       'var(--color-primary-hover)',
       'var(--color-white)',
+      'none',
     ],
     secondary: [
       'var(--color-secondary)',
       'var(--color-secondary-hover)',
       'var(--color-white)',
+      'none',
     ],
     success: [
       'var(--color-success)',
       'var(--color-success-hover)',
       'var(--color-white)',
+      'none',
     ],
     danger: [
       'var(--color-danger)',
       'var(--color-danger-hover)',
       'var(--color-white)',
+      'none',
     ],
     warning: [
       'var(--color-warning)',
       'var(--color-warning-hover)',
       'var(--color-black)',
+      'none',
     ],
     info: [
       'var(--color-info)',
       'var(--color-info-hover)',
       'var(--color-white)',
+      'none',
+    ],
+    outline: [
+      'transparent',
+      'none',
+      'var(--color-main)',
+      '1px solid var(--color-main)',
     ],
   };
 
-  const [bgColor, hoverColor, textColor] = colors[variant];
+  const [bgColor, hoverColor, textColor, borderStyle] = colors[variant];
   return `
    background-color: ${bgColor};
    color: ${textColor};
    &:hover {
      background-color: ${hoverColor};
    }
+  border: ${borderStyle};
  `;
 };
 
