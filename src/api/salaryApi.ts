@@ -1,21 +1,8 @@
 import { axiosInstance } from '@/api/axios';
 
-export const getSalaryMain = async () => {
+export const getSalaryItem = async () => {
   try {
     const response = await axiosInstance.get('/salary');
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    throw new Error(`ERROR MESSAGE: ${error}`);
-  }
-};
-
-export const getSalaryItem = async (salarySn: string) => {
-  const params = { salarySn };
-  try {
-    const response = await axiosInstance.get('/salary', {
-      params: params,
-    });
     console.log(response.data);
     return response.data;
   } catch (error) {

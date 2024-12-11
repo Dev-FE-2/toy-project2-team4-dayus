@@ -19,7 +19,7 @@ const SalaryList = ({
       <InfiniteScroll isLoading={isLoading} onLoadMore={onLoadMore}>
         <S.ListBox>
           {listItem.map((item, i) => (
-            <SalaryItem key={i} item={item} onModal={onModal} />
+            <SalaryItem key={i} item={item} handleClick={() => onModal(item)} />
           ))}
         </S.ListBox>
       </InfiniteScroll>

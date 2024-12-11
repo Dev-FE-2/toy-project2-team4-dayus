@@ -2,10 +2,7 @@ import { SalaryItemProps } from '@/types/salary';
 import * as S from './ListItem.styles';
 import { formatDate } from '@/utils/formatDate';
 
-const SalaryItem = ({ item, onModal }: SalaryItemProps) => {
-  const handleClick = () => {
-    if (onModal) onModal(item.salarySn);
-  };
+const SalaryItem = ({ item, handleClick }: SalaryItemProps) => {
   return (
     <S.ListItemWrapper id={item.salarySn} onClick={handleClick}>
       <S.ListItem>
