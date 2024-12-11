@@ -11,10 +11,14 @@ import { ScheduleItemProps } from '@/types/schedule';
 import { IEventList } from '@/types/calendar';
 import { formatDate } from '@/utils/formatDate';
 import { compareDateRange } from '@/utils/compareDateRange';
+import { useToggleModal } from '@/hooks/useToggleModal';
+import { EDIT_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
 const ScheduleItem = ({ schedule, onDelete, onEdit }: ScheduleItemProps) => {
   const [showDeleteButton, setShowDeleteButton] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
+  const { isOpen, openIdModal, closeIdModal } = useToggleModal({
+    modalId: EDIT_SCHEDULE_MODAL_ID,
+  });
 
   if (!schedule) return null;
 
@@ -37,11 +41,7 @@ const ScheduleItem = ({ schedule, onDelete, onEdit }: ScheduleItemProps) => {
     updatedSchedule: Partial<IEventList>,
   ) => {
     onEdit(eventId, updatedSchedule);
-    setShowEditModal(false);
-  };
-
-  const handleEditModal = () => {
-    setShowEditModal(true);
+    closeIdModal();
   };
 
   const dates = compareDateRange(
@@ -57,7 +57,7 @@ const ScheduleItem = ({ schedule, onDelete, onEdit }: ScheduleItemProps) => {
   return (
     <>
       <S.ScheduleItemWrapper>
-        <S.ScheduleItem onClick={handleEditModal}>
+        <S.ScheduleItem onClick={openIdModal}>
           <S.ScheduleInfo>
             <S.ColorDot $bgColor={schedule.color.bgColor} />
             <S.ScheduleText>
@@ -82,9 +82,8 @@ const ScheduleItem = ({ schedule, onDelete, onEdit }: ScheduleItemProps) => {
       </S.ScheduleItemWrapper>
 
       <ModalFull
-        id="edit-schedule"
-        isOpen={showEditModal}
-        setIsOpen={setShowEditModal}
+        id={EDIT_SCHEDULE_MODAL_ID}
+        isOpen={isOpen}
         navText="일정 수정"
       >
         <EditScheduleModal schedule={schedule} onEdit={handleEdit} />
