@@ -1,10 +1,12 @@
+import { ILoadMoreProps } from './infinite-scroll';
+
 export interface ISalary {
-  salarySn?: string;
+  salarySn: string;
   tour: {
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
   };
-  paymentDate: Date;
+  paymentDate: string;
   bank: {
     name: string;
     account: string;
@@ -14,15 +16,27 @@ export interface ISalary {
   totalAmount: number;
 }
 
-export type SalaryItemProps = Pick<
-  ISalary,
-  'salarySn' | 'totalAmount' | 'paymentDate'
-> & {
+export interface SalaryListItem extends ISalary {
   title: string;
-  onClick: () => void;
+}
+
+export type SalaryListProps = ILoadMoreProps & {
+  listItem: SalaryListItem[];
+  onModal: (salary: SalaryListItem) => void;
 };
 
-export type itemType = {
+export type SalaryItemProps = {
+  item: SalaryListItem;
+  handleClick: () => void;
+};
+
+export interface SalaryList {
+  data: SalaryListItem[];
+  currentPage: number;
+  totalPage: number;
+}
+
+export type spreadListItem = {
   id: string;
   label: string;
   value: string;

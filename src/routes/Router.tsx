@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '@/pages/home/HomePage';
 import LoginPage from '@/pages/login/LoginPage';
 import ProfilePage from '@/pages/profile-page/ProfilePage';
-import SalaryPage from '@/pages/SalaryPage';
+import SalaryPage from '@/pages/salary/SalaryPage';
 import NotFoundPage from '@/pages/not-found/NotFoundPage';
 import Layout from '@/layout/Layout';
 import { ROUTER_PATH } from '@/constants/constant';
