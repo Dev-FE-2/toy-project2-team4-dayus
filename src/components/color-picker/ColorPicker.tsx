@@ -1,14 +1,20 @@
-import { arrEventColor } from '@/constants/constant';
-import ColorPickerButton from '../ui/Button/ColorPickerButton';
-import * as S from './ColorPicker.style';
 import { useState } from 'react';
 
-const ColorPicker = () => {
-  const [selectedColor, setselectedColor] = useState(arrEventColor[0].bgColor);
+import ColorPickerButton from '../ui/Button/ColorPickerButton';
+import { arrEventColor } from '@/constants/constant';
+import { IEventColorProps } from '@/types/calendar';
+import { ColorPickerType } from '@/types/color-picker';
+import * as S from './ColorPicker.style';
+
+const ColorPicker = ({ initialColor, onColorChange }: ColorPickerType) => {
+  const [selectedColor, setselectedColor] = useState(
+    initialColor?.bgColor || arrEventColor[0].bgColor,
+  );
   const [listShow, setlistShow] = useState(false);
 
-  const handleColorPick = (color: string) => {
-    setselectedColor(color);
+  const handleColorPick = (color: IEventColorProps) => {
+    setselectedColor(color.bgColor);
+    onColorChange?.(color);
     setlistShow(prev => !prev);
   };
 
@@ -21,12 +27,12 @@ const ColorPicker = () => {
       />
       {listShow && (
         <S.ColorList>
-          {arrEventColor.map(({ id, bgColor }) => (
-            <S.ColorItem key={id}>
+          {arrEventColor.map(color => (
+            <S.ColorItem key={color.id}>
               <ColorPickerButton
-                color={bgColor}
-                selected={bgColor === selectedColor}
-                onClick={() => handleColorPick(bgColor)}
+                color={color.bgColor}
+                selected={color.bgColor === selectedColor}
+                onClick={() => handleColorPick(color)}
               />
             </S.ColorItem>
           ))}

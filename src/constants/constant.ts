@@ -61,6 +61,9 @@ export const SALARY_DETAIL_KEY = {
 // 일정 추가 모달
 export const ADD_SCHEDULE_MODAL_ID = 'add-schedule-modal';
 
+// 일정 수정 모달
+export const EDIT_SCHEDULE_MODAL_ID = 'edit-schedule-modal';
+
 export const SELECT_WORK_TYPE = [
   { label: '근무 정정 유형', value: '' },
   { label: '대리 근무', value: '대리 근무' },
@@ -72,4 +75,14 @@ export const SELECT_APPROVAL_TYPE = [
   { label: '승인 상태', value: '' },
   { label: '승인', value: '승인' },
   { label: '보류', value: '보류' },
+
+export const PAGE_TABS = [
+  {
+    label: '/salary',
+    title: '급여 목록',
+  },
+  {
+    label: '/shift',
+    title: '근무 정정',
+  },
 ];

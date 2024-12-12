@@ -28,7 +28,6 @@ export interface ITextareaProps
     TextareaStyleType {
   value?: string | undefined;
   isCustom?: boolean;
-  onChange?: () => void;
 }
 // -------- /textarea -------- //
 
