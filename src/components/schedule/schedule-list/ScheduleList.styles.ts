@@ -50,7 +50,7 @@ export const AddButtonContainer = styled.div`
   width: 100%;
 `;
 
-export const AddButtonWrapper = styled.div`
+export const AddButton = styled.button`
   display: flex;
   cursor: pointer;
   justify-content: center;
@@ -61,7 +61,7 @@ export const AddButtonWrapper = styled.div`
   border-radius: 50%;
 `;
 
-export const AddButton = styled(BiSolidPencil)`
+export const AddButtonImg = styled(BiSolidPencil)`
   color: var(--color-main);
   transition: color 0.2s;
 
