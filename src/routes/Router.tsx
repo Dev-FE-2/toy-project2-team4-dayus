@@ -7,10 +7,11 @@ import SalaryPage from '@/pages/salary/SalaryPage';
 import NotFoundPage from '@/pages/not-found/NotFoundPage';
 import Layout from '@/layout/Layout';
 import { ROUTER_PATH } from '@/constants/constant';
+import ShiftPage from '@/pages/shift/ShiftPage';
 import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute';
 
 const Router = () => {
-  const { HOME, LOGIN, PROFILE, SALARY } = ROUTER_PATH;
+  const { HOME, LOGIN, PROFILE, SALARY, SHIFT } = ROUTER_PATH;
 
   const router = createBrowserRouter([
     {
@@ -41,6 +42,14 @@ const Router = () => {
           element: (
             <ProtectedRoute>
               <SalaryPage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: SHIFT,
+          element: (
+            <ProtectedRoute>
+              <ShiftPage />
             </ProtectedRoute>
           ),
         },
