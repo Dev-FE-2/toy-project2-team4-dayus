@@ -36,4 +36,9 @@ export const Container = styled.div`
       background: var(--color-gray-100);
     }
   }
+
+  .rbc-event.rbc-event-continues-after:not(.rbc-event-allday) {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
 `;
