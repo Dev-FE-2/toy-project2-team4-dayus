@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './HomePage.style';
+import Spinner from '@/components/ui/Spinner';
 import ModalFull from '@/components/ui/ModalFull';
 import MainCalendar from '@/components/calendar/MainCalendar';
 import AddScheduleModal from '@/components/add-schedule-modal/AddScheduleModal';
@@ -36,6 +37,7 @@ const HomePage = () => {
     handleEdit,
     processedEvents,
     selectedEvents,
+    isLoading,
   } = useCalendarEvents();
 
   const handleEditSchedule = (schedule: IEventList) => {
@@ -54,14 +56,20 @@ const HomePage = () => {
 
   return (
     <S.Container>
-      <MainCalendar
-        processedEvents={processedEvents}
-        selectedEvents={selectedEvents}
-        onEditSchedule={handleEditSchedule}
-        onDateSelect={handleDateSelect}
-        onDelete={handleDelete}
-        setSelectedDate={setSelectedDate}
-      />
+      {isLoading ? (
+        <S.SpinnerWrapper>
+          <Spinner size={40} text="일정을 불러오는 중이에요" textSize="xs" />
+        </S.SpinnerWrapper>
+      ) : (
+        <MainCalendar
+          processedEvents={processedEvents}
+          selectedEvents={selectedEvents}
+          onEditSchedule={handleEditSchedule}
+          onDateSelect={handleDateSelect}
+          onDelete={handleDelete}
+          setSelectedDate={setSelectedDate}
+        />
+      )}
 
       <ModalFull
         id={ADD_SCHEDULE_MODAL_ID}
