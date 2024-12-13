@@ -46,6 +46,27 @@ export const arrEventColor = [
   },
 ];
 
+export const ARR_WORK_SCHEDULE_COLOR = [
+  {
+    id: 1,
+    bgColor: '#47663B',
+    fontColor: '#fff',
+    time: 'open',
+  },
+  {
+    id: 2,
+    bgColor: '#7BD3EA',
+    fontColor: '#000',
+    time: 'middle',
+  },
+  {
+    id: 3,
+    bgColor: '#640D5F',
+    fontColor: '#fff',
+    time: 'close',
+  },
+];
+
 export const MOCK_API_DOMAIN = 'https://api.example.com';
 
 export const SALARY_DETAIL_KEY = {

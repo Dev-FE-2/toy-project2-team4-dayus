@@ -9,12 +9,13 @@ export const ScheduleItemWrapper = styled.div`
   }
 `;
 
-export const ScheduleItem = styled.div`
+export const ScheduleItem = styled.div<{ $isWorkSchedule: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: var(--spacing-3) 0;
-  cursor: pointer;
+  cursor: ${({ $isWorkSchedule }) =>
+    $isWorkSchedule ? 'not-allowed' : 'pointer'};
 `;
 
 export const ScheduleInfo = styled.div`

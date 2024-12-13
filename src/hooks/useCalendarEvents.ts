@@ -9,6 +9,7 @@ import {
   getPersonalScheduleItems,
   updatePersonalScheduleItem,
   deletePersonalScheduleItem,
+  getWorkScheduleItems,
 } from '@/api/scheduleApi';
 
 const useCalendarEvents = () => {
@@ -31,8 +32,15 @@ const useCalendarEvents = () => {
       try {
         setIsLoading(true);
         setError(null);
-        const fetchedEvents = await getPersonalScheduleItems(user);
-        setEvents(fetchedEvents);
+        const personalEvents = await getPersonalScheduleItems(user);
+        const workEvents = await getWorkScheduleItems(user);
+
+        const markedWorkEvents = workEvents.map(event => ({
+          ...event,
+          isWorkSchedule: true,
+        }));
+
+        setEvents([...personalEvents, ...markedWorkEvents]);
       } catch (error) {
         setError('일정을 불러오는데 실패했어요!');
         console.error('일정 조회 실패: ', error);
