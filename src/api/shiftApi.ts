@@ -1,8 +1,21 @@
-import { getFirestore, doc, addDoc, collection } from 'firebase/firestore/lite';
+import {
+  getFirestore,
+  doc,
+  getDocs,
+  addDoc,
+  collection,
+  query,
+  where,
+  Query,
+  orderBy,
+  limit as limitQuery,
+  startAfter,
+} from 'firebase/firestore/lite';
 import 'dayjs/locale/ko';
 
 import app from '@/server/firebase/initialize';
 import { IUserState } from '@/store/slices/userSlice';
+import { ShiftListItem } from '@/types/shift';
 
 const db = getFirestore(app);
 
@@ -23,6 +36,56 @@ const db = getFirestore(app);
 //     throw new Error(`ERROR MESSAGE: ${error}`);
 //   }
 // };
+
+export const getShiftList = async (
+  page: number,
+  limit = 10,
+  workType: string,
+  approvalType: string,
+  user: IUserState,
+) => {
+  if (!user.email) {
+    throw new Error('로그인이 필요합니다.');
+  }
+
+  const userDocRef = doc(db, 'shiftCorrection', user.email);
+  let shiftDocRef: Query = collection(userDocRef, 'shift');
+
+  if (workType !== '') {
+    shiftDocRef = query(shiftDocRef, where('workType', '==', workType));
+  }
+
+  if (approvalType !== '') {
+    shiftDocRef = query(shiftDocRef, where('approvalType', '==', approvalType));
+  }
+
+  if (page * limit > 0)
+    shiftDocRef = query(
+      shiftDocRef,
+      orderBy('timestamp', 'desc'),
+      limitQuery(page * limit),
+    );
+  const querySnapshot = await getDocs(shiftDocRef);
+  const lastVisible = querySnapshot.docs[querySnapshot.docs.length - 1];
+  shiftDocRef = query(shiftDocRef, startAfter(lastVisible));
+
+  const workData: ShiftListItem[] = querySnapshot.docs.map(doc => {
+    const data = doc.data();
+    return {
+      workDate: data.workDate.toDate(),
+      shiftSn: data.shiftSn,
+      workTitle: data.workTitle,
+      approvalType: data.approvalType,
+    };
+  });
+
+  const totalPage = Math.ceil(workData.length / limit);
+  return {
+    currentPage: page,
+    totalPage: totalPage,
+    data: workData,
+  };
+};
 
 export const postShiftCorrection = async (
   workType: string,
