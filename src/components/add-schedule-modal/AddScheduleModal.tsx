@@ -7,20 +7,15 @@ import Textarea from '../ui/Textarea';
 import * as S from './AddScheduleModal.style';
 import dayjs from 'dayjs';
 import { useDebounce } from '@/hooks/useDebounce';
-import { postPersonalScheduleItem } from '@/api/scheduleApi';
 import { DateRange } from 'react-day-picker';
 import { ADD_SCHEDULE_MODAL_ID, arrEventColor } from '@/constants/constant';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store';
 import { IEventList } from '@/types/calendar';
 import { useToggleModal } from '@/hooks/useToggleModal';
 import Spinner from '../ui/Spinner';
+import { IAddScheduleModalProps } from '@/types/schedule';
+import getRandomString from '@/utils/getRandomString';
 
-interface IAddScheduleModalProps {
-  selectedDate: Date | null;
-}
-
-const AddScheduleModal = ({ selectedDate }: IAddScheduleModalProps) => {
+const AddScheduleModal = ({ selectedDate, onAdd }: IAddScheduleModalProps) => {
   const [title, setTitle] = useState('');
   const [memo, setMemo] = useState('');
   const [color, setColor] = useState(arrEventColor[0]);
@@ -30,7 +25,6 @@ const AddScheduleModal = ({ selectedDate }: IAddScheduleModalProps) => {
   });
   const [submitLoading, setsubmitLoading] = useState(false);
 
-  const user = useSelector((state: RootState) => state.user);
   const { closeIdModal } = useToggleModal({
     modalId: ADD_SCHEDULE_MODAL_ID,
   });
@@ -46,17 +40,20 @@ const AddScheduleModal = ({ selectedDate }: IAddScheduleModalProps) => {
 
     setsubmitLoading(true);
 
-    const addedSchedule: Partial<IEventList> = {
+    // 무작위 문자열로 id 생성
+    const eventId = getRandomString(20);
+
+    const addedSchedule: IEventList = {
+      eventId,
       title: debouncedTitle || '내 일정',
       memo: debouncedMemo,
       start: dateRange.from,
       end: dateRange.to,
       color,
     };
-    await postPersonalScheduleItem(user, addedSchedule);
 
+    onAdd(addedSchedule);
     setsubmitLoading(false);
-
     closeIdModal();
   };
 

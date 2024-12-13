@@ -33,6 +33,7 @@ const HomePage = () => {
 
   const {
     handleDateSelect,
+    handleAdd,
     handleDelete,
     handleEdit,
     processedEvents,
@@ -76,7 +77,7 @@ const HomePage = () => {
         isOpen={isAddModalOpen}
         navText="일정 추가"
       >
-        <AddScheduleModal selectedDate={selectedDate} />
+        <AddScheduleModal selectedDate={selectedDate} onAdd={handleAdd} />
       </ModalFull>
       <ModalFull
         id={EDIT_SCHEDULE_MODAL_ID}

@@ -16,7 +16,6 @@ import app from '@/server/firebase/initialize';
 import { IEventList } from '@/types/calendar';
 import { IUserState } from '@/store/slices/userSlice';
 import { arrEventColor } from '@/constants/constant';
-import getRandomString from '@/utils/getRandomString';
 
 const db = getFirestore(app);
 dayjs.locale('ko');
@@ -155,9 +154,6 @@ export const postPersonalScheduleItem = async (
     if (!user.email) {
       throw new Error('로그인이 필요합니다.');
     }
-    // 무작위 문자열로 id 생성
-    const eventId = getRandomString(20);
-    data.eventId = eventId;
 
     // 현재 로그인한 유저의 문서 참조
     const userDocRef = doc(db, 'personalSchedules', user.email);
