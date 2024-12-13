@@ -4,7 +4,7 @@ import { SELECT_APPROVAL_TYPE, SELECT_WORK_TYPE } from '@/constants/constant';
 import { useState } from 'react';
 import * as S from './ShiftPage.styles';
 import { useShiftList } from '@/hooks/useShiftList';
-import ShiftModal from '@/components/full-modal/ShiftModal';
+import ShiftModal from '@/components/shift-modal/ShiftModal';
 
 const ShiftPage = () => {
   const [workType, setWorkType] = useState('');
