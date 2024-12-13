@@ -39,18 +39,24 @@ const AddScheduleModal = ({ selectedDate }: IAddScheduleModalProps) => {
   const debouncedMemo = useDebounce(memo, 300);
 
   const handleSubmit = async () => {
-    if (!dateRange.from || !dateRange.to) return;
+    if (!dateRange.from || !dateRange.to) {
+      alert('날짜를 선택해 주세요.');
+      return;
+    }
 
     setsubmitLoading(true);
+
     const addedSchedule: Partial<IEventList> = {
-      title: debouncedTitle,
+      title: debouncedTitle || '내 일정',
       memo: debouncedMemo,
       start: dateRange.from,
       end: dateRange.to,
       color,
     };
     await postPersonalScheduleItem(user, addedSchedule);
+
     setsubmitLoading(false);
+
     closeIdModal();
   };
 
