@@ -45,7 +45,7 @@ export const getPersonalScheduleItems = async (
       const data = doc.data();
       events.push({
         eventId: doc.id,
-        title: data.title || '',
+        title: data.title || '개인 일정',
         start: data.start.toDate(),
         end: data.end.toDate(),
         color: {
@@ -90,7 +90,7 @@ export const getWorkScheduleItems = async (
       const data = doc.data();
       events.push({
         eventId: doc.id,
-        title: data.title || '',
+        title: data.title || '근무 일정',
         start: data.start.toDate(),
         end: data.end.toDate(),
         color: {
