@@ -13,6 +13,7 @@ import 'dayjs/locale/ko';
 import app from '@/server/firebase/initialize';
 import { IEventList } from '@/types/calendar';
 import { IUserState } from '@/store/slices/userSlice';
+import { arrEventColor } from '@/constants/constant';
 
 const db = getFirestore(app);
 dayjs.locale('ko');
@@ -47,9 +48,9 @@ export const getPersonalScheduleItems = async (
         start: data.start.toDate(),
         end: data.end.toDate(),
         color: {
-          id: data.color?.id || 1,
-          bgColor: data.color?.bgColor || '#f8f2a2',
-          fontColor: data.color?.fontColor || '#000',
+          id: data.color?.id || arrEventColor[0].id,
+          bgColor: data.color?.bgColor || arrEventColor[0].bgColor,
+          fontColor: data.color?.fontColor || arrEventColor[0].fontColor,
         },
         memo: data.memo || '',
       });
