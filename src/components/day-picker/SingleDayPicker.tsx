@@ -8,10 +8,16 @@ import { formatDate } from '@/utils/formatDate';
 type SingleDayPickerProps = {
   id: string;
   text: string;
+  date: Date;
+  onChange: (newDate: Date) => void;
 };
 
-const SingleDayPicker = ({ id, text }: SingleDayPickerProps) => {
-  const [date, setDate] = useState<Date>(new Date());
+const SingleDayPicker = ({
+  id,
+  text,
+  date,
+  onChange,
+}: SingleDayPickerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
@@ -36,7 +42,7 @@ const SingleDayPicker = ({ id, text }: SingleDayPickerProps) => {
           <S.DayPickerInput
             value={formatDate(date)}
             readOnly
-            onClick={() => setIsOpen(true)}
+            onClick={() => setIsOpen(!isOpen)}
           />
           <S.CalendarIcon size={18} />
         </S.StyledContainer>
@@ -48,7 +54,7 @@ const SingleDayPicker = ({ id, text }: SingleDayPickerProps) => {
           selected={date}
           onSelect={newDate => {
             if (newDate) {
-              setDate(newDate);
+              onChange(newDate);
               setIsOpen(false);
             }
           }}
