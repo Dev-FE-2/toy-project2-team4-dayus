@@ -87,3 +87,6 @@ export const PAGE_TABS = [
     title: '근무 정정',
   },
 ];
+
+// 프로필 모달
+export const EDIT_PROFILE_MODAL_ID = 'edit-profile-modal';
