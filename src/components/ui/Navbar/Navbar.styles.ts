@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const NavWrapper = styled.nav`
   position: fixed;
+  z-index: var(--navbar-index);
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
@@ -19,7 +20,7 @@ export const NavList = styled.ul`
 `;
 
 export const NavItem = styled.li`
-  flex: 1 1 auto;
+  flex: 1 1 100%;
   text-align: center;
 `;
 
@@ -27,10 +28,10 @@ export const NavLinkIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 36px;
-  width: 68px;
+  width: 6rem;
+  height: 3.2rem;
   border-radius: 20px;
-  font-size: var(--font-2xl);
+  font-size: 2.2rem;
 `;
 
 export const NavLink = styled(RouterNavLink)`
@@ -38,7 +39,7 @@ export const NavLink = styled(RouterNavLink)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   height: 100%;
 
   &.active ${NavLinkIcon} {
@@ -47,5 +48,6 @@ export const NavLink = styled(RouterNavLink)`
 `;
 
 export const NavLinkTitle = styled.span`
-  font-size: var(--font-lg);
+  font-size: var(--font-sm);
+  font-weight: 500;
 `;
