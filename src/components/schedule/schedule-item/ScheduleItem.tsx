@@ -21,7 +21,11 @@ const ScheduleItem = ({
 
   if (!schedule) return null;
 
+  const isWorkSchedule: boolean =
+    'isWorkSchedule' in schedule && !!schedule.isWorkSchedule;
+
   const handleDelete = () => {
+    if (isWorkSchedule) return;
     onDelete(schedule.eventId);
     setShowDeleteButton(false);
   };
@@ -32,11 +36,13 @@ const ScheduleItem = ({
 
   const handleEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
+    if (isWorkSchedule) return;
     onEditSchedule(schedule);
     openIdModal();
   };
 
   const toggleTrashButton = (event: React.MouseEvent) => {
+    if (isWorkSchedule) return;
     setShowDeleteButton(prev => !prev);
     event.stopPropagation();
   };
@@ -54,28 +60,35 @@ const ScheduleItem = ({
   return (
     <>
       <S.ScheduleItemWrapper>
-        <S.ScheduleItem onClick={handleEdit}>
+        <S.ScheduleItem onClick={handleEdit} $isWorkSchedule={isWorkSchedule}>
           <S.ScheduleInfo>
             <S.ColorDot $bgColor={schedule.color.bgColor} />
             <S.ScheduleText>
-              <S.Title>{schedule.title}</S.Title>
+              <S.Title>
+                {schedule.title}
+                {isWorkSchedule && ' (근무)'}
+              </S.Title>
               <S.Date>{formattedDate}</S.Date>
             </S.ScheduleText>
           </S.ScheduleInfo>
 
-          <S.DeleteButton onClick={toggleTrashButton}>
-            <GoTrash size={24} />
-          </S.DeleteButton>
+          {!isWorkSchedule && (
+            <S.DeleteButton onClick={toggleTrashButton}>
+              <GoTrash size={24} />
+            </S.DeleteButton>
+          )}
         </S.ScheduleItem>
 
-        <S.DeleteConfirmation $show={showDeleteButton}>
-          <Button onClick={handleDelete} $variant="danger" $size="sm">
-            삭제하기
-          </Button>
-          <Button onClick={handleCancel} $variant="secondary" $size="sm">
-            취소
-          </Button>
-        </S.DeleteConfirmation>
+        {!isWorkSchedule && (
+          <S.DeleteConfirmation $show={showDeleteButton}>
+            <Button onClick={handleDelete} $variant="danger" $size="sm">
+              삭제하기
+            </Button>
+            <Button onClick={handleCancel} $variant="secondary" $size="sm">
+              취소
+            </Button>
+          </S.DeleteConfirmation>
+        )}
       </S.ScheduleItemWrapper>
     </>
   );
