@@ -60,7 +60,7 @@ const ScheduleItem = ({
   return (
     <>
       <S.ScheduleItemWrapper>
-        <S.ScheduleItem onClick={handleEdit} $isWorkSchedule={true}>
+        <S.ScheduleItem onClick={handleEdit} $isWorkSchedule={isWorkSchedule}>
           <S.ScheduleInfo>
             <S.ColorDot $bgColor={schedule.color.bgColor} />
             <S.ScheduleText>
