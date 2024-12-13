@@ -1,13 +1,48 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 
 import dayjs from 'dayjs';
+import { useSelector } from 'react-redux';
 
 import { IEventList } from '@/types/calendar';
-import { eventList } from '@/mocks/data/calendar';
+import { RootState } from '@/store';
+import {
+  getPersonalScheduleItems,
+  updatePersonalScheduleItem,
+  deletePersonalScheduleItem,
+} from '@/api/scheduleApi';
 
 const useCalendarEvents = () => {
   const [selectedEvents, setSelectedEvents] = useState<IEventList[]>([]);
-  const [events, setEvents] = useState<IEventList[]>(eventList);
+  const [events, setEvents] = useState<IEventList[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const user = useSelector((state: RootState) => state.user);
+
+  // 일정 데이터 가져오기
+  useEffect(() => {
+    const fetchEvents = async () => {
+      if (!user.email) {
+        setError('로그인이 필요합니다.');
+        setIsLoading(false);
+        return;
+      }
+
+      try {
+        setIsLoading(true);
+        setError(null);
+        const fetchedEvents = await getPersonalScheduleItems(user);
+        setEvents(fetchedEvents);
+      } catch (error) {
+        setError('일정을 불러오는데 실패했어요!');
+        console.error('일정 조회 실패: ', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, [user]);
 
   // 가공된 이벤트 리스트
   const processedEvents = useMemo(() => {
@@ -36,23 +71,44 @@ const useCalendarEvents = () => {
   };
 
   // 삭제
-  const handleDelete = (id: string) => {
-    setEvents(prev => prev.filter(event => event.eventId !== id));
-    setSelectedEvents(prev => prev.filter(event => event.eventId !== id));
+  const handleDelete = async (id: string) => {
+    if (!user.email) {
+      setError('로그인이 필요합니다.');
+      return;
+    }
+
+    try {
+      await deletePersonalScheduleItem(user, id);
+      setEvents(prev => prev.filter(event => event.eventId !== id));
+      setSelectedEvents(prev => prev.filter(event => event.eventId !== id));
+    } catch (error) {
+      setError('일정 삭제에 실패했어요!');
+      console.error('일정 삭제 실패:', error);
+    }
   };
 
-  // 수정
-  const handleEdit = (id: string, updatedEvent: Partial<IEventList>) => {
-    setEvents(prev =>
-      prev.map(event =>
-        event.eventId === id ? { ...event, ...updatedEvent } : event,
-      ),
-    );
-    setSelectedEvents(prev =>
-      prev.map(event =>
-        event.eventId === id ? { ...event, ...updatedEvent } : event,
-      ),
-    );
+  const handleEdit = async (id: string, updatedEvent: Partial<IEventList>) => {
+    if (!user.email) {
+      setError('로그인이 필요합니다.');
+      return;
+    }
+
+    try {
+      await updatePersonalScheduleItem(user, id, updatedEvent);
+      setEvents(prev =>
+        prev.map(event =>
+          event.eventId === id ? { ...event, ...updatedEvent } : event,
+        ),
+      );
+      setSelectedEvents(prev =>
+        prev.map(event =>
+          event.eventId === id ? { ...event, ...updatedEvent } : event,
+        ),
+      );
+    } catch (error) {
+      setError('일정 수정에 실패했어요!');
+      console.error('일정 수정 실패:', error);
+    }
   };
 
   return {
@@ -61,6 +117,8 @@ const useCalendarEvents = () => {
     handleDateSelect,
     handleDelete,
     handleEdit,
+    isLoading,
+    error,
   };
 };
 

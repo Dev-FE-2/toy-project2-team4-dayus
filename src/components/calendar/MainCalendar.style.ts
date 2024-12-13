@@ -5,6 +5,10 @@ export const Container = styled.div`
     border: none;
   }
 
+  .rbc-row {
+    font-size: 1.1rem;
+  }
+
   .rbc-month-header {
     .rbc-header {
       padding: 0.2rem 0;
