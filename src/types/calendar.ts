@@ -9,6 +9,10 @@ export interface IEventList extends Event {
   color: IEventColorProps;
 }
 
+export interface ICafeEventList extends Event {
+  eventId: string;
+}
+
 export interface IEventColorProps {
   id: number;
   bgColor: string;
