@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import user from '@/assets/user.svg';
 import Button from '../ui/Button/Button';
 import * as S from './ProfileModal.styles';
@@ -9,7 +10,11 @@ import { useNavigate } from 'react-router-dom';
 import { fetchUserData, updateUserData } from '@/api/profileApi';
 import { DocumentData } from 'firebase/firestore';
 
-const ProfileModal = () => {
+type ChildProps = {
+  onSendData: (data: DocumentData | null) => void;
+};
+
+const ProfileModal: React.FC<ChildProps> = ({ onSendData }) => {
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState<DocumentData | null>(null);
@@ -35,10 +40,11 @@ const ProfileModal = () => {
       setPhone(userData.phone ?? '');
       setBankName(userData.bankSn?.bankName);
       setAccount(userData.bankSn?.account);
+      onSendData(userData);
     }
   }, [userData]);
 
-  const onChange = e => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
     if (name === 'name') {
@@ -49,13 +55,14 @@ const ProfileModal = () => {
       setPhone(value);
     } else if (name === 'account') {
       setAccount(value);
+    } else if (name === 'bankName') {
+      setBankName(value);
     }
   };
 
   const onClick = async () => {
-    navigate(-1);
-    updateUserData({ name, email, phone, bankName, account });
-    setUserData({
+    const updatedData = {
+      userSn: userData?.userSn,
       userName: name,
       email: email,
       phone: phone,
@@ -63,8 +70,11 @@ const ProfileModal = () => {
         bankName: bankName,
         account: account,
       },
-    });
+    };
+    setUserData(updatedData);
+    await updateUserData({ name, email, phone, bankName, account });
     closeIdModal();
+    navigate(-1);
   };
 
   const { closeIdModal } = useToggleModal({
@@ -101,7 +111,7 @@ const ProfileModal = () => {
           </S.ProfileInfoItem>
           <S.ProfileInfoItem>
             <S.ProfileInfoTitle>은행</S.ProfileInfoTitle>
-            <Input onChange={onChange} value={bankName} name="bank" />
+            <Input onChange={onChange} value={bankName} name="bankName" />
           </S.ProfileInfoItem>
           <S.ProfileInfoItem>
             <S.ProfileInfoTitle>계좌번호</S.ProfileInfoTitle>

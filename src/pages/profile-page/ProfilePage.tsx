@@ -39,7 +39,10 @@ const MyPage = () => {
     fetchData();
   }, []);
 
-  console.log(userData);
+  const handleDataFromChild = (data: DocumentData | null) => {
+    setUserData(data);
+  };
+
   return (
     <>
       <S.ProfileWrapper>
@@ -102,7 +105,7 @@ const MyPage = () => {
           isOpen={isOpen}
           navText="내 정보 수정"
         >
-          <ProfileModal />
+          <ProfileModal onSendData={handleDataFromChild} />
         </ModalFull>
       </S.ProfileWrapper>
     </>
