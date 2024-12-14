@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './HomePage.style';
 import Spinner from '@/components/ui/Spinner';
 import ModalFull from '@/components/ui/ModalFull';
+import CafeEvents from '@/components/cafe-events/CafeEvents';
 import MainCalendar from '@/components/calendar/MainCalendar';
 import AddScheduleModal from '@/components/add-schedule-modal/AddScheduleModal';
 import EditScheduleModal from '@/components/edit-schedule-modal/EditScheduleModal';
@@ -67,6 +68,7 @@ const HomePage = () => {
           onDelete={handleDelete}
         />
       )}
+      <CafeEvents />
 
       <ModalFull
         id={ADD_SCHEDULE_MODAL_ID}
