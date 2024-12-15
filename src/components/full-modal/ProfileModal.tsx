@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import user from '@/assets/user.svg';
 import Button from '../ui/Button/Button';
 import * as S from './ProfileModal.styles';
@@ -9,12 +8,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchUserData, updateUserData } from '@/api/profileApi';
 import { DocumentData } from 'firebase/firestore';
+import { ChildProps } from '@/types/profile-modal';
 
-type ChildProps = {
-  onSendData: (data: DocumentData | null) => void;
-};
-
-const ProfileModal: React.FC<ChildProps> = ({ onSendData }) => {
+const ProfileModal = ({ onSendData }: ChildProps) => {
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState<DocumentData | null>(null);
@@ -42,7 +38,7 @@ const ProfileModal: React.FC<ChildProps> = ({ onSendData }) => {
       setAccount(userData.bankSn?.account);
       onSendData(userData);
     }
-  }, [userData]);
+  }, [userData, onSendData]);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;

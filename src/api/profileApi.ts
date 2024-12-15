@@ -8,8 +8,7 @@ export const fetchUserData = async () => {
   const user = auth.currentUser;
   try {
     if (!user) {
-      console.log('로그인 된 사용자가 없습니다');
-      return null;
+      throw new Error('로그인 된 사용자가 없습니다');
     }
 
     const docRef = doc(db, 'personalData', user.uid);
@@ -18,12 +17,11 @@ export const fetchUserData = async () => {
     if (docSnap.exists()) {
       return docSnap.data();
     } else {
-      console.log('사용자 데이터 없음');
-      return null;
+      throw new Error('사용자 데이터 없음');
     }
   } catch (error) {
     console.error('데이터 읽기 중 오류 발생', error);
-    return null;
+    throw error;
   }
 };
 

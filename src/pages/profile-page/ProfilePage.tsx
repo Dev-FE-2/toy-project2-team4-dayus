@@ -24,7 +24,7 @@ import { fetchUserData } from '@/api/profileApi';
 //   account: string;
 // }
 
-const MyPage = () => {
+const ProfilePage = () => {
   const [userData, setUserData] = useState<DocumentData | null>(null);
   const { isOpen, openIdModal } = useToggleModal({
     modalId: EDIT_PROFILE_MODAL_ID,
@@ -32,8 +32,12 @@ const MyPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchUserData();
-      setUserData(data);
+      try {
+        const data = await fetchUserData();
+        setUserData(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     fetchData();
@@ -112,4 +116,4 @@ const MyPage = () => {
   );
 };
 
-export default MyPage;
+export default ProfilePage;
