@@ -52,7 +52,7 @@ const ProfilePage = () => {
       <S.ProfileWrapper>
         <S.ProfileHeader>
           <img src={userSvg} alt="" width="98" />
-          <S.ProfileHeaderName>홍길동</S.ProfileHeaderName>
+          <S.ProfileHeaderName>{userData?.userName}</S.ProfileHeaderName>
           <S.ProfileHeaderLocation>강남점</S.ProfileHeaderLocation>
         </S.ProfileHeader>
         <S.ProfileInfo>
