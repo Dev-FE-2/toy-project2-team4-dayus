@@ -80,8 +80,8 @@ const ProfileModal = ({ onSendData }: ChildProps) => {
     <S.ProfileWrapper>
       <S.ProfileHeader>
         <img src={user} alt="" width="98" />
-        <S.ProfileHeaderName>홍길동</S.ProfileHeaderName>
-        <S.ProfileHeaderLocation>강남점</S.ProfileHeaderLocation>
+        <S.ProfileHeaderName>{userData?.userName}</S.ProfileHeaderName>
+        <S.ProfileHeaderLocation>{userData?.location}</S.ProfileHeaderLocation>
       </S.ProfileHeader>
       <S.ProfileInfo>
         <S.ProfileInfoUl>
