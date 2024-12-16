@@ -14,6 +14,7 @@ const SalaryPage = () => {
   const [selected, setSelected] = useState('/salary');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalSalary, setModalSalary] = useState<spreadListItem[]>([]);
+  const [modalTitle, setModalTitle] = useState('');
   const navigate = useNavigate();
 
   const { salaryList, isLoading, loadMore } = useSalaryList();
@@ -23,6 +24,7 @@ const SalaryPage = () => {
 
   const handleOpenModal = (salary: SalaryListItem) => {
     setModalSalary(formatSalaryDetail(salary));
+    setModalTitle(salary.title);
     setIsModalOpen(true);
   };
 
@@ -44,6 +46,7 @@ const SalaryPage = () => {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         salary={modalSalary}
+        title={modalTitle}
       />
     </S.Container>
   );
