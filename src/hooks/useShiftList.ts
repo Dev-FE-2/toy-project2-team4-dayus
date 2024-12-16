@@ -2,6 +2,8 @@ import { useState, useCallback, useEffect } from 'react';
 import { getShiftList } from '@/api/shiftApi';
 import { IShiftList, ShiftListItem } from '@/types/shift';
 import { removeDuplicates } from '@/utils/arrayUtils';
+import { RootState } from '@/store';
+import { useSelector } from 'react-redux';
 
 interface UseShiftListParams {
   workType: string;
@@ -17,6 +19,8 @@ export const useShiftList = ({
   const [isLoading, setIsLoading] = useState(false);
   const [hasLoadMore, setHasLoadMore] = useState(true);
 
+  const user = useSelector((state: RootState) => state.user);
+
   const fetchShiftList = useCallback(async () => {
     if (!hasLoadMore) return;
     setIsLoading(true);
@@ -26,6 +30,7 @@ export const useShiftList = ({
         10,
         workType,
         approvalType,
+        user,
       );
       const { currentPage, data, totalPage } = response;
       setShiftList(prevList => [
@@ -39,7 +44,7 @@ export const useShiftList = ({
     } finally {
       setIsLoading(false);
     }
-  }, [hasLoadMore, page, workType, approvalType]);
+  }, [hasLoadMore, page, workType, approvalType, user]);
 
   useEffect(() => {
     fetchShiftList();

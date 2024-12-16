@@ -85,6 +85,9 @@ export const ADD_SCHEDULE_MODAL_ID = 'add-schedule-modal';
 // 일정 수정 모달
 export const EDIT_SCHEDULE_MODAL_ID = 'edit-schedule-modal';
 
+// 근무 정정 신청 모달
+export const POST_SHIFT_MODAL_ID = 'post-shift-modal';
+
 export const SELECT_WORK_TYPE = [
   { label: '근무 정정 유형', value: '' },
   { label: '대리 근무', value: '대리 근무' },
