@@ -9,7 +9,7 @@ export const LoginWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
+  padding: var(--layout-padding);
 `;
 
 export const LoginLogoWrapper = styled.div`

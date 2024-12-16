@@ -17,6 +17,7 @@ const localizer = dayjsLocalizer(dayjs);
 const MainCalendar = ({
   processedEvents,
   selectedEvents,
+  setSelectedDate,
   onEditSchedule,
   onDateSelect,
   onDelete,
@@ -39,6 +40,7 @@ const MainCalendar = ({
 
   const handleSelectCell = (cellInfo: { start: Date; end: Date }) => {
     onDateSelect(cellInfo);
+    setSelectedDate(cellInfo.start);
     setIsModalOpen(true);
   };
 

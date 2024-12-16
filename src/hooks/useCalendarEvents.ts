@@ -9,6 +9,7 @@ import {
   getPersonalScheduleItems,
   updatePersonalScheduleItem,
   deletePersonalScheduleItem,
+  postPersonalScheduleItem,
   getWorkScheduleItems,
 } from '@/api/scheduleApi';
 
@@ -78,6 +79,16 @@ const useCalendarEvents = () => {
     setSelectedEvents(eventForDate);
   };
 
+  const handleAdd = async (addedSchedule: IEventList) => {
+    try {
+      await postPersonalScheduleItem(user, addedSchedule);
+      setEvents([...events, addedSchedule]);
+    } catch (err) {
+      setError('일정 등록에 실패하였습니다.');
+      console.error('일정 등록 실패: ', err);
+    }
+  };
+
   // 삭제
   const handleDelete = async (id: string) => {
     if (!user.email) {
@@ -123,6 +134,7 @@ const useCalendarEvents = () => {
     processedEvents,
     selectedEvents,
     handleDateSelect,
+    handleAdd,
     handleDelete,
     handleEdit,
     isLoading,

@@ -17,3 +17,8 @@ export type EditScheduleModalProps = {
   schedule: IEventList;
   onEdit: (eventId: string, updatedSchedule: Partial<IEventList>) => void;
 };
+
+export interface IAddScheduleModalProps {
+  selectedDate: Date | null;
+  onAdd: (addedSchedule: IEventList) => void;
+}

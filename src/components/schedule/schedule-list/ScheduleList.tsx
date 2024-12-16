@@ -39,9 +39,9 @@ const ScheduleList = ({
       </S.ListContainer>
 
       <S.AddButtonContainer>
-        <S.AddButtonWrapper onClick={toggleModal}>
-          <S.AddButton size={26} />
-        </S.AddButtonWrapper>
+        <S.AddButton type="button" onClick={toggleModal}>
+          <S.AddButtonImg size={26} />
+        </S.AddButton>
       </S.AddButtonContainer>
     </S.Container>
   );

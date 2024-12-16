@@ -21,6 +21,7 @@ const HomePage = () => {
   const [selectedSchedule, setSelectedSchedule] = useState<IEventList | null>(
     null,
   );
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const navigate = useNavigate();
 
   const { isOpen: isAddModalOpen } = useToggleModal({
@@ -30,8 +31,10 @@ const HomePage = () => {
     useToggleModal({
       modalId: EDIT_SCHEDULE_MODAL_ID,
     });
+
   const {
     handleDateSelect,
+    handleAdd,
     handleDelete,
     handleEdit,
     processedEvents,
@@ -66,6 +69,7 @@ const HomePage = () => {
           onEditSchedule={handleEditSchedule}
           onDateSelect={handleDateSelect}
           onDelete={handleDelete}
+          setSelectedDate={setSelectedDate}
         />
       )}
       <CafeEvents />
@@ -75,7 +79,7 @@ const HomePage = () => {
         isOpen={isAddModalOpen}
         navText="일정 추가"
       >
-        <AddScheduleModal />
+        <AddScheduleModal selectedDate={selectedDate} onAdd={handleAdd} />
       </ModalFull>
       <ModalFull
         id={EDIT_SCHEDULE_MODAL_ID}
