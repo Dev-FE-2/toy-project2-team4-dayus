@@ -11,6 +11,7 @@ import { useShiftList } from '@/hooks/useShiftList';
 import ShiftModal from '@/components/shift-modal/ShiftModal';
 import { useNavigate } from 'react-router-dom';
 import Tab from '@/components/ui/Tab';
+import { Toaster } from 'react-hot-toast';
 
 const ShiftPage = () => {
   const [workType, setWorkType] = useState('');
@@ -60,6 +61,7 @@ const ShiftPage = () => {
         onLoadMore={loadMore}
       />
       <ShiftModal />
+      <Toaster />
     </S.Container>
   );
 };

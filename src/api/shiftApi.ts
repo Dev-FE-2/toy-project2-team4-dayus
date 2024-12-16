@@ -16,6 +16,7 @@ import 'dayjs/locale/ko';
 import app from '@/server/firebase/initialize';
 import { IUserState } from '@/store/slices/userSlice';
 import { ShiftListItem } from '@/types/shift';
+import toast from 'react-hot-toast';
 
 const db = getFirestore(app);
 
@@ -115,7 +116,9 @@ export const postShiftCorrection = async (
     };
 
     await addDoc(shiftDocRef, createShift);
+    toast.success('근무 정정에 성공하였습니다.');
   } catch (error) {
+    toast.error('근무 정정에 실패하였습니다.');
     console.error('근무 정정 신청에 실패하였습니다.', error);
     throw error;
   }
