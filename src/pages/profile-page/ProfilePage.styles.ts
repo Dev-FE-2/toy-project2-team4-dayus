@@ -2,16 +2,17 @@ import styled from 'styled-components';
 
 export const ProfileWrapper = styled.div`
   width: 100%;
-  height: calc(100vh - var(--navbar-height) - var(--spacing-3));
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  padding: 4rem var(--layout-padding);
+
+  & > *:nth-child(n + 2) {
+    margin-top: 4rem;
+  }
 `;
 
 export const ProfileHeader = styled.div`
-  margin-top: 10rem;
-  margin-bottom: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,12 +43,19 @@ export const ProfileInfoItem = styled.li`
   display: flex;
   align-items: center;
   font-size: var(--font-base);
-  height: 4rem;
+
+  &:nth-child(n + 2) {
+    margin-top: 2rem;
+  }
+
+  .profile-info-item-content {
+    flex: 1 1 auto;
+  }
 `;
 
 export const ProfileInfoTitle = styled.span`
-  display: inline-block;
-  width: 120px;
+  flex: 0 1 10rem;
+  font-weight: 500;
 `;
 
 export const ProfileButtons = styled.div`
