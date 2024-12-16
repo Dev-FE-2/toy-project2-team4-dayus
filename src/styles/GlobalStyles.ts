@@ -11,19 +11,91 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    font-size: 62.5%;
+  }
+
   body {
     background-color: var(--color-bg);
-    font-family: 'Pretendard', sans-serif;
+    font-family: var(--ff_eng), var(--ff_kor), "Malgun Gothic", "맑은 고딕", sans-serif;
+  }
+
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+    font-family: inherit;
+    margin: 0;
   }
 
   button {
     cursor: pointer;
     border: none;
-    background: none;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    outline: none;
   }
 
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+    appearance: none;
+  }
+
+  input,
+  select,
+  textarea {
+    box-sizing: border-box;
+    outline: 0 none;
+    appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  input[type="number"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="text"],
+  textarea {
+    font-family: var(--ff_eng), var(--ff_kor), "Malgun Gothic", "맑은 고딕", sans-serif;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--color-gray-500);
+  }
+
+  /* hidden */
+  .visibility-hidden {
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* 모달 스크롤 방지 */
+  .scroll-locked {
+    position: fixed;
+    width: 100%;
+    overflow-x: hidden;
+    top: var(--scroll-position);
+  }
+
+  .scroll-locked.has-scrollbar {
+    overflow-y: scroll;
   }
 `;

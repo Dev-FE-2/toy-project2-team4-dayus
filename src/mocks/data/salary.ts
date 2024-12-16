@@ -1,0 +1,386 @@
+export const salaryList = [
+  {
+    salarySn: 'salary_0',
+    tour: {
+      startDate: new Date('2024-12-15'),
+      endDate: new Date('2024-12-25'),
+    },
+    title: '4월 급여',
+    paymentDate: new Date('2025-01-08'),
+    bank: {
+      name: '신한은행',
+      account: '110-606-411326',
+    },
+    deductible: 14333,
+    amount: 1940406,
+    totalAmount: 998394,
+  },
+  {
+    salarySn: 'salary_2',
+    tour: {
+      startDate: new Date('2024-12-10'),
+      endDate: new Date('2024-12-19'),
+    },
+    title: '8월 급여',
+    paymentDate: new Date('2025-01-02'),
+    bank: {
+      name: '신한은행',
+      account: '110-410-727789',
+    },
+    deductible: 73646,
+    amount: 1798004,
+    totalAmount: 1141839,
+  },
+  {
+    salarySn: 'salary_13',
+    tour: {
+      startDate: new Date('2024-12-06'),
+      endDate: new Date('2024-12-13'),
+    },
+    title: '12월 급여',
+    paymentDate: new Date('2024-12-23'),
+    bank: {
+      name: '국민은행',
+      account: '110-350-794727',
+    },
+    deductible: 74330,
+    amount: 1353985,
+    totalAmount: 1390914,
+  },
+  {
+    salarySn: 'salary_6',
+    tour: {
+      startDate: new Date('2024-10-30'),
+      endDate: new Date('2024-11-07'),
+    },
+    title: '11월 급여',
+    paymentDate: new Date('2024-11-18'),
+    bank: {
+      name: '국민은행',
+      account: '110-624-498856',
+    },
+    deductible: 68256,
+    amount: 1135234,
+    totalAmount: 901817,
+  },
+  {
+    salarySn: 'salary_7',
+    tour: {
+      startDate: new Date('2024-10-13'),
+      endDate: new Date('2024-10-17'),
+    },
+    title: '7월 급여',
+    paymentDate: new Date('2024-10-22'),
+    bank: {
+      name: '신한은행',
+      account: '110-435-506877',
+    },
+    deductible: 19448,
+    amount: 1224776,
+    totalAmount: 1152893,
+  },
+  {
+    salarySn: 'salary_4',
+    tour: {
+      startDate: new Date('2024-10-01'),
+      endDate: new Date('2024-10-05'),
+    },
+    title: '8월 급여',
+    paymentDate: new Date('2024-10-12'),
+    bank: {
+      name: '신한은행',
+      account: '110-602-253057',
+    },
+    deductible: 61104,
+    amount: 1110645,
+    totalAmount: 1743910,
+  },
+  {
+    salarySn: 'salary_5',
+    tour: {
+      startDate: new Date('2024-09-17'),
+      endDate: new Date('2024-09-20'),
+    },
+    title: '7월 급여',
+    paymentDate: new Date('2024-09-30'),
+    bank: {
+      name: '신한은행',
+      account: '110-689-678182',
+    },
+    deductible: 81606,
+    amount: 1667440,
+    totalAmount: 1437021,
+  },
+  {
+    salarySn: 'salary_17',
+    tour: {
+      startDate: new Date('2024-08-20'),
+      endDate: new Date('2024-08-23'),
+    },
+    title: '2월 급여',
+    paymentDate: new Date('2024-09-03'),
+    bank: {
+      name: '하나은행',
+      account: '110-330-204719',
+    },
+    deductible: 31502,
+    amount: 1555847,
+    totalAmount: 1461008,
+  },
+  {
+    salarySn: 'salary_18',
+    tour: {
+      startDate: new Date('2024-07-22'),
+      endDate: new Date('2024-07-29'),
+    },
+    title: '4월 급여',
+    paymentDate: new Date('2024-08-12'),
+    bank: {
+      name: '하나은행',
+      account: '110-104-773441',
+    },
+    deductible: 28041,
+    amount: 1591189,
+    totalAmount: 1734260,
+  },
+  {
+    salarySn: 'salary_20',
+    tour: {
+      startDate: new Date('2024-07-13'),
+      endDate: new Date('2024-07-15'),
+    },
+    title: '2월 급여',
+    paymentDate: new Date('2024-07-29'),
+    bank: {
+      name: '우리은행',
+      account: '110-525-867222',
+    },
+    deductible: 82715,
+    amount: 1126525,
+    totalAmount: 1798237,
+  },
+  {
+    salarySn: 'salary_14',
+    tour: {
+      startDate: new Date('2024-07-17'),
+      endDate: new Date('2024-07-22'),
+    },
+    title: '2월 급여',
+    paymentDate: new Date('2024-07-27'),
+    bank: {
+      name: '하나은행',
+      account: '110-991-354398',
+    },
+    deductible: 61788,
+    amount: 1450310,
+    totalAmount: 930532,
+  },
+  {
+    salarySn: 'salary_16',
+    tour: {
+      startDate: new Date('2024-07-15'),
+      endDate: new Date('2024-07-23'),
+    },
+    title: '12월 급여',
+    paymentDate: new Date('2024-07-26'),
+    bank: {
+      name: '국민은행',
+      account: '110-860-606605',
+    },
+    deductible: 39705,
+    amount: 1724163,
+    totalAmount: 1367931,
+  },
+  {
+    salarySn: 'salary_9',
+    tour: {
+      startDate: new Date('2024-06-22'),
+      endDate: new Date('2024-06-28'),
+    },
+    title: '7월 급여',
+    paymentDate: new Date('2024-07-07'),
+    bank: {
+      name: '신한은행',
+      account: '110-633-634380',
+    },
+    deductible: 89813,
+    amount: 1561729,
+    totalAmount: 1792943,
+  },
+  {
+    salarySn: 'salary_10',
+    tour: {
+      startDate: new Date('2024-06-14'),
+      endDate: new Date('2024-06-21'),
+    },
+    title: '3월 급여',
+    paymentDate: new Date('2024-07-02'),
+    bank: {
+      name: '하나은행',
+      account: '110-188-496030',
+    },
+    deductible: 14204,
+    amount: 1039782,
+    totalAmount: 1046058,
+  },
+  {
+    salarySn: 'salary_21',
+    tour: {
+      startDate: new Date('2024-06-28'),
+      endDate: new Date('2024-06-29'),
+    },
+    title: '9월 급여',
+    paymentDate: new Date('2024-06-30'),
+    bank: {
+      name: '하나은행',
+      account: '110-841-771139',
+    },
+    deductible: 25132,
+    amount: 1893416,
+    totalAmount: 1084970,
+  },
+  {
+    salarySn: 'salary_22',
+    tour: {
+      startDate: new Date('2024-06-19'),
+      endDate: new Date('2024-06-21'),
+    },
+    title: '12월 급여',
+    paymentDate: new Date('2024-06-24'),
+    bank: {
+      name: '우리은행',
+      account: '110-691-315751',
+    },
+    deductible: 77685,
+    amount: 1580242,
+    totalAmount: 1173658,
+  },
+  {
+    salarySn: 'salary_19',
+    tour: {
+      startDate: new Date('2024-05-25'),
+      endDate: new Date('2024-05-26'),
+    },
+    title: '10월 급여',
+    paymentDate: new Date('2024-06-10'),
+    bank: {
+      name: '우리은행',
+      account: '110-153-126894',
+    },
+    deductible: 90405,
+    amount: 1545769,
+    totalAmount: 997385,
+  },
+  {
+    salarySn: 'salary_1',
+    tour: {
+      startDate: new Date('2024-05-17'),
+      endDate: new Date('2024-05-20'),
+    },
+    title: '10월 급여',
+    paymentDate: new Date('2024-06-02'),
+    bank: {
+      name: '국민은행',
+      account: '110-517-780637',
+    },
+    deductible: 80918,
+    amount: 1769881,
+    totalAmount: 1463685,
+  },
+  {
+    salarySn: 'salary_15',
+    tour: {
+      startDate: new Date('2024-05-22'),
+      endDate: new Date('2024-05-28'),
+    },
+    title: '8월 급여',
+    paymentDate: new Date('2024-05-30'),
+    bank: {
+      name: '신한은행',
+      account: '110-973-653426',
+    },
+    deductible: 32951,
+    amount: 1217139,
+    totalAmount: 1881468,
+  },
+  {
+    salarySn: 'salary_12',
+    tour: {
+      startDate: new Date('2024-05-20'),
+      endDate: new Date('2024-05-24'),
+    },
+    title: '7월 급여',
+    paymentDate: new Date('2024-05-28'),
+    bank: {
+      name: '신한은행',
+      account: '110-708-766783',
+    },
+    deductible: 71278,
+    amount: 1427909,
+    totalAmount: 1080753,
+  },
+  {
+    salarySn: 'salary_3',
+    tour: {
+      startDate: new Date('2024-04-16'),
+      endDate: new Date('2024-04-25'),
+    },
+    title: '9월 급여',
+    paymentDate: new Date('2024-04-26'),
+    bank: {
+      name: '하나은행',
+      account: '110-455-947335',
+    },
+    deductible: 93750,
+    amount: 1827704,
+    totalAmount: 1848821,
+  },
+  {
+    salarySn: 'salary_11',
+    tour: {
+      startDate: new Date('2024-03-14'),
+      endDate: new Date('2024-03-15'),
+    },
+    title: '1월 급여',
+    paymentDate: new Date('2024-03-27'),
+    bank: {
+      name: '국민은행',
+      account: '110-256-323041',
+    },
+    deductible: 18233,
+    amount: 1613411,
+    totalAmount: 1811584,
+  },
+  {
+    salarySn: 'salary_8',
+    tour: {
+      startDate: new Date('2024-02-08'),
+      endDate: new Date('2024-02-14'),
+    },
+    title: '6월 급여',
+    paymentDate: new Date('2024-02-18'),
+    bank: {
+      name: '우리은행',
+      account: '110-419-634938',
+    },
+    deductible: 74804,
+    amount: 1477742,
+    totalAmount: 1387894,
+  },
+];
+
+export const salaryData = {
+  salarySn: 'salary_12',
+  tour: {
+    startDate: new Date('2024-07-15'),
+    endDate: new Date('2024-07-20'),
+  },
+  paymentDate: new Date('2024-08-05'),
+  bank: {
+    name: '신한은행',
+    account: '110-123-456789',
+  },
+  deductible: 50000,
+  amount: 1500000,
+  totalAmount: 1450000,
+};
