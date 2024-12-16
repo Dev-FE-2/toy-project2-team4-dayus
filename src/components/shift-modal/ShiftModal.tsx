@@ -22,7 +22,9 @@ const ShiftModal = () => {
   const [emptyForm, setEmptyForm] = useState(false);
   const navigate = useNavigate();
 
-  const { isOpen } = useToggleModal({ modalId: POST_SHIFT_MODAL_ID });
+  const { isOpen, closeIdModal } = useToggleModal({
+    modalId: POST_SHIFT_MODAL_ID,
+  });
   const user = useSelector((state: RootState) => state.user);
 
   const handleWorkType = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -47,11 +49,14 @@ const ShiftModal = () => {
       return setEmptyForm(true);
     try {
       postShiftCorrection(workType, workTime, explanation, date, user);
-      navigate(-1);
+      closeIdModal();
+      navigate({ pathname: '/shift' });
     } catch (error) {
-      alert('근무 정정에 실패하였습니다.');
       navigate(-1);
       throw new Error(`근무 정정에 실패하였습니다: ${error}`);
+    } finally {
+      setWorkType('');
+      setExplanation('');
     }
   };
 
