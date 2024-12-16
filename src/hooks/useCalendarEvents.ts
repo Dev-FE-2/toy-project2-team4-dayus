@@ -79,10 +79,12 @@ const useCalendarEvents = () => {
     setSelectedEvents(eventForDate);
   };
 
+  // 추가
   const handleAdd = async (addedSchedule: IEventList) => {
     try {
       await postPersonalScheduleItem(user, addedSchedule);
       setEvents([...events, addedSchedule]);
+      setSelectedEvents([...selectedEvents, addedSchedule]);
     } catch (err) {
       setError('일정 등록에 실패하였습니다.');
       console.error('일정 등록 실패: ', err);
