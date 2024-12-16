@@ -39,7 +39,9 @@ const ProfilePage = () => {
         <S.ProfileHeader>
           <img src={userSvg} alt="" width="98" />
           <S.ProfileHeaderName>{userData?.userName}</S.ProfileHeaderName>
-          <S.ProfileHeaderLocation>강남점</S.ProfileHeaderLocation>
+          <S.ProfileHeaderLocation>
+            {userData?.location}
+          </S.ProfileHeaderLocation>
         </S.ProfileHeader>
         <S.ProfileInfo>
           <S.ProfileInfoUl>
