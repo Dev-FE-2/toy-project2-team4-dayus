@@ -10,20 +10,6 @@ import { DocumentData } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { fetchUserData } from '@/api/profileApi';
 
-// export interface Root {
-//   userName: string;
-//   userSn: string;
-//   pay: number;
-//   phone: string;
-//   bankSn: BankSn;
-//   email: string;
-// }
-
-// export interface BankSn {
-//   bankName: string;
-//   account: string;
-// }
-
 const ProfilePage = () => {
   const [userData, setUserData] = useState<DocumentData | null>(null);
   const { isOpen, openIdModal } = useToggleModal({
