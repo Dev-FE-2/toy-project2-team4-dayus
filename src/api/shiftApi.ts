@@ -17,6 +17,7 @@ import app from '@/server/firebase/initialize';
 import { IUserState } from '@/store/slices/userSlice';
 import { ShiftListItem } from '@/types/shift';
 import { toastSuccess, toastError } from '@/utils/toast';
+import { getRandomString } from '@/utils/getRandomString';
 
 const db = getFirestore(app);
 
@@ -111,7 +112,7 @@ export const postShiftCorrection = async (
       workDate: date,
       approvalDate: null,
       approvalType: '보류',
-      shiftSn: `shift_${Math.floor(10000000 + Math.random() * 90000000)}`,
+      shiftSn: `shift_${getRandomString(10)}`,
       workTitle: workType,
     };
 

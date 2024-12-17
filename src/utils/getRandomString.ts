@@ -14,4 +14,4 @@ const getRandomString = (num: number) => {
   return result;
 };
 
-export default getRandomString;
+export { getRandomString };
