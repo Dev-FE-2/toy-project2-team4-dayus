@@ -1,17 +1,18 @@
+import { useEffect, useState } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+
+import * as S from './ShiftPage.styles';
 import ShiftList from '@/components/list/ShiftList';
+import ShiftModal from '@/components/shift-modal/ShiftModal';
 import Select from '@/components/ui/Select';
+import Tab from '@/components/ui/Tab';
 import {
   PAGE_TABS,
   SELECT_APPROVAL_TYPE,
   SELECT_WORK_TYPE,
 } from '@/constants/constant';
-import { useEffect, useState } from 'react';
-import * as S from './ShiftPage.styles';
 import { useShiftList } from '@/hooks/useShiftList';
-import ShiftModal from '@/components/shift-modal/ShiftModal';
-import { useNavigate } from 'react-router-dom';
-import Tab from '@/components/ui/Tab';
-import { Toaster } from 'react-hot-toast';
 
 const ShiftPage = () => {
   const [workType, setWorkType] = useState('');
@@ -61,7 +62,6 @@ const ShiftPage = () => {
         onLoadMore={loadMore}
       />
       <ShiftModal />
-      <Toaster />
     </S.Container>
   );
 };
