@@ -13,6 +13,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 
 import app from '@/server/firebase/initialize';
+import { toastSuccess, toastError } from '@/utils/toast';
 import { IEventList } from '@/types/calendar';
 import { IUserState } from '@/store/slices/userSlice';
 import { arrEventColor } from '@/constants/constant';
@@ -133,9 +134,9 @@ export const updatePersonalScheduleItem = async (
     };
 
     await updateDoc(scheduleDocRef, dataToUpdate);
-  } catch (error) {
-    console.error('일정 수정에 실패했어요!', error);
-    throw error;
+    toastSuccess('일정이 수정되었어요!');
+  } catch {
+    toastError('일정 수정에 실패했어요!');
   }
 };
 
@@ -155,9 +156,9 @@ export const deletePersonalScheduleItem = async (
     const scheduleDocRef = doc(userDocRef, 'schedules', eventId);
 
     await deleteDoc(scheduleDocRef);
-  } catch (error) {
-    console.error('일정 삭제에 실패했어요!', error);
-    throw error;
+    toastSuccess('일정이 삭제되었어요!');
+  } catch {
+    toastError('일정 삭제에 실패했어요!');
   }
 };
 
@@ -217,8 +218,9 @@ export const postPersonalScheduleItem = async (
       const schedulesCollectionRef = collection(userDocRef, 'schedules');
       await addDoc(schedulesCollectionRef, data);
     }
-  } catch (err) {
-    console.error('post schedule error!', err);
-    throw err;
+
+    toastSuccess('일정이 추가되었어요!');
+  } catch {
+    toastError('일정 추가에 실패했어요!');
   }
 };
