@@ -1,19 +1,21 @@
 import { useState } from 'react';
-import ColorPicker from '../color-picker/ColorPicker';
-import Button from '../ui/Button/Button';
-import Input from '../ui/Input';
-import LabeledBox from '../ui/Label/LabeledBox';
-import Textarea from '../ui/Textarea';
-import * as S from './AddScheduleModal.style';
+
 import dayjs from 'dayjs';
-import { useDebounce } from '@/hooks/useDebounce';
 import { DateRange } from 'react-day-picker';
-import { ADD_SCHEDULE_MODAL_ID, arrEventColor } from '@/constants/constant';
-import { IEventList } from '@/types/calendar';
-import { useToggleModal } from '@/hooks/useToggleModal';
+
+import * as S from './AddScheduleModal.style';
+import Input from '../ui/Input';
+import Button from '../ui/Button/Button';
 import Spinner from '../ui/Spinner';
+import Textarea from '../ui/Textarea';
+import LabeledBox from '../ui/Label/LabeledBox';
+import ColorPicker from '../color-picker/ColorPicker';
+import { getRandomString } from '@/utils/getRandomString';
+import { useDebounce } from '@/hooks/useDebounce';
+import { useToggleModal } from '@/hooks/useToggleModal';
+import { IEventList } from '@/types/calendar';
 import { IAddScheduleModalProps } from '@/types/schedule';
-import getRandomString from '@/utils/getRandomString';
+import { ADD_SCHEDULE_MODAL_ID, arrEventColor } from '@/constants/constant';
 
 const AddScheduleModal = ({ selectedDate, onAdd }: IAddScheduleModalProps) => {
   const [title, setTitle] = useState('');
