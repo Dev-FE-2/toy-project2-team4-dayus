@@ -17,10 +17,7 @@ import { IEventList, IMainCalendarProps } from '@/types/calendar';
 dayjs.locale('ko');
 const localizer = dayjsLocalizer(dayjs);
 
-const MainCalendar = ({
-  setSelectedDate,
-  onEditSchedule,
-}: IMainCalendarProps) => {
+const MainCalendar = ({ setSelectedDate }: IMainCalendarProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -95,7 +92,7 @@ const MainCalendar = ({
       />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ScheduleList onEditSchedule={onEditSchedule} />
+        <ScheduleList />
       </Modal>
     </S.Container>
   );

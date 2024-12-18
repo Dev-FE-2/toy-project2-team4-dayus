@@ -15,7 +15,7 @@ import { RootState } from '@/store';
 import { calendarActions } from '@/store/slices/calendarSlice';
 import { EDIT_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
-const ScheduleItem = ({ schedule, onEditSchedule }: ScheduleItemProps) => {
+const ScheduleItem = ({ schedule }: ScheduleItemProps) => {
   const [showDeleteButton, setShowDeleteButton] = useState(false);
   const dispatch = useDispatch();
 
@@ -46,7 +46,6 @@ const ScheduleItem = ({ schedule, onEditSchedule }: ScheduleItemProps) => {
   const handleEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (isWorkSchedule) return;
-    onEditSchedule(schedule);
     openIdModal();
   };
 

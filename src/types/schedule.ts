@@ -1,13 +1,7 @@
-/* eslint-disable */
 import { IEventList } from './calendar';
 
 export interface ScheduleItemProps {
   schedule: IEventList;
-  onEditSchedule: (schedule: IEventList) => void;
-}
-
-export interface ScheduleListProps {
-  onEditSchedule: (schedule: IEventList) => void;
 }
 
 export type EditScheduleModalProps = {

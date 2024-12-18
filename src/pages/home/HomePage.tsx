@@ -13,20 +13,19 @@ import EditScheduleModal from '@/components/edit-schedule-modal/EditScheduleModa
 import { useToggleModal } from '@/hooks/useToggleModal';
 import { useCalendarActions } from '@/hooks/useCalendarActions';
 import { RootState } from '@/store';
-import { IEventList } from '@/types/calendar';
 import {
   ADD_SCHEDULE_MODAL_ID,
   EDIT_SCHEDULE_MODAL_ID,
 } from '@/constants/constant';
 
 const HomePage = () => {
-  const [selectedSchedule, setSelectedSchedule] = useState<IEventList | null>(
-    null,
-  );
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const navigate = useNavigate();
 
   const user = useSelector((state: RootState) => state.user);
+  const selectedSchedule = useSelector(
+    (state: RootState) => state.calendar.selectedEvents,
+  );
   const isLoading = useSelector((state: RootState) => state.calendar.isLoading);
 
   const { fetchEvents } = useCalendarActions();
@@ -49,10 +48,6 @@ const HomePage = () => {
     loadEvents();
   }, [loadEvents]);
 
-  const handleEditSchedule = (schedule: IEventList) => {
-    setSelectedSchedule(schedule);
-  };
-
   return (
     <S.Container>
       {isLoading ? (
@@ -60,10 +55,7 @@ const HomePage = () => {
           <Spinner size={40} text="일정을 불러오는 중이에요" textSize="xs" />
         </S.SpinnerWrapper>
       ) : (
-        <MainCalendar
-          onEditSchedule={handleEditSchedule}
-          setSelectedDate={setSelectedDate}
-        />
+        <MainCalendar setSelectedDate={setSelectedDate} />
       )}
       <CafeEvents />
 
@@ -80,11 +72,10 @@ const HomePage = () => {
         navText="일정 수정"
       >
         <EditScheduleModal
-          schedule={selectedSchedule!}
+          schedule={selectedSchedule[0]}
           closeModal={() => {
             closeEditModal();
             navigate(-1);
-            setSelectedSchedule(null);
           }}
         />
       </ModalFull>
