@@ -9,6 +9,10 @@ const store = configureStore({
     modal: modalToggleReducer,
     calendar: calendarSlice,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
