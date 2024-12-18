@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
 import { DateRange } from 'react-day-picker';
 
 import * as S from './AddScheduleModal.style';
@@ -13,11 +14,14 @@ import ColorPicker from '../color-picker/ColorPicker';
 import { getRandomString } from '@/utils/getRandomString';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useToggleModal } from '@/hooks/useToggleModal';
+import { useCalendarActions } from '@/hooks/useCalendarActions';
+import { calendarActions } from '@/store/slices/calendarSlice';
+import { RootState } from '@/store';
 import { IEventList } from '@/types/calendar';
 import { IAddScheduleModalProps } from '@/types/schedule';
 import { ADD_SCHEDULE_MODAL_ID, arrEventColor } from '@/constants/constant';
 
-const AddScheduleModal = ({ selectedDate, onAdd }: IAddScheduleModalProps) => {
+const AddScheduleModal = ({ selectedDate }: IAddScheduleModalProps) => {
   const [title, setTitle] = useState('');
   const [memo, setMemo] = useState('');
   const [color, setColor] = useState(arrEventColor[0]);
@@ -26,6 +30,10 @@ const AddScheduleModal = ({ selectedDate, onAdd }: IAddScheduleModalProps) => {
     to: dayjs(selectedDate).toDate(),
   });
   const [submitLoading, setsubmitLoading] = useState(false);
+
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
+  const { addEvent } = useCalendarActions();
 
   const { closeIdModal } = useToggleModal({
     modalId: ADD_SCHEDULE_MODAL_ID,
@@ -54,9 +62,14 @@ const AddScheduleModal = ({ selectedDate, onAdd }: IAddScheduleModalProps) => {
       color,
     };
 
-    onAdd(addedSchedule);
-    setsubmitLoading(false);
-    closeIdModal();
+    try {
+      await addEvent(user, addedSchedule);
+      closeIdModal();
+    } catch {
+      dispatch(calendarActions.setError('일정 추가에 실패했어요.'));
+    } finally {
+      setsubmitLoading(false);
+    }
   };
 
   return (
@@ -85,7 +98,7 @@ const AddScheduleModal = ({ selectedDate, onAdd }: IAddScheduleModalProps) => {
           />
         </LabeledBox>
         <Button $fullWidth onClick={handleSubmit}>
-          일정 등록하기
+          {submitLoading ? '일정 등록 중...' : '일정 등록하기'}
         </Button>
       </S.Container>
       {submitLoading && (

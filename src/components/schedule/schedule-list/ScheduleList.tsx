@@ -1,15 +1,16 @@
+import { useSelector } from 'react-redux';
+
 import * as S from './ScheduleList.styles';
 import ScheduleItem from '../schedule-item/ScheduleItem';
-import { ScheduleListProps } from '@/types/schedule';
 import { useToggleModal } from '@/hooks/useToggleModal';
+import { RootState } from '@/store';
 import { ADD_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
-const ScheduleList = ({
-  schedules = [],
-  onDelete,
-  onEditSchedule,
-}: ScheduleListProps) => {
+const ScheduleList = () => {
   const { toggleModal } = useToggleModal({ modalId: ADD_SCHEDULE_MODAL_ID });
+  const schedules = useSelector(
+    (state: RootState) => state.calendar.selectedEvents,
+  );
 
   const isEmptySchedule = schedules.length === 0;
   const headerTitle = isEmptySchedule
@@ -28,12 +29,7 @@ const ScheduleList = ({
           </S.NoDataContainer>
         ) : (
           schedules.map(schedule => (
-            <ScheduleItem
-              key={schedule.eventId}
-              schedule={schedule}
-              onDelete={onDelete}
-              onEditSchedule={onEditSchedule}
-            />
+            <ScheduleItem key={schedule.eventId} schedule={schedule} />
           ))
         )}
       </S.ListContainer>
