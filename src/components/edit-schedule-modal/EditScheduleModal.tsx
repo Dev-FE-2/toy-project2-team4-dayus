@@ -49,14 +49,7 @@ const EditScheduleModal = ({
 
     try {
       await updateEvent(user, schedule.eventId, updatedSchedule);
-      dispatch(
-        calendarActions.setSelectedEvents([
-          {
-            ...schedule,
-            ...updatedSchedule,
-          },
-        ]),
-      );
+      dispatch(calendarActions.setEditingEvent(null));
       closeModal();
     } catch {
       dispatch(calendarActions.setError('일정 수정에 실패했어요!'));

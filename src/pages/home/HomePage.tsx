@@ -23,8 +23,8 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state: RootState) => state.user);
-  const selectedSchedule = useSelector(
-    (state: RootState) => state.calendar.selectedEvents,
+  const editingEvent = useSelector(
+    (state: RootState) => state.calendar.editingEvent,
   );
   const isLoading = useSelector((state: RootState) => state.calendar.isLoading);
 
@@ -72,7 +72,7 @@ const HomePage = () => {
         navText="일정 수정"
       >
         <EditScheduleModal
-          schedule={selectedSchedule[0]}
+          schedule={editingEvent!}
           closeModal={() => {
             closeEditModal();
             navigate(-1);

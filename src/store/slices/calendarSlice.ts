@@ -5,6 +5,7 @@ import { IEventList } from '@/types/calendar';
 interface CalendarState {
   events: IEventList[];
   selectedEvents: IEventList[];
+  editingEvent: IEventList | null;
   isLoading: boolean;
   error: string | null;
 }
@@ -12,6 +13,7 @@ interface CalendarState {
 const initialState: CalendarState = {
   events: [],
   selectedEvents: [],
+  editingEvent: null,
   isLoading: false,
   error: null,
 };
@@ -51,6 +53,9 @@ const calendarSlice = createSlice({
     },
     setSelectedEvents: (state, action: PayloadAction<IEventList[]>) => {
       state.selectedEvents = action.payload;
+    },
+    setEditingEvent: (state, action: PayloadAction<IEventList | null>) => {
+      state.editingEvent = action.payload;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;

@@ -46,6 +46,7 @@ const ScheduleItem = ({ schedule }: ScheduleItemProps) => {
   const handleEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (isWorkSchedule) return;
+    dispatch(calendarActions.setEditingEvent(schedule));
     openIdModal();
   };
 
