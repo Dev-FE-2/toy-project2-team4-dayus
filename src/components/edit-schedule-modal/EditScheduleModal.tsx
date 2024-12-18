@@ -1,8 +1,10 @@
 import { useState } from 'react';
 
 import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
 import { DateRange } from 'react-day-picker';
 
+import * as S from './EditScheduleModal.styles';
 import Input from '../ui/Input';
 import Button from '../ui/Button/Button';
 import Textarea from '../ui/Textarea';
@@ -11,9 +13,14 @@ import ColorPicker from '../color-picker/ColorPicker';
 import { IEventList } from '@/types/calendar';
 import { EditScheduleModalProps } from '@/types/schedule';
 import { useDebounce } from '@/hooks/useDebounce';
-import * as S from './EditScheduleModal.styles';
+import { useCalendarActions } from '@/hooks/useCalendarActions';
+import { RootState } from '@/store';
+import { calendarActions } from '@/store/slices/calendarSlice';
 
-const EditScheduleModal = ({ schedule, onEdit }: EditScheduleModalProps) => {
+const EditScheduleModal = ({
+  schedule,
+  closeModal,
+}: EditScheduleModalProps) => {
   const [title, setTitle] = useState<string>(String(schedule.title));
   const [memo, setMemo] = useState<string>(schedule.memo || '');
   const [color, setColor] = useState(schedule.color);
@@ -22,10 +29,14 @@ const EditScheduleModal = ({ schedule, onEdit }: EditScheduleModalProps) => {
     to: dayjs(schedule.end).toDate(),
   });
 
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
+  const { updateEvent } = useCalendarActions();
+
   const debouncedTitle = useDebounce(title, 300);
   const debouncedMemo = useDebounce(memo, 300);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!dateRange.from || !dateRange.to) return;
 
     const updatedSchedule: Partial<IEventList> = {
@@ -36,7 +47,12 @@ const EditScheduleModal = ({ schedule, onEdit }: EditScheduleModalProps) => {
       color,
     };
 
-    onEdit(schedule.eventId, updatedSchedule);
+    try {
+      await updateEvent(user, schedule.eventId, updatedSchedule);
+      closeModal();
+    } catch {
+      dispatch(calendarActions.setError('일정 수정에 실패했어요!'));
+    }
   };
 
   return (

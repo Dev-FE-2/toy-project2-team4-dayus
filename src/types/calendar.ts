@@ -21,10 +21,6 @@ export interface IEventColorProps {
 }
 
 export interface IMainCalendarProps {
-  processedEvents: IEventList[];
-  selectedEvents: IEventList[];
   setSelectedDate: Dispatch<SetStateAction<Date | null>>;
-  onDateSelect: (cellInfo: { start: Date; end: Date }) => void;
   onEditSchedule: (schedule: IEventList) => void;
-  onDelete: (id: string) => void;
 }
