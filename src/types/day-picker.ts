@@ -7,6 +7,13 @@ type DatePickerBaseProps = {
   mode: DatePickerMode;
 };
 
+export type SingleDayPickerProps = {
+  id: string;
+  text: string;
+  date: Date;
+  onChange: (newDate: Date) => void;
+};
+
 type SingleDatePickerProps = DatePickerBaseProps & {
   mode: 'single';
   selected?: Date;

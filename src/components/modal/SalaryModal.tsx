@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import Modal from '../ui/Modal';
+import Modal from '../ui/modal';
 import { spreadListItem } from '@/types/salary';
 import * as S from './SalaryModal.styles';
 

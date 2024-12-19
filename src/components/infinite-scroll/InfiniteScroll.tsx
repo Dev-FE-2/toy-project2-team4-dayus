@@ -1,5 +1,5 @@
 import { useEffect, useCallback, Fragment } from 'react';
-import Spinner from '../ui/Spinner';
+import Spinner from '../ui/spinner';
 import { IInfiniteScrollProps } from '@/types/infinite-scroll';
 
 // 1. 리팩토링 : IntersectionObserver 적용

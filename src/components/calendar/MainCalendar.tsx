@@ -1,28 +1,36 @@
 import { useMemo, useState } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
 import { Calendar, dayjsLocalizer } from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 
 import * as S from './MainCalendar.style';
-import Modal from '../ui/Modal';
+import Modal from '../ui/modal';
 import ScheduleList from '../schedule/schedule-list/ScheduleList';
 import CustomToolbar from './CustomToolbar';
+import { RootState } from '@/store';
+import { calendarActions } from '@/store/slices/calendarSlice';
 import { IEventList, IMainCalendarProps } from '@/types/calendar';
 
 dayjs.locale('ko');
 const localizer = dayjsLocalizer(dayjs);
 
-const MainCalendar = ({
-  processedEvents,
-  selectedEvents,
-  setSelectedDate,
-  onEditSchedule,
-  onDateSelect,
-  onDelete,
-}: IMainCalendarProps) => {
+const MainCalendar = ({ setSelectedDate }: IMainCalendarProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const events = useSelector((state: RootState) => state.calendar.events);
+
+  const displayEvents = useMemo(
+    () =>
+      events.map(event => ({
+        ...event,
+        end: dayjs(event.end).add(1, 'day').toDate(),
+      })),
+    [events],
+  );
 
   const components = useMemo(
     () => ({
@@ -39,21 +47,39 @@ const MainCalendar = ({
   });
 
   const handleSelectCell = (cellInfo: { start: Date; end: Date }) => {
-    onDateSelect(cellInfo);
+    const selectedDay = dayjs(cellInfo.start).startOf('day');
+
+    const eventForDate = events.filter(event => {
+      const eventStart = dayjs(event.start).startOf('day');
+      const eventEnd = dayjs(event.end).startOf('day');
+
+      return (
+        selectedDay.isSame(eventStart) ||
+        selectedDay.isSame(eventEnd) ||
+        (selectedDay.isAfter(eventStart) && selectedDay.isBefore(eventEnd))
+      );
+    });
+
+    dispatch(calendarActions.setSelectedEvents(eventForDate));
     setSelectedDate(cellInfo.start);
     setIsModalOpen(true);
   };
 
   const handleSelectEvent = (event: IEventList) => {
-    onDateSelect({ start: event.start!, end: event.end! });
-    setIsModalOpen(true);
+    const originalEvent = events.find(e => e.eventId === event.eventId);
+    if (originalEvent) {
+      handleSelectCell({
+        start: originalEvent.start!,
+        end: originalEvent.end!,
+      });
+    }
   };
 
   return (
     <S.Container>
       <Calendar
         localizer={localizer}
-        events={processedEvents}
+        events={displayEvents!}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500 }}
@@ -66,11 +92,7 @@ const MainCalendar = ({
       />
 
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <ScheduleList
-          schedules={selectedEvents}
-          onDelete={onDelete}
-          onEditSchedule={onEditSchedule}
-        />
+        <ScheduleList />
       </Modal>
     </S.Container>
   );

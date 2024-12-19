@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { Dispatch, SetStateAction } from 'react';
 import { Event, ToolbarProps } from 'react-big-calendar';
 
@@ -21,10 +20,5 @@ export interface IEventColorProps {
 }
 
 export interface IMainCalendarProps {
-  processedEvents: IEventList[];
-  selectedEvents: IEventList[];
   setSelectedDate: Dispatch<SetStateAction<Date | null>>;
-  onDateSelect: (cellInfo: { start: Date; end: Date }) => void;
-  onEditSchedule: (schedule: IEventList) => void;
-  onDelete: (id: string) => void;
 }

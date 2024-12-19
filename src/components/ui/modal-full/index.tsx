@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import * as S from './ModalFull.style';
-import PageNav from '../PageNav';
+import PageNav from '../page-navigation';
 import { useScrollLock } from '@/hooks/useScrollLock';
 import { useToggleModal } from '@/hooks/useToggleModal';
 

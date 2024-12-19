@@ -1,22 +1,26 @@
 import { useState } from 'react';
 
 import dayjs from 'dayjs';
+import { useSelector, useDispatch } from 'react-redux';
 import { GoTrash } from 'react-icons/go';
 
 import * as S from './ScheduleItem.styles';
-import Button from '@/components/ui/Button/Button';
+import Button from '@/components/ui/button/Button';
 import { ScheduleItemProps } from '@/types/schedule';
 import { formatDate } from '@/utils/formatDate';
 import { compareDateRange } from '@/utils/compareDateRange';
 import { useToggleModal } from '@/hooks/useToggleModal';
+import { useCalendarActions } from '@/hooks/useCalendarActions';
+import { RootState } from '@/store';
+import { calendarActions } from '@/store/slices/calendarSlice';
 import { EDIT_SCHEDULE_MODAL_ID } from '@/constants/constant';
 
-const ScheduleItem = ({
-  schedule,
-  onDelete,
-  onEditSchedule,
-}: ScheduleItemProps) => {
+const ScheduleItem = ({ schedule }: ScheduleItemProps) => {
   const [showDeleteButton, setShowDeleteButton] = useState(false);
+  const dispatch = useDispatch();
+
+  const user = useSelector((state: RootState) => state.user);
+  const { deleteEvent } = useCalendarActions();
   const { openIdModal } = useToggleModal({ modalId: EDIT_SCHEDULE_MODAL_ID });
 
   if (!schedule) return null;
@@ -24,10 +28,15 @@ const ScheduleItem = ({
   const isWorkSchedule: boolean =
     'isWorkSchedule' in schedule && !!schedule.isWorkSchedule;
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (isWorkSchedule) return;
-    onDelete(schedule.eventId);
-    setShowDeleteButton(false);
+
+    try {
+      await deleteEvent(user, schedule.eventId);
+      setShowDeleteButton(false);
+    } catch {
+      dispatch(calendarActions.setError('일정 삭제에 실패했어요!'));
+    }
   };
 
   const handleCancel = () => {
@@ -37,7 +46,7 @@ const ScheduleItem = ({
   const handleEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (isWorkSchedule) return;
-    onEditSchedule(schedule);
+    dispatch(calendarActions.setEditingEvent(schedule));
     openIdModal();
   };
 

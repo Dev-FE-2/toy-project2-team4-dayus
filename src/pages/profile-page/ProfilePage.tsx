@@ -1,7 +1,7 @@
 import userSvg from '@/assets/user.svg';
-import Button from '@/components/ui/Button/Button';
+import Button from '@/components/ui/button/Button';
 import * as S from './ProfilePage.styles';
-import ModalFull from '@/components/ui/ModalFull';
+import ModalFull from '@/components/ui/modal-full';
 import { useToggleModal } from '@/hooks/useToggleModal';
 import ProfileModal from '@/components/full-modal/ProfileModal';
 import { auth } from '@/server/firebase/auth';
@@ -9,9 +9,12 @@ import { EDIT_PROFILE_MODAL_ID } from '@/constants/constant';
 import { DocumentData } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { fetchUserData } from '@/api/profileApi';
+import Spinner from '@/components/ui/spinner';
+import { SpinnerWrapper } from '../home/HomePage.style';
 
 const ProfilePage = () => {
   const [userData, setUserData] = useState<DocumentData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { isOpen, openIdModal } = useToggleModal({
     modalId: EDIT_PROFILE_MODAL_ID,
   });
@@ -21,6 +24,7 @@ const ProfilePage = () => {
       try {
         const data = await fetchUserData();
         setUserData(data);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -38,45 +42,67 @@ const ProfilePage = () => {
       <S.ProfileWrapper>
         <S.ProfileHeader>
           <img src={userSvg} alt="" width="98" />
-          <S.ProfileHeaderName>{userData?.userName}</S.ProfileHeaderName>
-          <S.ProfileHeaderLocation>
-            {userData?.location}
-          </S.ProfileHeaderLocation>
+          {isLoading ? (
+            <SpinnerWrapper>
+              <Spinner
+                size={40}
+                text="데이터를 불러오는 중이에요"
+                textSize="xs"
+              />
+            </SpinnerWrapper>
+          ) : (
+            <>
+              <S.ProfileHeaderName>{userData?.userName}</S.ProfileHeaderName>
+              <S.ProfileHeaderLocation>
+                {userData?.location}
+              </S.ProfileHeaderLocation>
+            </>
+          )}
         </S.ProfileHeader>
         <S.ProfileInfo>
-          <S.ProfileInfoUl>
-            <S.ProfileInfoItem>
-              <S.ProfileInfoTitle>사번</S.ProfileInfoTitle>
-              <span className="profile-info-item-content">
-                {userData?.userSn}
-              </span>
-            </S.ProfileInfoItem>
-            <S.ProfileInfoItem>
-              <S.ProfileInfoTitle>이름</S.ProfileInfoTitle>
-              <span className="profile-info-item-content">
-                {userData?.userName}
-              </span>
-            </S.ProfileInfoItem>
-            <S.ProfileInfoItem>
-              <S.ProfileInfoTitle>이메일</S.ProfileInfoTitle>
-              <span className="profile-info-item-content">
-                {userData?.email}
-              </span>
-            </S.ProfileInfoItem>
-            <S.ProfileInfoItem>
-              <S.ProfileInfoTitle>연락처</S.ProfileInfoTitle>
-              <span className="profile-info-item-content">
-                {userData?.phone}
-              </span>
-            </S.ProfileInfoItem>
-            <S.ProfileInfoItem>
-              <S.ProfileInfoTitle>계좌번호</S.ProfileInfoTitle>
-              <span className="profile-info-item-content">
-                {userData?.bankSn.bankName + ' '}
-                {userData?.bankSn.account}
-              </span>
-            </S.ProfileInfoItem>
-          </S.ProfileInfoUl>
+          {isLoading ? (
+            <SpinnerWrapper>
+              <Spinner
+                size={40}
+                text="데이터를 불러오는 중이에요"
+                textSize="xs"
+              />
+            </SpinnerWrapper>
+          ) : (
+            <S.ProfileInfoUl>
+              <S.ProfileInfoItem>
+                <S.ProfileInfoTitle>사번</S.ProfileInfoTitle>
+                <span className="profile-info-item-content">
+                  {userData?.userSn}
+                </span>
+              </S.ProfileInfoItem>
+              <S.ProfileInfoItem>
+                <S.ProfileInfoTitle>이름</S.ProfileInfoTitle>
+                <span className="profile-info-item-content">
+                  {userData?.userName}
+                </span>
+              </S.ProfileInfoItem>
+              <S.ProfileInfoItem>
+                <S.ProfileInfoTitle>이메일</S.ProfileInfoTitle>
+                <span className="profile-info-item-content">
+                  {userData?.email}
+                </span>
+              </S.ProfileInfoItem>
+              <S.ProfileInfoItem>
+                <S.ProfileInfoTitle>연락처</S.ProfileInfoTitle>
+                <span className="profile-info-item-content">
+                  {userData?.phone}
+                </span>
+              </S.ProfileInfoItem>
+              <S.ProfileInfoItem>
+                <S.ProfileInfoTitle>계좌번호</S.ProfileInfoTitle>
+                <span className="profile-info-item-content">
+                  {userData?.bankSn.bankName + ' '}
+                  {userData?.bankSn.account}
+                </span>
+              </S.ProfileInfoItem>
+            </S.ProfileInfoUl>
+          )}
         </S.ProfileInfo>
         <S.ProfileButtons>
           <Button $fullWidth onClick={openIdModal}>

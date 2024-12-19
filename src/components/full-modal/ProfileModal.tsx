@@ -1,9 +1,9 @@
 import user from '@/assets/user.svg';
-import Button from '../ui/Button/Button';
+import Button from '../ui/button/Button';
 import * as S from './ProfileModal.styles';
 import { useToggleModal } from '@/hooks/useToggleModal';
 import { EDIT_PROFILE_MODAL_ID } from '@/constants/constant';
-import Input from '../ui/Input';
+import Input from '../ui/input';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchUserData, updateUserData } from '@/api/profileApi';
