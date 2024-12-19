@@ -5,17 +5,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './LoginPage.styles';
 import LabeledBox from '@/components/ui/label/LabeledBox';
-import Input from '@/components/ui/input';
 import Button from '@/components/ui/button/Button';
+import Input from '@/components/ui/input';
+import { LoginProps } from '@/types/login';
 
-type props = {
-  email: string;
-  password: string;
-  setEmail: React.Dispatch<React.SetStateAction<string>>;
-  setPassword: React.Dispatch<React.SetStateAction<string>>;
-};
-
-const LoginForm = (props: props) => {
+const LoginForm = (props: LoginProps) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
