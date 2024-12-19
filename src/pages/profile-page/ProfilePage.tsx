@@ -1,7 +1,7 @@
 import userSvg from '@/assets/user.svg';
-import Button from '@/components/ui/Button/Button';
+import Button from '@/components/ui/button/Button';
 import * as S from './ProfilePage.styles';
-import ModalFull from '@/components/ui/ModalFull';
+import ModalFull from '@/components/ui/modal-full';
 import { useToggleModal } from '@/hooks/useToggleModal';
 import ProfileModal from '@/components/full-modal/ProfileModal';
 import { auth } from '@/server/firebase/auth';
@@ -9,7 +9,7 @@ import { EDIT_PROFILE_MODAL_ID } from '@/constants/constant';
 import { DocumentData } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { fetchUserData } from '@/api/profileApi';
-import Spinner from '@/components/ui/Spinner';
+import Spinner from '@/components/ui/spinner';
 import { SpinnerWrapper } from '../home/HomePage.style';
 
 const ProfilePage = () => {

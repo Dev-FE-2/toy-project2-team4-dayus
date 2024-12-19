@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import * as S from './HomePage.style';
-import Spinner from '@/components/ui/Spinner';
-import ModalFull from '@/components/ui/ModalFull';
+import Spinner from '@/components/ui/spinner';
+import ModalFull from '@/components/ui/modal-full';
 import CafeEvents from '@/components/cafe-events/CafeEvents';
 import MainCalendar from '@/components/calendar/MainCalendar';
 import AddScheduleModal from '@/components/add-schedule-modal/AddScheduleModal';

@@ -4,9 +4,9 @@ import { FirebaseError } from 'firebase/app';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './LoginPage.styles';
-import LabeledBox from '@/components/ui/Label/LabeledBox';
-import Input from '@/components/ui/Input';
-import Button from '@/components/ui/Button/Button';
+import LabeledBox from '@/components/ui/label/LabeledBox';
+import Input from '@/components/ui/input';
+import Button from '@/components/ui/button/Button';
 
 type props = {
   email: string;

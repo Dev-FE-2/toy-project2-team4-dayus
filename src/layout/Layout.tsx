@@ -2,7 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 
 import * as S from './Layout.styles';
 import Header from '@/components/header/Header';
-import NavBar from '@/components/ui/Navbar';
+import NavBar from '@/components/ui/navigation';
 import { ROUTER_PATH } from '@/constants/constant';
 
 const Layout = () => {

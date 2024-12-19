@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ko';
 
 import * as S from './MainCalendar.style';
-import Modal from '../ui/Modal';
+import Modal from '../ui/modal';
 import ScheduleList from '../schedule/schedule-list/ScheduleList';
 import CustomToolbar from './CustomToolbar';
 import { RootState } from '@/store';

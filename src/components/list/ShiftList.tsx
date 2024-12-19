@@ -3,7 +3,7 @@ import InfiniteScroll from '../infinite-scroll/InfiniteScroll';
 
 import * as S from './SalaryList.styles';
 import ShiftItem from './ShiftItem';
-import Button from '../ui/Button/Button';
+import Button from '../ui/button/Button';
 import { useToggleModal } from '@/hooks/useToggleModal';
 import { POST_SHIFT_MODAL_ID } from '@/constants/constant';
 

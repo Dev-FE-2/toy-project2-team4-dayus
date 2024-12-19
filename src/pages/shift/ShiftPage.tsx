@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './ShiftPage.styles';
 import ShiftList from '@/components/list/ShiftList';
 import ShiftModal from '@/components/shift-modal/ShiftModal';
-import Select from '@/components/ui/Select';
-import Tab from '@/components/ui/Tab';
+import Select from '@/components/ui/select';
+import Tab from '@/components/ui/tab';
 import {
   PAGE_TABS,
   SELECT_APPROVAL_TYPE,

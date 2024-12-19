@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import ColorPickerButton from '../ui/Button/ColorPickerButton';
+import ColorPickerButton from '../ui/button/ColorPickerButton';
 import { arrEventColor } from '@/constants/constant';
 import { IEventColorProps } from '@/types/calendar';
 import { ColorPickerType } from '@/types/color-picker';

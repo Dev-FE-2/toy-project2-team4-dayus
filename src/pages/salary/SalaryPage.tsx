@@ -1,7 +1,7 @@
 import SalaryAccordion from '@/components/accordion/SalaryAccordion';
 import SalaryList from '@/components/list/SalaryList';
 import SalaryModal from '@/components/modal/SalaryModal';
-import Tab from '@/components/ui/Tab';
+import Tab from '@/components/ui/tab';
 import { PAGE_TABS } from '@/constants/constant';
 import { SalaryListItem, spreadListItem } from '@/types/salary';
 import { useEffect, useState } from 'react';
