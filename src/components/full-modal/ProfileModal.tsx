@@ -3,12 +3,12 @@ import Button from '../ui/button/Button';
 import * as S from './ProfileModal.styles';
 import { useToggleModal } from '@/hooks/useToggleModal';
 import { EDIT_PROFILE_MODAL_ID } from '@/constants/constant';
-import Input from '../ui/input';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchUserData, updateUserData } from '@/api/profileApi';
 import { DocumentData } from 'firebase/firestore';
 import { ChildProps } from '@/types/profile-modal';
+import ProfileInfoItem from './ProfileInfoItem';
 
 const ProfileModal = ({ onSendData }: ChildProps) => {
   const navigate = useNavigate();
@@ -40,20 +40,14 @@ const ProfileModal = ({ onSendData }: ChildProps) => {
     }
   }, [userData, onSendData]);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
-    if (name === 'name') {
-      setName(value);
-    } else if (name === 'email') {
-      setEmail(value);
-    } else if (name === 'phone') {
-      setPhone(value);
-    } else if (name === 'account') {
-      setAccount(value);
-    } else if (name === 'bankName') {
-      setBankName(value);
-    }
+    if (name === 'name') setName(value);
+    else if (name === 'email') setEmail(value);
+    else if (name === 'phone') setPhone(value);
+    else if (name === 'account') setAccount(value);
+    else if (name === 'bankName') setBankName(value);
   };
 
   const onClick = async () => {
@@ -85,34 +79,43 @@ const ProfileModal = ({ onSendData }: ChildProps) => {
       </S.ProfileHeader>
       <S.ProfileInfo>
         <S.ProfileInfoUl>
-          <S.ProfileInfoItem>
-            <S.ProfileInfoTitle>사번</S.ProfileInfoTitle>
-            <Input
-              disabled
-              style={{ backgroundColor: '#eee' }}
-              value={userData?.userSn}
-            />
-          </S.ProfileInfoItem>
-          <S.ProfileInfoItem>
-            <S.ProfileInfoTitle>이름</S.ProfileInfoTitle>
-            <Input onChange={onChange} value={name} name="name" />
-          </S.ProfileInfoItem>
-          <S.ProfileInfoItem>
-            <S.ProfileInfoTitle>이메일</S.ProfileInfoTitle>
-            <Input onChange={onChange} value={email} name="email" />
-          </S.ProfileInfoItem>
-          <S.ProfileInfoItem>
-            <S.ProfileInfoTitle>연락처</S.ProfileInfoTitle>
-            <Input onChange={onChange} value={phone} name="phone" />
-          </S.ProfileInfoItem>
-          <S.ProfileInfoItem>
-            <S.ProfileInfoTitle>은행</S.ProfileInfoTitle>
-            <Input onChange={onChange} value={bankName} name="bankName" />
-          </S.ProfileInfoItem>
-          <S.ProfileInfoItem>
-            <S.ProfileInfoTitle>계좌번호</S.ProfileInfoTitle>
-            <Input onChange={onChange} value={account} name="account" />
-          </S.ProfileInfoItem>
+          <ProfileInfoItem
+            title="사번"
+            name=""
+            value={userData?.userSn}
+            disabled={true}
+            onChange={handleInputChange}
+          />
+          <ProfileInfoItem
+            title="이름"
+            name="name"
+            value={name}
+            onChange={handleInputChange}
+          />
+          <ProfileInfoItem
+            title="이메일"
+            name="email"
+            value={email}
+            onChange={handleInputChange}
+          />
+          <ProfileInfoItem
+            title="연락처"
+            name="phone"
+            value={phone}
+            onChange={handleInputChange}
+          />
+          <ProfileInfoItem
+            title="은행"
+            name="bankName"
+            value={bankName}
+            onChange={handleInputChange}
+          />
+          <ProfileInfoItem
+            title="계좌번호"
+            name="account"
+            value={account}
+            onChange={handleInputChange}
+          />
         </S.ProfileInfoUl>
       </S.ProfileInfo>
       <S.ProfileButtons>
