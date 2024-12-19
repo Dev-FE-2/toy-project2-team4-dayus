@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DateRange } from 'react-day-picker';
 
 import * as S from './AddScheduleModal.style';
-import Input from '../ui/Input';
-import Button from '../ui/Button/Button';
-import Spinner from '../ui/Spinner';
-import Textarea from '../ui/Textarea';
-import LabeledBox from '../ui/Label/LabeledBox';
+import Input from '../ui/input';
+import Button from '../ui/button/Button';
+import Spinner from '../ui/spinner';
+import Textarea from '../ui/textarea';
+import LabeledBox from '../ui/label/LabeledBox';
 import ColorPicker from '../color-picker/ColorPicker';
 import { getRandomString } from '@/utils/getRandomString';
 import { useDebounce } from '@/hooks/useDebounce';

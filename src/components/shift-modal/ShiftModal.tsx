@@ -1,11 +1,11 @@
 import { POST_SHIFT_MODAL_ID, SELECT_WORK_TYPE } from '@/constants/constant';
 import { useToggleModal } from '@/hooks/useToggleModal';
-import ModalFull from '../ui/ModalFull';
-import Textarea from '../ui/Textarea';
-import Select from '../ui/Select';
+import ModalFull from '../ui/modal-full';
+import Textarea from '../ui/textarea';
+import Select from '../ui/select';
 import { FormEvent, useState } from 'react';
 import SingleDayPicker from '../day-picker/SingleDayPicker';
-import LabeledBox from '../ui/Label/LabeledBox';
+import LabeledBox from '../ui/label/LabeledBox';
 import * as S from './ShiftModal.styles';
 import { postShiftCorrection } from '@/api/shiftApi';
 import { RootState } from '@/store';

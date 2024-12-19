@@ -3,8 +3,8 @@ import { useState, useRef, useEffect } from 'react';
 import { DateRange } from 'react-day-picker';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 
-import DatePicker from '@/components/ui/DayPicker';
-import Button from '@/components/ui/Button/Button';
+import DatePicker from '@/components/ui/day-picker';
+import Button from '@/components/ui/button/Button';
 import * as S from './RangeDayPicker.styles';
 import { formatDate } from '@/utils/formatDate';
 import { RangeDayPickerProps } from '@/types/day-picker';

@@ -1,4 +1,4 @@
-import Accordion from '../ui/Accordion';
+import Accordion from '../ui/accordion';
 import * as S from './SalaryAccordion.styles';
 import useSalaryItem from '@/hooks/useSalaryItem';
 

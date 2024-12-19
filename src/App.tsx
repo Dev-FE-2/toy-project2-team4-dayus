@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Router from './routes/Router';
-import Spinner from './components/ui/Spinner';
+import Spinner from './components/ui/spinner';
 import { Toaster } from 'react-hot-toast';
 import { GlobalStyle } from './styles/GlobalStyles';
 import { initializeAuth } from './server/firebase/auth';

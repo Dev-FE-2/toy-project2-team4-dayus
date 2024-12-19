@@ -1,16 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 
-import DatePicker from '@/components/ui/DayPicker';
-import LabeledBox from '@/components/ui/Label/LabeledBox';
+import DatePicker from '@/components/ui/day-picker';
+import LabeledBox from '@/components/ui/label/LabeledBox';
 import * as S from './SingleDayPicker.styles';
 import { formatDate } from '@/utils/formatDate';
-
-type SingleDayPickerProps = {
-  id: string;
-  text: string;
-  date: Date;
-  onChange: (newDate: Date) => void;
-};
+import { SingleDayPickerProps } from '@/types/day-picker';
 
 const SingleDayPicker = ({
   id,

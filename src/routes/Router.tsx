@@ -8,7 +8,7 @@ import NotFoundPage from '@/pages/not-found/NotFoundPage';
 import Layout from '@/layout/Layout';
 import { ROUTER_PATH } from '@/constants/constant';
 import ShiftPage from '@/pages/shift/ShiftPage';
-import ProtectedRoute from '@/components/ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from '@/components/protected-route/ProtectedRoute';
 
 const Router = () => {
   const { HOME, LOGIN, PROFILE, SALARY, SHIFT } = ROUTER_PATH;

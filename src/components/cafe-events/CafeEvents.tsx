@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import * as S from './CafeEvents.styles';
 import CafeEventCard from './CafeEventCard';
-import Spinner from '../ui/Spinner';
+import Spinner from '../ui/spinner';
 import { getCafeScheduleItems } from '@/api/cafeScheduleApi';
 import { ICafeEventList } from '@/types/calendar';
 

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FaRegCalendarCheck } from 'react-icons/fa';
 
-import Input from '../ui/Input';
+import Input from '../ui/input';
 
 export const Wrapper = styled.div`
   position: relative;

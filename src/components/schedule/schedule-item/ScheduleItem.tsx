@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { GoTrash } from 'react-icons/go';
 
 import * as S from './ScheduleItem.styles';
-import Button from '@/components/ui/Button/Button';
+import Button from '@/components/ui/button/Button';
 import { ScheduleItemProps } from '@/types/schedule';
 import { formatDate } from '@/utils/formatDate';
 import { compareDateRange } from '@/utils/compareDateRange';

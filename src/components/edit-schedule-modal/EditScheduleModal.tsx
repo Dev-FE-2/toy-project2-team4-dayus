@@ -5,10 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DateRange } from 'react-day-picker';
 
 import * as S from './EditScheduleModal.styles';
-import Input from '../ui/Input';
-import Button from '../ui/Button/Button';
-import Textarea from '../ui/Textarea';
-import LabeledBox from '../ui/Label/LabeledBox';
+import Input from '../ui/input';
+import Button from '../ui/button/Button';
+import Textarea from '../ui/textarea';
+import LabeledBox from '../ui/label/LabeledBox';
 import ColorPicker from '../color-picker/ColorPicker';
 import { IEventList } from '@/types/calendar';
 import { EditScheduleModalProps } from '@/types/schedule';
